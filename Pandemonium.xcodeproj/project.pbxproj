@@ -1,0 +1,923 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7A7B152AA9DC99C983621B62 /* Pods_Pandemonium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F0D7812268DEF37A090C2FA /* Pods_Pandemonium.framework */; };
+		818555332021230E0089752E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818555322021230E0089752E /* AppDelegate.swift */; };
+		8185553B2021230E0089752E /* Pandemonium.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 818555392021230E0089752E /* Pandemonium.xcdatamodeld */; };
+		8185553D2021230E0089752E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8185553C2021230E0089752E /* Assets.xcassets */; };
+		818555402021230E0089752E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8185553E2021230E0089752E /* LaunchScreen.storyboard */; };
+		8185554B2021230E0089752E /* PandemoniumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8185554A2021230E0089752E /* PandemoniumTests.swift */; };
+		818555562021230E0089752E /* PandemoniumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818555552021230E0089752E /* PandemoniumUITests.swift */; };
+		81855567202124AA0089752E /* HomeFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81855566202124AA0089752E /* HomeFeedView.swift */; };
+		8185556A202124D30089752E /* HomeFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81855569202124D30089752E /* HomeFeedVC.swift */; };
+		8185556C202125230089752E /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8185556B202125230089752E /* CreateAccountVC.swift */; };
+		81855572202125960089752E /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81855571202125960089752E /* CreatePostView.swift */; };
+		81855574202125BD0089752E /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81855573202125BD0089752E /* CreatePostViewController.swift */; };
+		8185557A202126F40089752E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81855579202126F40089752E /* ProfileView.swift */; };
+		81855582202127360089752E /* UserEditPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81855581202127360089752E /* UserEditPostView.swift */; };
+		81CF09D1202127B300ECACE5 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF09D0202127B300ECACE5 /* MenuView.swift */; };
+		81CF09D3202127C300ECACE5 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF09D2202127C300ECACE5 /* MenuVC.swift */; };
+		81CF09E8202128B100ECACE5 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF09E7202128B100ECACE5 /* UserDefaults.swift */; };
+		81CF09FA20212B5D00ECACE5 /* CurrentUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF09F920212B5D00ECACE5 /* CurrentUserTableViewCell.swift */; };
+		81CF09FC20212B6800ECACE5 /* UserCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF09FB20212B6800ECACE5 /* UserCommentTableViewCell.swift */; };
+		81CF0A0020212B8500ECACE5 /* DetailPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF09FF20212B8500ECACE5 /* DetailPostTableViewCell.swift */; };
+		81CF0A0220212B8F00ECACE5 /* AppInstructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF0A0120212B8F00ECACE5 /* AppInstructionsTableViewCell.swift */; };
+		81CF0A0420212B9900ECACE5 /* HomeFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF0A0320212B9900ECACE5 /* HomeFeedTableViewCell.swift */; };
+		81CF0A0620212C2300ECACE5 /* NewCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF0A0520212C2300ECACE5 /* NewCommentViewController.swift */; };
+		81CF0A082021336D00ECACE5 /* DetailPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF0A072021336D00ECACE5 /* DetailPostVC.swift */; };
+		81CF0A0A2021337800ECACE5 /* CurrentUserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF0A092021337700ECACE5 /* CurrentUserProfileVC.swift */; };
+		81CF0A0C2021338800ECACE5 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF0A0B2021338800ECACE5 /* LoginVC.swift */; };
+		81CF0A0E202133CD00ECACE5 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF0A0D202133CD00ECACE5 /* CreateAccountView.swift */; };
+		81CF0A10202133D600ECACE5 /* DetailPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF0A0F202133D500ECACE5 /* DetailPostView.swift */; };
+		81CF0A162021341A00ECACE5 /* CurrentUserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF0A152021341A00ECACE5 /* CurrentUserProfileView.swift */; };
+		81CF0A182021342700ECACE5 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF0A172021342700ECACE5 /* MenuTableViewCell.swift */; };
+		81CF0A1A2021350800ECACE5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF0A192021350800ECACE5 /* ProfileViewController.swift */; };
+		81CF0A1C2021351500ECACE5 /* UserEditPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF0A1B2021351500ECACE5 /* UserEditPostVC.swift */; };
+		81CF0A1E2021352000ECACE5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF0A1D2021352000ECACE5 /* LoginView.swift */; };
+		81CF0A202021352900ECACE5 /* NewCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF0A1F2021352900ECACE5 /* NewCommentView.swift */; };
+		81CF0A262021360000ECACE5 /* Firebase Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF0A252021360000ECACE5 /* Firebase Models.swift */; };
+		98E43B6586F1332B57B2B478 /* Pods_PandemoniumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF622E1357C8A7BCFEB7A9F2 /* Pods_PandemoniumUITests.framework */; };
+		CE1506BD11626230086FAC2F /* Pods_PandemoniumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E2FD11B3142D487EC5E91A /* Pods_PandemoniumTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		818555472021230E0089752E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 818555272021230E0089752E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8185552E2021230E0089752E;
+			remoteInfo = Pandemonium;
+		};
+		818555522021230E0089752E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 818555272021230E0089752E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8185552E2021230E0089752E;
+			remoteInfo = Pandemonium;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0F0D7812268DEF37A090C2FA /* Pods_Pandemonium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pandemonium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		33CFD054AE80991FD7066CD1 /* Pods-PandemoniumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PandemoniumUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PandemoniumUITests/Pods-PandemoniumUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		5E6DB434F704BE94789B1E1D /* Pods-PandemoniumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PandemoniumTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PandemoniumTests/Pods-PandemoniumTests.release.xcconfig"; sourceTree = "<group>"; };
+		8185552F2021230E0089752E /* Pandemonium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pandemonium.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		818555322021230E0089752E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8185553A2021230E0089752E /* Pandemonium.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pandemonium.xcdatamodel; sourceTree = "<group>"; };
+		8185553C2021230E0089752E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8185553F2021230E0089752E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		818555412021230E0089752E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		818555462021230E0089752E /* PandemoniumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PandemoniumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8185554A2021230E0089752E /* PandemoniumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandemoniumTests.swift; sourceTree = "<group>"; };
+		8185554C2021230E0089752E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		818555512021230E0089752E /* PandemoniumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PandemoniumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		818555552021230E0089752E /* PandemoniumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandemoniumUITests.swift; sourceTree = "<group>"; };
+		818555572021230E0089752E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81855566202124AA0089752E /* HomeFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedView.swift; sourceTree = "<group>"; };
+		81855569202124D30089752E /* HomeFeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeFeedVC.swift; sourceTree = "<group>"; };
+		8185556B202125230089752E /* CreateAccountVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
+		81855571202125960089752E /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
+		81855573202125BD0089752E /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
+		81855579202126F40089752E /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileView.swift; path = Pandemonium/Views/ProfileView.swift; sourceTree = SOURCE_ROOT; };
+		81855581202127360089752E /* UserEditPostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserEditPostView.swift; path = Pandemonium/Views/UserEditPostView.swift; sourceTree = SOURCE_ROOT; };
+		81CF09D0202127B300ECACE5 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		81CF09D2202127C300ECACE5 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
+		81CF09E7202128B100ECACE5 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		81CF09F920212B5D00ECACE5 /* CurrentUserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserTableViewCell.swift; sourceTree = "<group>"; };
+		81CF09FB20212B6800ECACE5 /* UserCommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCommentTableViewCell.swift; sourceTree = "<group>"; };
+		81CF09FF20212B8500ECACE5 /* DetailPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPostTableViewCell.swift; sourceTree = "<group>"; };
+		81CF0A0120212B8F00ECACE5 /* AppInstructionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppInstructionsTableViewCell.swift; sourceTree = "<group>"; };
+		81CF0A0320212B9900ECACE5 /* HomeFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeFeedTableViewCell.swift; sourceTree = "<group>"; };
+		81CF0A0520212C2300ECACE5 /* NewCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommentViewController.swift; sourceTree = "<group>"; };
+		81CF0A072021336D00ECACE5 /* DetailPostVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPostVC.swift; sourceTree = "<group>"; };
+		81CF0A092021337700ECACE5 /* CurrentUserProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserProfileVC.swift; sourceTree = "<group>"; };
+		81CF0A0B2021338800ECACE5 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		81CF0A0D202133CD00ECACE5 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateAccountView.swift; path = /Users/c4q/Desktop/Projects/Pandemonium/Pandemonium/Views/CreateAccountView.swift; sourceTree = "<absolute>"; };
+		81CF0A0F202133D500ECACE5 /* DetailPostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPostView.swift; sourceTree = "<group>"; };
+		81CF0A152021341A00ECACE5 /* CurrentUserProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserProfileView.swift; sourceTree = "<group>"; };
+		81CF0A172021342700ECACE5 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		81CF0A192021350800ECACE5 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		81CF0A1B2021351500ECACE5 /* UserEditPostVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEditPostVC.swift; sourceTree = "<group>"; };
+		81CF0A1D2021352000ECACE5 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		81CF0A1F2021352900ECACE5 /* NewCommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCommentView.swift; sourceTree = "<group>"; };
+		81CF0A252021360000ECACE5 /* Firebase Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Firebase Models.swift"; sourceTree = "<group>"; };
+		81E2E8D3EDA2BB187772D393 /* Pods-Pandemonium.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pandemonium.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pandemonium/Pods-Pandemonium.release.xcconfig"; sourceTree = "<group>"; };
+		91D7875F5763634E2E03119A /* Pods-PandemoniumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PandemoniumTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PandemoniumTests/Pods-PandemoniumTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A264EC271C3A430DBDB2D5E7 /* Pods-Pandemonium.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pandemonium.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pandemonium/Pods-Pandemonium.debug.xcconfig"; sourceTree = "<group>"; };
+		B9E2FD11B3142D487EC5E91A /* Pods_PandemoniumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PandemoniumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF622E1357C8A7BCFEB7A9F2 /* Pods_PandemoniumUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PandemoniumUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0BDD100FC1F8A56080C22E5 /* Pods-PandemoniumUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PandemoniumUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PandemoniumUITests/Pods-PandemoniumUITests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8185552C2021230E0089752E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A7B152AA9DC99C983621B62 /* Pods_Pandemonium.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		818555432021230E0089752E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE1506BD11626230086FAC2F /* Pods_PandemoniumTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8185554E2021230E0089752E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98E43B6586F1332B57B2B478 /* Pods_PandemoniumUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		818555262021230E0089752E = {
+			isa = PBXGroup;
+			children = (
+				818555312021230E0089752E /* Pandemonium */,
+				818555492021230E0089752E /* PandemoniumTests */,
+				818555542021230E0089752E /* PandemoniumUITests */,
+				818555302021230E0089752E /* Products */,
+				8D225A8A277630D0E1E1D457 /* Pods */,
+				BC6399CC8B78A3FF11551D71 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		818555302021230E0089752E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8185552F2021230E0089752E /* Pandemonium.app */,
+				818555462021230E0089752E /* PandemoniumTests.xctest */,
+				818555512021230E0089752E /* PandemoniumUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		818555312021230E0089752E /* Pandemonium */ = {
+			isa = PBXGroup;
+			children = (
+				818555322021230E0089752E /* AppDelegate.swift */,
+				81CF0A24202135EF00ECACE5 /* Models */,
+				81CF09E9202128BE00ECACE5 /* Data Persistence */,
+				81855565202124920089752E /* View Controllers */,
+				81855568202124B30089752E /* Views */,
+				81CF09F820212B3200ECACE5 /* Custom Cells */,
+				8185553C2021230E0089752E /* Assets.xcassets */,
+				8185553E2021230E0089752E /* LaunchScreen.storyboard */,
+				818555412021230E0089752E /* Info.plist */,
+				818555392021230E0089752E /* Pandemonium.xcdatamodeld */,
+			);
+			path = Pandemonium;
+			sourceTree = "<group>";
+		};
+		818555492021230E0089752E /* PandemoniumTests */ = {
+			isa = PBXGroup;
+			children = (
+				8185554A2021230E0089752E /* PandemoniumTests.swift */,
+				8185554C2021230E0089752E /* Info.plist */,
+			);
+			path = PandemoniumTests;
+			sourceTree = "<group>";
+		};
+		818555542021230E0089752E /* PandemoniumUITests */ = {
+			isa = PBXGroup;
+			children = (
+				818555552021230E0089752E /* PandemoniumUITests.swift */,
+				818555572021230E0089752E /* Info.plist */,
+			);
+			path = PandemoniumUITests;
+			sourceTree = "<group>";
+		};
+		81855565202124920089752E /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				81855569202124D30089752E /* HomeFeedVC.swift */,
+				8185556B202125230089752E /* CreateAccountVC.swift */,
+				81855573202125BD0089752E /* CreatePostViewController.swift */,
+				81CF0A072021336D00ECACE5 /* DetailPostVC.swift */,
+				81CF0A192021350800ECACE5 /* ProfileViewController.swift */,
+				81CF0A092021337700ECACE5 /* CurrentUserProfileVC.swift */,
+				81CF0A1B2021351500ECACE5 /* UserEditPostVC.swift */,
+				81CF0A0B2021338800ECACE5 /* LoginVC.swift */,
+				81CF09D2202127C300ECACE5 /* MenuVC.swift */,
+				81CF0A0520212C2300ECACE5 /* NewCommentViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		81855568202124B30089752E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				81855566202124AA0089752E /* HomeFeedView.swift */,
+				81855571202125960089752E /* CreatePostView.swift */,
+				81CF0A0F202133D500ECACE5 /* DetailPostView.swift */,
+				81855579202126F40089752E /* ProfileView.swift */,
+				81CF0A152021341A00ECACE5 /* CurrentUserProfileView.swift */,
+				81855581202127360089752E /* UserEditPostView.swift */,
+				81CF0A1D2021352000ECACE5 /* LoginView.swift */,
+				81CF09D0202127B300ECACE5 /* MenuView.swift */,
+				81CF0A1F2021352900ECACE5 /* NewCommentView.swift */,
+				81CF0A0D202133CD00ECACE5 /* CreateAccountView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		81CF09E9202128BE00ECACE5 /* Data Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				81CF09E7202128B100ECACE5 /* UserDefaults.swift */,
+			);
+			path = "Data Persistence";
+			sourceTree = "<group>";
+		};
+		81CF09F820212B3200ECACE5 /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				81CF09F920212B5D00ECACE5 /* CurrentUserTableViewCell.swift */,
+				81CF09FB20212B6800ECACE5 /* UserCommentTableViewCell.swift */,
+				81CF0A172021342700ECACE5 /* MenuTableViewCell.swift */,
+				81CF09FF20212B8500ECACE5 /* DetailPostTableViewCell.swift */,
+				81CF0A0120212B8F00ECACE5 /* AppInstructionsTableViewCell.swift */,
+				81CF0A0320212B9900ECACE5 /* HomeFeedTableViewCell.swift */,
+			);
+			path = "Custom Cells";
+			sourceTree = "<group>";
+		};
+		81CF0A24202135EF00ECACE5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				81CF0A252021360000ECACE5 /* Firebase Models.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8D225A8A277630D0E1E1D457 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A264EC271C3A430DBDB2D5E7 /* Pods-Pandemonium.debug.xcconfig */,
+				81E2E8D3EDA2BB187772D393 /* Pods-Pandemonium.release.xcconfig */,
+				91D7875F5763634E2E03119A /* Pods-PandemoniumTests.debug.xcconfig */,
+				5E6DB434F704BE94789B1E1D /* Pods-PandemoniumTests.release.xcconfig */,
+				33CFD054AE80991FD7066CD1 /* Pods-PandemoniumUITests.debug.xcconfig */,
+				F0BDD100FC1F8A56080C22E5 /* Pods-PandemoniumUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		BC6399CC8B78A3FF11551D71 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0F0D7812268DEF37A090C2FA /* Pods_Pandemonium.framework */,
+				B9E2FD11B3142D487EC5E91A /* Pods_PandemoniumTests.framework */,
+				CF622E1357C8A7BCFEB7A9F2 /* Pods_PandemoniumUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8185552E2021230E0089752E /* Pandemonium */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8185555A2021230E0089752E /* Build configuration list for PBXNativeTarget "Pandemonium" */;
+			buildPhases = (
+				2BF9078A99A14DCCBA0EC1D3 /* [CP] Check Pods Manifest.lock */,
+				8185552B2021230E0089752E /* Sources */,
+				8185552C2021230E0089752E /* Frameworks */,
+				8185552D2021230E0089752E /* Resources */,
+				FB60C275D9661372E9CA7C09 /* [CP] Embed Pods Frameworks */,
+				6E57B3660658B6BE03FE607D /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Pandemonium;
+			productName = Pandemonium;
+			productReference = 8185552F2021230E0089752E /* Pandemonium.app */;
+			productType = "com.apple.product-type.application";
+		};
+		818555452021230E0089752E /* PandemoniumTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8185555D2021230E0089752E /* Build configuration list for PBXNativeTarget "PandemoniumTests" */;
+			buildPhases = (
+				31E402EA28C1EBBDCE10D2E4 /* [CP] Check Pods Manifest.lock */,
+				818555422021230E0089752E /* Sources */,
+				818555432021230E0089752E /* Frameworks */,
+				818555442021230E0089752E /* Resources */,
+				333DDB9874F74069A387F86B /* [CP] Embed Pods Frameworks */,
+				113F80949CE6058F8A4A7D59 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				818555482021230E0089752E /* PBXTargetDependency */,
+			);
+			name = PandemoniumTests;
+			productName = PandemoniumTests;
+			productReference = 818555462021230E0089752E /* PandemoniumTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		818555502021230E0089752E /* PandemoniumUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 818555602021230E0089752E /* Build configuration list for PBXNativeTarget "PandemoniumUITests" */;
+			buildPhases = (
+				2185247941ABF314D5C25F48 /* [CP] Check Pods Manifest.lock */,
+				8185554D2021230E0089752E /* Sources */,
+				8185554E2021230E0089752E /* Frameworks */,
+				8185554F2021230E0089752E /* Resources */,
+				86900CBCC0CB28CCD9E92ABB /* [CP] Embed Pods Frameworks */,
+				8FC63589D45291A41AB9716B /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				818555532021230E0089752E /* PBXTargetDependency */,
+			);
+			name = PandemoniumUITests;
+			productName = PandemoniumUITests;
+			productReference = 818555512021230E0089752E /* PandemoniumUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		818555272021230E0089752E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = C4Q;
+				TargetAttributes = {
+					8185552E2021230E0089752E = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					818555452021230E0089752E = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8185552E2021230E0089752E;
+					};
+					818555502021230E0089752E = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8185552E2021230E0089752E;
+					};
+				};
+			};
+			buildConfigurationList = 8185552A2021230E0089752E /* Build configuration list for PBXProject "Pandemonium" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 818555262021230E0089752E;
+			productRefGroup = 818555302021230E0089752E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8185552E2021230E0089752E /* Pandemonium */,
+				818555452021230E0089752E /* PandemoniumTests */,
+				818555502021230E0089752E /* PandemoniumUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8185552D2021230E0089752E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				818555402021230E0089752E /* LaunchScreen.storyboard in Resources */,
+				8185553D2021230E0089752E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		818555442021230E0089752E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8185554F2021230E0089752E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		113F80949CE6058F8A4A7D59 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PandemoniumTests/Pods-PandemoniumTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2185247941ABF314D5C25F48 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PandemoniumUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2BF9078A99A14DCCBA0EC1D3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Pandemonium-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		31E402EA28C1EBBDCE10D2E4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PandemoniumTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		333DDB9874F74069A387F86B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PandemoniumTests/Pods-PandemoniumTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6E57B3660658B6BE03FE607D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pandemonium/Pods-Pandemonium-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		86900CBCC0CB28CCD9E92ABB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PandemoniumUITests/Pods-PandemoniumUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8FC63589D45291A41AB9716B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PandemoniumUITests/Pods-PandemoniumUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FB60C275D9661372E9CA7C09 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Pandemonium/Pods-Pandemonium-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pandemonium/Pods-Pandemonium-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8185552B2021230E0089752E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81CF0A0A2021337800ECACE5 /* CurrentUserProfileVC.swift in Sources */,
+				81855582202127360089752E /* UserEditPostView.swift in Sources */,
+				81855572202125960089752E /* CreatePostView.swift in Sources */,
+				81CF0A10202133D600ECACE5 /* DetailPostView.swift in Sources */,
+				81CF0A162021341A00ECACE5 /* CurrentUserProfileView.swift in Sources */,
+				81CF0A1A2021350800ECACE5 /* ProfileViewController.swift in Sources */,
+				81CF0A202021352900ECACE5 /* NewCommentView.swift in Sources */,
+				81CF09D1202127B300ECACE5 /* MenuView.swift in Sources */,
+				81CF0A182021342700ECACE5 /* MenuTableViewCell.swift in Sources */,
+				81CF09FC20212B6800ECACE5 /* UserCommentTableViewCell.swift in Sources */,
+				81CF0A0E202133CD00ECACE5 /* CreateAccountView.swift in Sources */,
+				81CF0A0220212B8F00ECACE5 /* AppInstructionsTableViewCell.swift in Sources */,
+				81855574202125BD0089752E /* CreatePostViewController.swift in Sources */,
+				81CF0A262021360000ECACE5 /* Firebase Models.swift in Sources */,
+				81CF09D3202127C300ECACE5 /* MenuVC.swift in Sources */,
+				8185553B2021230E0089752E /* Pandemonium.xcdatamodeld in Sources */,
+				81CF0A0020212B8500ECACE5 /* DetailPostTableViewCell.swift in Sources */,
+				81CF0A1C2021351500ECACE5 /* UserEditPostVC.swift in Sources */,
+				8185556A202124D30089752E /* HomeFeedVC.swift in Sources */,
+				81CF0A0620212C2300ECACE5 /* NewCommentViewController.swift in Sources */,
+				81CF0A0420212B9900ECACE5 /* HomeFeedTableViewCell.swift in Sources */,
+				81855567202124AA0089752E /* HomeFeedView.swift in Sources */,
+				81CF09E8202128B100ECACE5 /* UserDefaults.swift in Sources */,
+				81CF0A0C2021338800ECACE5 /* LoginVC.swift in Sources */,
+				8185556C202125230089752E /* CreateAccountVC.swift in Sources */,
+				8185557A202126F40089752E /* ProfileView.swift in Sources */,
+				81CF09FA20212B5D00ECACE5 /* CurrentUserTableViewCell.swift in Sources */,
+				818555332021230E0089752E /* AppDelegate.swift in Sources */,
+				81CF0A1E2021352000ECACE5 /* LoginView.swift in Sources */,
+				81CF0A082021336D00ECACE5 /* DetailPostVC.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		818555422021230E0089752E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8185554B2021230E0089752E /* PandemoniumTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8185554D2021230E0089752E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				818555562021230E0089752E /* PandemoniumUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		818555482021230E0089752E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8185552E2021230E0089752E /* Pandemonium */;
+			targetProxy = 818555472021230E0089752E /* PBXContainerItemProxy */;
+		};
+		818555532021230E0089752E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8185552E2021230E0089752E /* Pandemonium */;
+			targetProxy = 818555522021230E0089752E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8185553E2021230E0089752E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8185553F2021230E0089752E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		818555582021230E0089752E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		818555592021230E0089752E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8185555B2021230E0089752E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A264EC271C3A430DBDB2D5E7 /* Pods-Pandemonium.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Pandemonium/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.Pandemonium;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8185555C2021230E0089752E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81E2E8D3EDA2BB187772D393 /* Pods-Pandemonium.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Pandemonium/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.Pandemonium;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8185555E2021230E0089752E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91D7875F5763634E2E03119A /* Pods-PandemoniumTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PandemoniumTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.PandemoniumTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pandemonium.app/Pandemonium";
+			};
+			name = Debug;
+		};
+		8185555F2021230E0089752E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E6DB434F704BE94789B1E1D /* Pods-PandemoniumTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PandemoniumTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.PandemoniumTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pandemonium.app/Pandemonium";
+			};
+			name = Release;
+		};
+		818555612021230E0089752E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 33CFD054AE80991FD7066CD1 /* Pods-PandemoniumUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PandemoniumUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.PandemoniumUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Pandemonium;
+			};
+			name = Debug;
+		};
+		818555622021230E0089752E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F0BDD100FC1F8A56080C22E5 /* Pods-PandemoniumUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PandemoniumUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.PandemoniumUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Pandemonium;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8185552A2021230E0089752E /* Build configuration list for PBXProject "Pandemonium" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				818555582021230E0089752E /* Debug */,
+				818555592021230E0089752E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8185555A2021230E0089752E /* Build configuration list for PBXNativeTarget "Pandemonium" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8185555B2021230E0089752E /* Debug */,
+				8185555C2021230E0089752E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8185555D2021230E0089752E /* Build configuration list for PBXNativeTarget "PandemoniumTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8185555E2021230E0089752E /* Debug */,
+				8185555F2021230E0089752E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		818555602021230E0089752E /* Build configuration list for PBXNativeTarget "PandemoniumUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				818555612021230E0089752E /* Debug */,
+				818555622021230E0089752E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		818555392021230E0089752E /* Pandemonium.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8185553A2021230E0089752E /* Pandemonium.xcdatamodel */,
+			);
+			currentVersion = 8185553A2021230E0089752E /* Pandemonium.xcdatamodel */;
+			path = Pandemonium.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 818555272021230E0089752E /* Project object */;
+}

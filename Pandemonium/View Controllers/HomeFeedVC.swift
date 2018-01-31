@@ -6,7 +6,6 @@
 //
 
 import UIKit
-
 class HomeFeedVC: UIViewController {
     let homeFeedView = HomeFeedView()
     override func viewDidLoad() {
@@ -36,6 +35,7 @@ class HomeFeedVC: UIViewController {
     }
     
 }
+
 // MARK: - tabelView DataSource
 extension HomeFeedVC:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -52,22 +52,19 @@ extension HomeFeedVC:UITableViewDataSource{
         }
             //post cell setup
         else{
-            
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "customTableViewCell") as? HomeFeedTableViewCell else{
                 return UITableViewCell()
             }
             cell.postTitle.text = "New Post"
             return cell
         }
-        
     }
-    
-    
 }
+
 // MARK: - tabelView Delegates
 extension HomeFeedVC: UITableViewDelegate{
-    
 }
+
 //Mark:  - TableView Cell setup
 extension HomeFeedVC{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

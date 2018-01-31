@@ -7,15 +7,32 @@
 //
 
 import UIKit
-
+import SnapKit
 class HomeFeedView: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    lazy var tableView: UITableView = {
+        let tView = UITableView()
+        tView.register(HomeFeedTableViewCell.self, forCellReuseIdentifier: "customTableViewCell")
+        return tView
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupViews()
     }
-    */
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    func setupViews(){
+        setupTableView()
+    }
+    func setupTableView(){
+        addSubview(tableView)
+        tableView.snp.makeConstraints { (constraint) in
+            constraint.edges.equalTo(snp.edges)
+        }
+    }
+
 
 }

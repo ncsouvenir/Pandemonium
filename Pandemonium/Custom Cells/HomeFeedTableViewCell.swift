@@ -11,6 +11,8 @@ import UIKit
 class HomeFeedTableViewCell: UITableViewCell {
     lazy var postImage: UIImageView = {
         let imageView = UIImageView()
+        imageView.layer.cornerRadius = 5
+        imageView.layer.masksToBounds = true
         imageView.backgroundColor = .yellow
         return imageView
     }()

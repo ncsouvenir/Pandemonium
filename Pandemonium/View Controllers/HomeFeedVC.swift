@@ -7,6 +7,11 @@
 
 import UIKit
 class HomeFeedVC: UIViewController {
+    var posts = [Post](){
+        didSet{
+            //TODO update the tableView with the data provided
+        }
+    }
     let homeFeedView = HomeFeedView()
     override func viewDidLoad() {
         super.viewDidLoad()

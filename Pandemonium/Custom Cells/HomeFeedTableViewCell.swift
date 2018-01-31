@@ -149,5 +149,12 @@ class HomeFeedTableViewCell: UITableViewCell {
             constraint.centerY.equalTo(numberOfComments.snp.centerY)
         }
     }
+    
+    func setupCell(with postSetup: Post){
+        self.postTitle.text = postSetup.title
+        self.tags.text = postSetup.tags.joined(separator: " ")
+        self.numberOfComments.text = "\(postSetup.comments.count)"
+        self.numberOfUpDown.text = "\(postSetup.upvotes - postSetup.downvotes)"
+    }
 
 }

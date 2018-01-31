@@ -76,11 +76,11 @@ class HomeFeedTableViewCell: UITableViewCell {
         setupTagLabel()
         setupUserName()
         setupPostImage()
-        setupDownButton()
-        setupNumbOfUpDown()
         setupUpButton()
         setupNumberOfComments()
         setupCommentsButton()
+        setupNumbOfUpDown()
+        setupDownButton()
         
     }
     func setupTitle(){
@@ -111,35 +111,35 @@ class HomeFeedTableViewCell: UITableViewCell {
         postImage.snp.makeConstraints { (constraint) in
             constraint.top.equalTo(snp.top).offset(5)
             constraint.left.equalTo(postTitle.snp.right).offset(5)
-            constraint.height.width.equalTo(snp.width).multipliedBy(0.10)
+            constraint.height.width.equalTo(snp.width).multipliedBy(0.25)
         }
     }
     func setupDownButton(){
         addSubview(downButton)
         downButton.snp.makeConstraints { (constraint) in
-            constraint.left.equalTo(postImage.snp.right).offset(10)
-            constraint.centerY.equalTo(postImage.snp.centerY)
+            constraint.right.equalTo(numberOfUpDown.snp.left).offset(-5)
+            constraint.centerY.equalTo(upButton.snp.centerY)
         }
     }
     func setupNumbOfUpDown(){
         addSubview(numberOfUpDown)
         numberOfUpDown.snp.makeConstraints { (constraint) in
-            constraint.centerY.equalTo(postImage.snp.centerY)
-            constraint.left.equalTo(downButton.snp.right).offset(5)
+            constraint.right.equalTo(upButton.snp.left).offset(-5)
+            constraint.centerY.equalTo(upButton.snp.centerY)
         }
     }
     func setupUpButton(){
         addSubview(upButton)
         upButton.snp.makeConstraints { (constraint) in
-            constraint.left.equalTo(numberOfUpDown.snp.right).offset(2)
-            constraint.centerY.equalTo(postImage.snp.centerY)
+            constraint.right.equalTo(snp.right).offset(-5)
+            constraint.top.equalTo(snp.top).offset(5)
         }
     }
     func setupNumberOfComments(){
         addSubview(numberOfComments)
         numberOfComments.snp.makeConstraints { (constraint) in
             constraint.right.equalTo(snp.right).offset(-5)
-            constraint.top.equalTo(upButton.snp.bottom)
+            constraint.top.equalTo(upButton.snp.bottom).offset(20)
         }
     }
     func setupCommentsButton(){

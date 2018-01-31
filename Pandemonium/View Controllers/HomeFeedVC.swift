@@ -68,7 +68,7 @@ extension HomeFeedVC: UITableViewDelegate{
 //Mark:  - TableView Cell setup
 extension HomeFeedVC{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let cellHeight = UIScreen.main.bounds.height * 0.25
+        let cellHeight = UIScreen.main.bounds.height * 0.15
         return cellHeight
     }
 }

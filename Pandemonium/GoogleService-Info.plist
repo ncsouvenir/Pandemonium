@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>297425401118-tqecro8grlvtst66f8j9djgpmn89dtbr.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.297425401118-tqecro8grlvtst66f8j9djgpmn89dtbr</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBsDwB3wzvp7G9cfDYBHPTn1gw1sWPmt5M</string>
+	<key>GCM_SENDER_ID</key>
+	<string>297425401118</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>nyc.c4Q.AC4.3.Pandemonium</string>
+	<key>PROJECT_ID</key>
+	<string>pandemonium-app</string>
+	<key>STORAGE_BUCKET</key>
+	<string>pandemonium-app.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:297425401118:ios:d94c3aa9d7f67612</string>
+	<key>DATABASE_URL</key>
+	<string>https://pandemonium-app.firebaseio.com</string>
+</dict>
+</plist>

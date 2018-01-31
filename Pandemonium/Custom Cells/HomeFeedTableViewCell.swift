@@ -111,7 +111,7 @@ class HomeFeedTableViewCell: UITableViewCell {
         postImage.snp.makeConstraints { (constraint) in
             constraint.top.equalTo(snp.top).offset(5)
             constraint.left.equalTo(postTitle.snp.right).offset(5)
-            constraint.height.width.equalTo(snp.width).multipliedBy(0.25)
+            constraint.height.width.equalTo(snp.width).multipliedBy(0.20)
         }
     }
     func setupDownButton(){

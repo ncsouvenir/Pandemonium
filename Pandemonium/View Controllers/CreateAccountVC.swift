@@ -31,7 +31,9 @@ class CreateAccountVC: UIViewController {
                 print("error creatting user\(error)")
             }
             if let user = user {
-                print(user.displayName)
+                if let name = user.displayName {
+                    print(name)
+                }
             }
         }
         createView.snp.makeConstraints { (view) in

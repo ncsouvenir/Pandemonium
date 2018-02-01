@@ -10,7 +10,7 @@ import Foundation
 import FirebaseAuth
 import FirebaseDatabase
 
-enum AppError: Error {
+enum AuthError: Error {
     case badChildren
     case badKey
 }

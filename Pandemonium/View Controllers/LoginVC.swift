@@ -9,26 +9,106 @@ import UIKit
 
 class LoginVC: UIViewController {
 
+    let loginView = LoginView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view.addSubview(loginView)
+        setupButtonActions()
+        //turnRedAndShakeAnimation(view: loginView.containerView)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+}
+
+// MARK: - Gestures
+extension LoginVC {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first {
+            if touch.view == loginView.blurView {
+                // TODO: - Dismiss login view controller and go back to previous vc
+                print("")
+            } else {
+                return
+            }
+        }
     }
     
+}
 
-    /*
-    // MARK: - Navigation
+// MARK: - Animations
+extension LoginVC {
+    private func turnRedAndShakeAnimation(view: UIView) {
+        UIView.animate(withDuration: 1.0, animations: {
+            view.frame.size.width += 10
+            view.frame.size.height += 10
+        }) { (done) in
+            
+            //
+            UIView.animate(withDuration: 0.10, delay: 0.025, options: [.autoreverse, .allowUserInteraction], animations: {
+                
+                view.frame.origin.x += 10
+            }, completion: { (done) in
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+            })
+            //
+            
+            //
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: [.autoreverse, .allowUserInteraction], animations: {
+                view.backgroundColor = .red
+            }, completion: { (done) in
+                
+            })
+            //
+            
+        }
     }
-    */
+    
+}
 
+// MARK: - Haptics
+extension LoginVC {
+    private func successVibration() {
+        let feedbackGen = UINotificationFeedbackGenerator()
+        feedbackGen.prepare()
+        feedbackGen.notificationOccurred(.success)
+    }
+    
+    private func errorVibration() {
+        let feedbackGen = UINotificationFeedbackGenerator()
+        feedbackGen.prepare()
+        feedbackGen.notificationOccurred(.error)
+    }
+    
+    private func warningVibration() {
+        let feedbackGen = UINotificationFeedbackGenerator()
+        feedbackGen.prepare()
+        feedbackGen.notificationOccurred(.warning)
+    }
+    
+}
+
+// MARK: - Button Actions
+extension LoginVC {
+    private func setupButtonActions() {
+        loginView.submitButton.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
+        loginView.forgotPasswordButton.addTarget(self, action: #selector(forgotPasswordButtonTapped), for: .touchUpInside)
+        loginView.createNewAccountButton.addTarget(self, action: #selector(createNewAccountButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func submitButtonTapped() {
+        // if successful log in, present success message and dismiss vc
+        // else shake view and make red and prompt to verify info
+    }
+    
+    @objc private func forgotPasswordButtonTapped() {
+        // show alert controller and do firebase stuff
+    }
+    
+    @objc private func createNewAccountButtonTapped() {
+        let createAccountVC = CreateAccountVC()
+        // TODO: - Change presentation style
+        createAccountVC.modalTransitionStyle = .crossDissolve
+        createAccountVC.modalPresentationStyle = .overCurrentContext
+        present(createAccountVC, animated: true, completion: nil)
+    }
 }

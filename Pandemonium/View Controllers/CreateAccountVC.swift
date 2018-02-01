@@ -11,20 +11,24 @@ import FirebaseAuth
 
 class CreateAccountVC: UIViewController {
     
-    
     let createView = CreateAccountView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .orange
-        constrainView()
+        setupView()
+    }
+    private func setupDelegate() {
+        createView.userNameTextField.delegate = self
+        createView.emailTextField.delegate = self
+        createView.passwordTextField.delegate = self
     }
     
-    private func constrainView() {
+    private func setupView() {
         view.addSubview(createView)
         FirebaseUserManager.shared.createAccount(with: "yooox3@mama.com", and: "password", username: "g3TR3kT") { (user, error) in
             if let error = error {
-                print("error creatting user")
+                print("error creatting user\(error)")
             }
             if let user = user {
                 print(user.displayName)
@@ -34,8 +38,8 @@ class CreateAccountVC: UIViewController {
             view.edges.equalTo(self.view.safeAreaLayoutGuide)
         }
     }
-    
-    
 
-
+}
+extension CreateAccountVC: UITextFieldDelegate {
+    
 }

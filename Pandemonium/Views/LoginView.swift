@@ -10,13 +10,20 @@ import SnapKit
 
 class LoginView: UIView {
     
+    var blurView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        return blurEffectView
+    }()
+    
     var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .cyan
+        view.backgroundColor = .white
         //view.clipsToBounds = true
         view.layer.cornerRadius = 20
         view.layer.shadowOpacity = 0.8
-        view.layer.shadowOffset = CGSize(width: 5, height: 5)
+        view.layer.shadowOffset = CGSize(width: 2, height: 2)
         return view
     }()
 
@@ -59,7 +66,7 @@ class LoginView: UIView {
     var submitButton: UIButton = {
         let button = UIButton(type: .roundedRect)
         button.setTitle("   Submit   ", for: .normal)
-        button.backgroundColor = .green
+        button.backgroundColor = .white
         button.layer.cornerRadius = 10
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.black.cgColor
@@ -88,11 +95,12 @@ class LoginView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor = .red
+        backgroundColor = .white
         setupViews()
     }
     
     private func setupViews() {
+        setupBlurView()
         setupContainerView()
         setupUserNameLabel()
         setupUserNameTextField()
@@ -108,6 +116,11 @@ class LoginView: UIView {
 
 // MARK: - Setup Views
 extension LoginView {
+    private func setupBlurView() {
+        blurView.frame = bounds
+        addSubview(blurView)
+    }
+    
     private func setupContainerView() {
         addSubview(containerView)
         containerView.snp.makeConstraints { (make) in
@@ -158,7 +171,6 @@ extension LoginView {
         forgotPasswordButton.snp.makeConstraints { (make) in
             make.top.equalTo(passwordTextField.snp.bottom).offset(2)
             make.leading.equalTo(userNameLabel.snp.leading)
-            //make.width.equalTo(userNameLabel.snp.width)
         }
     }
     

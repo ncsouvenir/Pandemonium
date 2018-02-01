@@ -129,7 +129,7 @@ extension LoginView {
         addSubview(containerView)
         containerView.snp.makeConstraints { (make) in
             make.height.equalTo(safeAreaLayoutGuide.snp.height).multipliedBy(0.50)
-            make.width.equalTo(safeAreaLayoutGuide.snp.width).multipliedBy(0.75)
+            make.width.equalTo(safeAreaLayoutGuide.snp.width).multipliedBy(0.80)
             make.center.equalTo(safeAreaLayoutGuide.snp.center)
         }
     }

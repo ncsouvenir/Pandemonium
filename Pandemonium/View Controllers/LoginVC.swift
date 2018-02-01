@@ -114,12 +114,32 @@ extension LoginVC {
     
     @objc private func forgotPasswordButtonTapped() {
         // show alert controller and do firebase stuff
-        //FirebaseUserManager.shared.forgotPassword(email: <#T##String#>)
+        let alertController = UIAlertController(title: "Alert", message: "Please enter your email address", preferredStyle: .alert)
+        alertController.addTextField { (textField) in
+            textField.autocorrectionType = .no
+            textField.autocapitalizationType = .none
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            
+        }
+        let submit = UIAlertAction(title: "Submit", style: .default) { (action) in
+            if let textFields = alertController.textFields {
+                if !textFields.isEmpty {
+                    let textField = textFields[0]
+                    guard let emailText = textField.text else { return }
+                    guard !emailText.isEmpty else { return }
+                    FirebaseUserManager.shared.forgotPassword(email: emailText)
+                }
+            }
+        }
+        alertController.addAction(cancel)
+        alertController.addAction(submit)
+        
+        present(alertController, animated: true, completion: nil)
     }
     
     @objc private func createNewAccountButtonTapped() {
         let createAccountVC = CreateAccountVC()
-        // TODO: - Change presentation style
         createAccountVC.modalTransitionStyle = .crossDissolve
         createAccountVC.modalPresentationStyle = .overCurrentContext
         present(createAccountVC, animated: true, completion: nil)

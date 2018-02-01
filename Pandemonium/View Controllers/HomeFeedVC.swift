@@ -68,6 +68,18 @@ extension HomeFeedVC:UITableViewDataSource{
 
 // MARK: - tabelView Delegates
 extension HomeFeedVC: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "delete") { (action, indexPath) in
+            // delete item at indexPath
+
+        }
+        let add = UITableViewRowAction(style: .normal, title: "add") { (action, indexPath) in
+            // add to favorites item at indexPath
+
+        }
+        add.backgroundColor = .green
+        return [delete, add]
+    }
 }
 
 //Mark:  - TableView Cell setup

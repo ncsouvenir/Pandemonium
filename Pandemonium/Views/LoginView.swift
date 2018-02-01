@@ -131,7 +131,7 @@ extension LoginView {
     }
     
     private func setupUserNameLabel() {
-        addSubview(userNameLabel)
+        containerView.addSubview(userNameLabel)
         userNameLabel.snp.makeConstraints { (make) in
             make.leading.equalTo(containerView.snp.leading).offset(8)
             make.top.equalTo(containerView.snp.top).offset(8)
@@ -140,7 +140,7 @@ extension LoginView {
     }
     
     private func setupUserNameTextField() {
-        addSubview(userNameTextField)
+        containerView.addSubview(userNameTextField)
         userNameTextField.snp.makeConstraints { (make) in
             make.top.equalTo(userNameLabel.snp.bottom).offset(4)
             make.leading.equalTo(userNameLabel.snp.leading)
@@ -149,7 +149,7 @@ extension LoginView {
     }
     
     private func setupPasswordLabel() {
-        addSubview(passwordLabel)
+        containerView.addSubview(passwordLabel)
         passwordLabel.snp.makeConstraints { (make) in
             make.top.equalTo(userNameTextField.snp.bottom).offset(8)
             make.leading.equalTo(userNameLabel.snp.leading)
@@ -158,7 +158,7 @@ extension LoginView {
     }
     
     private func setupPasswordTextField() {
-        addSubview(passwordTextField)
+        containerView.addSubview(passwordTextField)
         passwordTextField.snp.makeConstraints { (make) in
             make.top.equalTo(passwordLabel.snp.bottom).offset(4)
             make.leading.equalTo(userNameLabel.snp.leading)
@@ -167,7 +167,7 @@ extension LoginView {
     }
     
     private func setupForgotPasswordButton() {
-        addSubview(forgotPasswordButton)
+        containerView.addSubview(forgotPasswordButton)
         forgotPasswordButton.snp.makeConstraints { (make) in
             make.top.equalTo(passwordTextField.snp.bottom).offset(2)
             make.leading.equalTo(userNameLabel.snp.leading)
@@ -175,7 +175,7 @@ extension LoginView {
     }
     
     private func setupSubmitButton() {
-        addSubview(submitButton)
+        containerView.addSubview(submitButton)
         submitButton.snp.makeConstraints { (make) in
             make.centerX.equalTo(containerView.snp.centerX)
             make.top.equalTo(forgotPasswordButton.snp.bottom).offset(50)
@@ -183,7 +183,7 @@ extension LoginView {
     }
     
     private func setupCreateNewAccountButton() {
-        addSubview(createNewAccountButton)
+        containerView.addSubview(createNewAccountButton)
         createNewAccountButton.snp.makeConstraints { (make) in
             make.leading.equalTo(userNameLabel.snp.leading)
             make.bottom.equalTo(containerView.snp.bottom).offset(-8)

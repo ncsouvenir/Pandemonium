@@ -15,7 +15,7 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
         view.addSubview(loginView)
         setupButtonActions()
-
+        //turnRedAndShakeAnimation(view: loginView.containerView)
     }
 
 }
@@ -39,10 +39,26 @@ extension LoginVC {
 extension LoginVC {
     private func turnRedAndShakeAnimation(view: UIView) {
         UIView.animate(withDuration: 1.0, animations: {
-            view.backgroundColor = .red
-            
-            
+            view.frame.size.width += 10
+            view.frame.size.height += 10
         }) { (done) in
+            
+            //
+            UIView.animate(withDuration: 0.10, delay: 0.025, options: [.autoreverse, .allowUserInteraction], animations: {
+                
+                view.frame.origin.x += 10
+            }, completion: { (done) in
+
+            })
+            //
+            
+            //
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: [.autoreverse, .allowUserInteraction], animations: {
+                view.backgroundColor = .red
+            }, completion: { (done) in
+                
+            })
+            //
             
         }
     }

@@ -7,6 +7,7 @@
 
 import UIKit
 class HomeFeedVC: UIViewController {
+
     var posts = [Post](){
         didSet{
             self.homeFeedView.tableView.reloadData()
@@ -79,7 +80,8 @@ extension HomeFeedVC:UITableViewDataSource{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "customTableViewCell") as? HomeFeedTableViewCell else{
                 return UITableViewCell()
             }
-            
+            cell.delegate = self
+            cell.currentIndexPath = indexPath
             let postSetup = posts[indexPath.row-1]
             cell.setupCell(with: postSetup)
             return cell
@@ -88,7 +90,8 @@ extension HomeFeedVC:UITableViewDataSource{
 }
 
 // MARK: - tabelView Delegates
-extension HomeFeedVC: UITableViewDelegate{
+extension HomeFeedVC: UITableViewDelegate, HomeFeedTableViewCellDelegate{
+    
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .destructive, title: "delete") { (action, indexPath) in
             // delete item at indexPath
@@ -101,6 +104,18 @@ extension HomeFeedVC: UITableViewDelegate{
         add.backgroundColor = .green
         return [delete, add]
     }
+    func upVoted(from tablVieCell: HomeFeedTableViewCell) {
+        if let indexPath = tablVieCell.currentIndexPath{
+            print(posts[indexPath.row-1].postUID)
+        }
+        print("delegate fired")
+    }
+    func downVoted(from tablVieCell: HomeFeedTableViewCell) {
+        if let indexPath = tablVieCell.currentIndexPath{
+            print(posts[indexPath.row-1].postUID)
+        }
+        print("delegate fired")
+    }
 }
 
 //Mark:  - TableView Cell setup
@@ -110,6 +125,7 @@ extension HomeFeedVC{
         return cellHeight
     }
 }
+
 
 
 

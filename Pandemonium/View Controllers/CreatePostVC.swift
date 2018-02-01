@@ -13,7 +13,7 @@ class CreatePostVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+      FirebasePostManager.manager.addPosts()
     }
 
     override func didReceiveMemoryWarning() {

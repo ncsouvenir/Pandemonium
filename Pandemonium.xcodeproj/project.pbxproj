@@ -44,6 +44,8 @@
 		81CF0A1E2021352000ECACE5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF0A1D2021352000ECACE5 /* LoginView.swift */; };
 		81CF0A202021352900ECACE5 /* NewCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF0A1F2021352900ECACE5 /* NewCommentView.swift */; };
 		81CF0A262021360000ECACE5 /* Firebase Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF0A252021360000ECACE5 /* Firebase Models.swift */; };
+		81CF0B1D2023B34B00ECACE5 /* FirebaseCommentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF0B1C2023B34B00ECACE5 /* FirebaseCommentManager.swift */; };
+		81CF0B1F2023B36E00ECACE5 /* FirebasePostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF0B1E2023B36E00ECACE5 /* FirebasePostManager.swift */; };
 		98E43B6586F1332B57B2B478 /* Pods_PandemoniumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF622E1357C8A7BCFEB7A9F2 /* Pods_PandemoniumUITests.framework */; };
 		CE1506BD11626230086FAC2F /* Pods_PandemoniumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E2FD11B3142D487EC5E91A /* Pods_PandemoniumTests.framework */; };
 /* End PBXBuildFile section */
@@ -111,6 +113,8 @@
 		81CF0A1D2021352000ECACE5 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		81CF0A1F2021352900ECACE5 /* NewCommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCommentView.swift; sourceTree = "<group>"; };
 		81CF0A252021360000ECACE5 /* Firebase Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Firebase Models.swift"; sourceTree = "<group>"; };
+		81CF0B1C2023B34B00ECACE5 /* FirebaseCommentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCommentManager.swift; sourceTree = "<group>"; };
+		81CF0B1E2023B36E00ECACE5 /* FirebasePostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePostManager.swift; sourceTree = "<group>"; };
 		81E2E8D3EDA2BB187772D393 /* Pods-Pandemonium.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pandemonium.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pandemonium/Pods-Pandemonium.release.xcconfig"; sourceTree = "<group>"; };
 		91D7875F5763634E2E03119A /* Pods-PandemoniumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PandemoniumTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PandemoniumTests/Pods-PandemoniumTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A264EC271C3A430DBDB2D5E7 /* Pods-Pandemonium.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pandemonium.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pandemonium/Pods-Pandemonium.debug.xcconfig"; sourceTree = "<group>"; };
@@ -244,6 +248,8 @@
 			isa = PBXGroup;
 			children = (
 				81AB4DD02022937D0034B761 /* FirebaseUserManager.swift */,
+				81CF0B1C2023B34B00ECACE5 /* FirebaseCommentManager.swift */,
+				81CF0B1E2023B36E00ECACE5 /* FirebasePostManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -607,6 +613,7 @@
 				81CF0A10202133D600ECACE5 /* DetailPostView.swift in Sources */,
 				81CF0A162021341A00ECACE5 /* CurrentUserProfileView.swift in Sources */,
 				81CF0A1A2021350800ECACE5 /* ProfileViewController.swift in Sources */,
+				81CF0B1D2023B34B00ECACE5 /* FirebaseCommentManager.swift in Sources */,
 				81CF0A202021352900ECACE5 /* NewCommentView.swift in Sources */,
 				81CF09D1202127B300ECACE5 /* MenuView.swift in Sources */,
 				81CF0A182021342700ECACE5 /* MenuTableViewCell.swift in Sources */,
@@ -632,6 +639,7 @@
 				818555332021230E0089752E /* AppDelegate.swift in Sources */,
 				81CF0A1E2021352000ECACE5 /* LoginView.swift in Sources */,
 				81CF0A082021336D00ECACE5 /* DetailPostVC.swift in Sources */,
+				81CF0B1F2023B36E00ECACE5 /* FirebasePostManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

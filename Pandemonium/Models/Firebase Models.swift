@@ -38,6 +38,10 @@ struct Post: Codable {
     var url: String?
     var image: String?
     var comments: [String: Comment]
+    func postToJSON()->Any{
+        let jsonData = try! JSONEncoder().encode(self)
+        return try! JSONSerialization.jsonObject(with: jsonData, options: [])
+    }
 }
 
 struct Comment: Codable {

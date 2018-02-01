@@ -49,7 +49,6 @@ class CreateAccountView: UIView {
     lazy var userNameTextField: UITextField = {
         let tf = UITextField()
         tf.borderStyle = .roundedRect
-        tf.layer.borderWidth = 1
         tf.layer.shadowOpacity = 0.8
         tf.layer.shadowOffset = CGSize(width: 2, height: 2)
         return tf
@@ -57,7 +56,6 @@ class CreateAccountView: UIView {
     lazy var emailTextField: UITextField = {
         let tf = UITextField()
         tf.borderStyle = .roundedRect
-        tf.layer.borderWidth = 1
         tf.layer.shadowOpacity = 0.8
         tf.layer.shadowOffset = CGSize(width: 2, height: 2)
         tf.keyboardType = .emailAddress
@@ -66,7 +64,6 @@ class CreateAccountView: UIView {
     lazy var passwordTextField: UITextField = {
         let tf = UITextField()
         tf.borderStyle = .roundedRect
-        tf.layer.borderWidth = 1
         tf.layer.shadowOpacity = 0.8
         tf.layer.shadowOffset = CGSize(width: 2, height: 2)
         tf.isSecureTextEntry = true
@@ -75,7 +72,6 @@ class CreateAccountView: UIView {
     lazy var confirmPasswordTextField: UITextField = {
         let tf = UITextField()
         tf.borderStyle = .roundedRect
-        tf.layer.borderWidth = 1
         tf.layer.shadowOpacity = 0.8
         tf.layer.shadowOffset = CGSize(width: 2, height: 2)
         tf.isSecureTextEntry = true

@@ -38,8 +38,19 @@ class CreateAccountVC: UIViewController {
             view.edges.equalTo(self.view.safeAreaLayoutGuide)
         }
     }
+    
+        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            if let touch = touches.first {
+                if touch.view == createView.dismissView {
+                    // TODO: - Dismiss login view controller and go back to previous vc
+                    print("")
+                } else {
+                    return
+                }
+            }
+        }
+    }
 
-}
 extension CreateAccountVC: UITextFieldDelegate {
     
 }

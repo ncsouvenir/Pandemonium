@@ -9,26 +9,34 @@ import UIKit
 
 class LoginVC: UIViewController {
 
+    let loginView = LoginView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view.addSubview(loginView)
+        
+        loginView.submitButton.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
+        
+        loginView.forgotPasswordButton.addTarget(self, action: #selector(forgotPasswordButtonTapped), for: .touchUpInside)
+        
+        loginView.createNewAccountButton.addTarget(self, action: #selector(createNewAccountButtonTapped), for: .touchUpInside)
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @objc private func submitButtonTapped() {
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @objc private func forgotPasswordButtonTapped() {
+        
     }
-    */
+    
+    @objc private func createNewAccountButtonTapped() {
+        
+    }
+    
+}
 
+extension LoginVC {
+    
 }

@@ -22,6 +22,7 @@
 		8185557A202126F40089752E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81855579202126F40089752E /* ProfileView.swift */; };
 		81855582202127360089752E /* UserEditPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81855581202127360089752E /* UserEditPostView.swift */; };
 		81AB4DCC20223DC50034B761 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AB4DCB20223DC50034B761 /* CreateAccountView.swift */; };
+		81C5E2A82022904F0091572F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81C5E2A72022904F0091572F /* GoogleService-Info.plist */; };
 		81CF09D1202127B300ECACE5 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF09D0202127B300ECACE5 /* MenuView.swift */; };
 		81CF09D3202127C300ECACE5 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF09D2202127C300ECACE5 /* MenuVC.swift */; };
 		81CF09E8202128B100ECACE5 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF09E7202128B100ECACE5 /* UserDefaults.swift */; };
@@ -87,6 +88,7 @@
 		81855579202126F40089752E /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileView.swift; path = Pandemonium/Views/ProfileView.swift; sourceTree = SOURCE_ROOT; };
 		81855581202127360089752E /* UserEditPostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserEditPostView.swift; path = Pandemonium/Views/UserEditPostView.swift; sourceTree = SOURCE_ROOT; };
 		81AB4DCB20223DC50034B761 /* CreateAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
+		81C5E2A72022904F0091572F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		81CF09D0202127B300ECACE5 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		81CF09D2202127C300ECACE5 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		81CF09E7202128B100ECACE5 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				8185553C2021230E0089752E /* Assets.xcassets */,
 				8185553E2021230E0089752E /* LaunchScreen.storyboard */,
 				818555412021230E0089752E /* Info.plist */,
+				81C5E2A72022904F0091572F /* GoogleService-Info.plist */,
 				818555392021230E0089752E /* Pandemonium.xcdatamodeld */,
 			);
 			path = Pandemonium;
@@ -404,6 +407,7 @@
 			files = (
 				818555402021230E0089752E /* LaunchScreen.storyboard in Resources */,
 				8185553D2021230E0089752E /* Assets.xcassets in Resources */,
+				81C5E2A82022904F0091572F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

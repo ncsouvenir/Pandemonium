@@ -36,6 +36,8 @@ class LoginView: UIView {
     var userNameTextField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
         textField.layer.shadowOpacity = 0.8
         textField.layer.shadowOffset = CGSize(width: 2, height: 2)
         textField.keyboardType = .emailAddress
@@ -51,6 +53,8 @@ class LoginView: UIView {
     var passwordTextField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
         textField.layer.shadowOpacity = 0.8
         textField.layer.shadowOffset = CGSize(width: 2, height: 2)
         textField.isSecureTextEntry = true
@@ -125,7 +129,7 @@ extension LoginView {
         addSubview(containerView)
         containerView.snp.makeConstraints { (make) in
             make.height.equalTo(safeAreaLayoutGuide.snp.height).multipliedBy(0.50)
-            make.width.equalTo(safeAreaLayoutGuide.snp.width).multipliedBy(0.75)
+            make.width.equalTo(safeAreaLayoutGuide.snp.width).multipliedBy(0.80)
             make.center.equalTo(safeAreaLayoutGuide.snp.center)
         }
     }
@@ -133,9 +137,9 @@ extension LoginView {
     private func setupUserNameLabel() {
         containerView.addSubview(userNameLabel)
         userNameLabel.snp.makeConstraints { (make) in
-            make.leading.equalTo(containerView.snp.leading).offset(8)
-            make.top.equalTo(containerView.snp.top).offset(8)
-            make.trailing.equalTo(containerView.snp.trailing).offset(-8)
+            make.leading.equalTo(containerView.snp.leading).offset(16)
+            make.top.equalTo(containerView.snp.top).offset(16)
+            make.trailing.equalTo(containerView.snp.trailing).offset(-16)
         }
     }
     
@@ -178,7 +182,7 @@ extension LoginView {
         containerView.addSubview(submitButton)
         submitButton.snp.makeConstraints { (make) in
             make.centerX.equalTo(containerView.snp.centerX)
-            make.top.equalTo(forgotPasswordButton.snp.bottom).offset(50)
+            make.top.equalTo(forgotPasswordButton.snp.bottom).offset(40)
         }
     }
     

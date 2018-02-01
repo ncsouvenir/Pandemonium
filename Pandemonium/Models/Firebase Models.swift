@@ -40,6 +40,7 @@ struct Post: Codable {
     var comments: [String: Comment]
 }
 
+
 struct Comment: Codable {
     let commentUID: String
     let userUID: String

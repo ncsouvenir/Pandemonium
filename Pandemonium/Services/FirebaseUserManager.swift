@@ -28,7 +28,16 @@ class FirebaseUserManager {
     func login(with email: String,
                and password: String,
                completionHandler: @escaping (User?, Error?) -> Void) {
-        Auth.auth().signIn(withEmail: email, password: password, completion: completionHandler)
+        
+        let completion: (User?, Error?) -> Void = { (user, error) in
+            if let error = error {
+                completionHandler(nil, error)
+            } else if let user = user {
+                completionHandler(user, nil)
+            }
+        }
+        
+        Auth.auth().signIn(withEmail: email, password: password, completion: completion)
         
     }
     func userNameCheck(username: String) {
@@ -57,6 +66,14 @@ class FirebaseUserManager {
             try Auth.auth().signOut()
         } catch {
             print(error)
+        }
+    }
+    
+    func forgotPassword(email: String) {
+        Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
         }
     }
 }

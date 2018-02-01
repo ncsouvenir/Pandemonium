@@ -98,15 +98,48 @@ extension LoginVC {
     @objc private func submitButtonTapped() {
         // if successful log in, present success message and dismiss vc
         // else shake view and make red and prompt to verify info
+        guard let usernameText = loginView.userNameTextField.text else { return }
+        guard let passwordText = loginView.passwordTextField.text else { return }
+        guard !usernameText.isEmpty else { return }
+        guard !passwordText.isEmpty else { return }
+        
+        FirebaseUserManager.shared.login(with: usernameText, and: passwordText) { (user, error) in
+            if let error = error {
+                print(error)
+            } else if let user = user {
+                print("\(user) has logged in")
+            }
+        }
     }
     
     @objc private func forgotPasswordButtonTapped() {
         // show alert controller and do firebase stuff
+        let alertController = UIAlertController(title: "Alert", message: "Please enter your email address", preferredStyle: .alert)
+        alertController.addTextField { (textField) in
+            textField.autocorrectionType = .no
+            textField.autocapitalizationType = .none
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            
+        }
+        let submit = UIAlertAction(title: "Submit", style: .default) { (action) in
+            if let textFields = alertController.textFields {
+                if !textFields.isEmpty {
+                    let textField = textFields[0]
+                    guard let emailText = textField.text else { return }
+                    guard !emailText.isEmpty else { return }
+                    FirebaseUserManager.shared.forgotPassword(email: emailText)
+                }
+            }
+        }
+        alertController.addAction(cancel)
+        alertController.addAction(submit)
+        
+        present(alertController, animated: true, completion: nil)
     }
     
     @objc private func createNewAccountButtonTapped() {
         let createAccountVC = CreateAccountVC()
-        // TODO: - Change presentation style
         createAccountVC.modalTransitionStyle = .crossDissolve
         createAccountVC.modalPresentationStyle = .overCurrentContext
         present(createAccountVC, animated: true, completion: nil)

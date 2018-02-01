@@ -22,6 +22,8 @@
 		8185557A202126F40089752E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81855579202126F40089752E /* ProfileView.swift */; };
 		81855582202127360089752E /* UserEditPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81855581202127360089752E /* UserEditPostView.swift */; };
 		81AB4DCC20223DC50034B761 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AB4DCB20223DC50034B761 /* CreateAccountView.swift */; };
+		81AB4DCE2022908E0034B761 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81AB4DCD2022908E0034B761 /* GoogleService-Info.plist */; };
+		81AB4DD12022937D0034B761 /* FirebaseUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AB4DD02022937D0034B761 /* FirebaseUserManager.swift */; };
 		81CF09D1202127B300ECACE5 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF09D0202127B300ECACE5 /* MenuView.swift */; };
 		81CF09D3202127C300ECACE5 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF09D2202127C300ECACE5 /* MenuVC.swift */; };
 		81CF09E8202128B100ECACE5 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF09E7202128B100ECACE5 /* UserDefaults.swift */; };
@@ -87,6 +89,8 @@
 		81855579202126F40089752E /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileView.swift; path = Pandemonium/Views/ProfileView.swift; sourceTree = SOURCE_ROOT; };
 		81855581202127360089752E /* UserEditPostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserEditPostView.swift; path = Pandemonium/Views/UserEditPostView.swift; sourceTree = SOURCE_ROOT; };
 		81AB4DCB20223DC50034B761 /* CreateAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
+		81AB4DCD2022908E0034B761 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		81AB4DD02022937D0034B761 /* FirebaseUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserManager.swift; sourceTree = "<group>"; };
 		81CF09D0202127B300ECACE5 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		81CF09D2202127C300ECACE5 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		81CF09E7202128B100ECACE5 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
@@ -169,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				818555322021230E0089752E /* AppDelegate.swift */,
+				81AB4DCF2022935C0034B761 /* Services */,
 				81CF0A24202135EF00ECACE5 /* Models */,
 				81CF09E9202128BE00ECACE5 /* Data Persistence */,
 				81855565202124920089752E /* View Controllers */,
@@ -177,6 +182,7 @@
 				8185553C2021230E0089752E /* Assets.xcassets */,
 				8185553E2021230E0089752E /* LaunchScreen.storyboard */,
 				818555412021230E0089752E /* Info.plist */,
+				81AB4DCD2022908E0034B761 /* GoogleService-Info.plist */,
 				818555392021230E0089752E /* Pandemonium.xcdatamodeld */,
 			);
 			path = Pandemonium;
@@ -232,6 +238,14 @@
 				81AB4DCB20223DC50034B761 /* CreateAccountView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		81AB4DCF2022935C0034B761 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				81AB4DD02022937D0034B761 /* FirebaseUserManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		81CF09E9202128BE00ECACE5 /* Data Persistence */ = {
@@ -404,6 +418,7 @@
 			files = (
 				818555402021230E0089752E /* LaunchScreen.storyboard in Resources */,
 				8185553D2021230E0089752E /* Assets.xcassets in Resources */,
+				81AB4DCE2022908E0034B761 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,6 +612,7 @@
 				81CF0A182021342700ECACE5 /* MenuTableViewCell.swift in Sources */,
 				81CF09FC20212B6800ECACE5 /* UserCommentTableViewCell.swift in Sources */,
 				81AB4DCC20223DC50034B761 /* CreateAccountView.swift in Sources */,
+				81AB4DD12022937D0034B761 /* FirebaseUserManager.swift in Sources */,
 				81CF0A0220212B8F00ECACE5 /* AppInstructionsTableViewCell.swift in Sources */,
 				81855574202125BD0089752E /* CreatePostVC.swift in Sources */,
 				81CF0A262021360000ECACE5 /* Firebase Models.swift in Sources */,
@@ -776,6 +792,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Pandemonium/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.Pandemonium;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -791,6 +808,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Pandemonium/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.Pandemonium;
 				PRODUCT_NAME = "$(TARGET_NAME)";

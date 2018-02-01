@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
+        let myShit = CreateAccountVC()
         // Override point for customization after application launch.
         
         //Make tab bars for testing now
@@ -45,11 +47,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tbc.viewControllers = [login, homeNavController, detailPostInfo, createNavController]
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = tbc
+        window?.rootViewController = myShit
         window?.makeKeyAndVisible()
         
         //Configures Firebase on launch
-        //FirebaseApp.configure()
+        
+        
         return true
     }
     

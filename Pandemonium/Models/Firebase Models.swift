@@ -7,27 +7,28 @@
 
 import Foundation
 
-typealias postUID = String
-typealias userUID = String
-typealias commentUID = String
-typealias imageUID = String
+//typealias postUID = String
+//typealias userUID = String
+//typealias commentUID = String
+//typealias imageUID = String
 
-struct User: Codable {
-    let userUID: userUID
-    var firstName: String
-    var lastName: String
+struct Parrot: Codable {
+    let userUID: String?
     var appUserName: String
-    var email: String
-    var upvotes: Int
-    var downvotes: Int
-    var numberOfComments: Int
-    var image: imageUID
-    var posts: [postUID : Post]
+    var upvotes: Int?
+    var downvotes: Int?
+    var numberOfComments: Int?
+    var image: String?
+    var posts: [String : Post]
+    func toJSON() -> Any {
+        let jsonData = try! JSONEncoder().encode(self)
+        return try! JSONSerialization.jsonObject(with: jsonData, options: [])
+    }
 }
 
 struct Post: Codable {
-    let postUID: postUID
-    let userUID: userUID
+    let postUID: String
+    let userUID: String
     let date: String
     var title: String
     var upvotes: Int
@@ -35,14 +36,14 @@ struct Post: Codable {
     var tags: [String]
     var bodyText: String?
     var url: String?
-    var image: imageUID?
-    var comments: [commentUID: Comment]
+    var image: String?
+    var comments: [String: Comment]
 }
 
 struct Comment: Codable {
-    let commentUID: commentUID
-    let userUID: userUID
-    let postUID: postUID
+    let commentUID: String
+    let userUID: String
+    let postUID: String
     let date: String
     var commentText: String
     var upvotes: Int

@@ -6,29 +6,40 @@
 //
 
 import UIKit
+import SnapKit
+import FirebaseAuth
 
 class CreateAccountVC: UIViewController {
+    
+    let createView = CreateAccountView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.view.backgroundColor = .orange
+        setupView()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    private func setupDelegate() {
+        createView.userNameTextField.delegate = self
+        createView.emailTextField.delegate = self
+        createView.passwordTextField.delegate = self
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    private func setupView() {
+        view.addSubview(createView)
+        FirebaseUserManager.shared.createAccount(with: "yooox3@mama.com", and: "password", username: "g3TR3kT") { (user, error) in
+            if let error = error {
+                print("error creatting user\(error)")
+            }
+            if let user = user {
+                print(user.displayName)
+            }
+        }
+        createView.snp.makeConstraints { (view) in
+            view.edges.equalTo(self.view.safeAreaLayoutGuide)
+        }
     }
-    */
 
+}
+extension CreateAccountVC: UITextFieldDelegate {
+    
 }

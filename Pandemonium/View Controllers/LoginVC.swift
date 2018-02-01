@@ -98,10 +98,23 @@ extension LoginVC {
     @objc private func submitButtonTapped() {
         // if successful log in, present success message and dismiss vc
         // else shake view and make red and prompt to verify info
+        guard let usernameText = loginView.userNameTextField.text else { return }
+        guard let passwordText = loginView.passwordTextField.text else { return }
+        guard !usernameText.isEmpty else { return }
+        guard !passwordText.isEmpty else { return }
+        
+        FirebaseUserManager.shared.login(with: usernameText, and: passwordText) { (user, error) in
+            if let error = error {
+                print(error)
+            } else if let user = user {
+                print("\(user) has logged in")
+            }
+        }
     }
     
     @objc private func forgotPasswordButtonTapped() {
         // show alert controller and do firebase stuff
+        //FirebaseUserManager.shared.forgotPassword(email: <#T##String#>)
     }
     
     @objc private func createNewAccountButtonTapped() {

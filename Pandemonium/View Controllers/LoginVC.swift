@@ -26,7 +26,7 @@ extension LoginVC {
         if let touch = touches.first {
             if touch.view == loginView.blurView {
                 // TODO: - Dismiss login view controller and go back to previous vc
-                print("yaayayayaayaya")
+                print("")
             } else {
                 return
             }
@@ -105,6 +105,10 @@ extension LoginVC {
     }
     
     @objc private func createNewAccountButtonTapped() {
-        // segue to create account vc
+        let createAccountVC = CreateAccountVC()
+        // TODO: - Change presentation style
+        createAccountVC.modalTransitionStyle = .crossDissolve
+        createAccountVC.modalPresentationStyle = .overCurrentContext
+        present(createAccountVC, animated: true, completion: nil)
     }
 }

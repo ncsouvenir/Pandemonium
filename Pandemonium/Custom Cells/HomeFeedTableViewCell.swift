@@ -154,6 +154,8 @@ class HomeFeedTableViewCell: UITableViewCell {
     
     func setupCell(with postSetup: Post){
         self.postTitle.text = postSetup.title
+        //TODO: this will be replaced with a function to get the user by the userID
+        self.userName.text = postSetup.userUID
         self.tags.text = postSetup.tags.joined(separator: " ")
         self.numberOfComments.text = "\(postSetup.comments.count)"
         self.numberOfUpDown.text = "\(postSetup.upvotes - postSetup.downvotes)"

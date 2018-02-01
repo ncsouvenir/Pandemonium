@@ -23,9 +23,8 @@ class FirebaseUserManager {
                and password: String,
                completionHandler: @escaping (User?, Error?) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password, completion: completionHandler)
-        
+
     }
-    
     func createAccount(with email: String,
                        and password: String,
                        username: String,

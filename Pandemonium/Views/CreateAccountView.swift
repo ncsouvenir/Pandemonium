@@ -9,11 +9,13 @@ import UIKit
 
 class CreateAccountView: UIView {
     
-    lazy var dismissView: UIButton = {
-        let button = UIButton(frame: UIScreen.main.bounds)
-        button.backgroundColor = .clear
-        return button
+    var blurView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        return blurEffectView
     }()
+    
     lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -49,7 +51,6 @@ class CreateAccountView: UIView {
     lazy var userNameTextField: UITextField = {
         let tf = UITextField()
         tf.borderStyle = .roundedRect
-        tf.layer.borderWidth = 1
         tf.layer.shadowOpacity = 0.8
         tf.layer.shadowOffset = CGSize(width: 2, height: 2)
         return tf
@@ -57,7 +58,6 @@ class CreateAccountView: UIView {
     lazy var emailTextField: UITextField = {
         let tf = UITextField()
         tf.borderStyle = .roundedRect
-        tf.layer.borderWidth = 1
         tf.layer.shadowOpacity = 0.8
         tf.layer.shadowOffset = CGSize(width: 2, height: 2)
         tf.keyboardType = .emailAddress
@@ -66,7 +66,6 @@ class CreateAccountView: UIView {
     lazy var passwordTextField: UITextField = {
         let tf = UITextField()
         tf.borderStyle = .roundedRect
-        tf.layer.borderWidth = 1
         tf.layer.shadowOpacity = 0.8
         tf.layer.shadowOffset = CGSize(width: 2, height: 2)
         tf.isSecureTextEntry = true
@@ -75,7 +74,6 @@ class CreateAccountView: UIView {
     lazy var confirmPasswordTextField: UITextField = {
         let tf = UITextField()
         tf.borderStyle = .roundedRect
-        tf.layer.borderWidth = 1
         tf.layer.shadowOpacity = 0.8
         tf.layer.shadowOffset = CGSize(width: 2, height: 2)
         tf.isSecureTextEntry = true
@@ -105,19 +103,15 @@ class CreateAccountView: UIView {
     }
     private func commonInit() {
         backgroundColor = .clear
-        setupBlurEffectView()
         setupViews()
     }
-    private func setupBlurEffectView() {
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light) // .light, .dark, .prominent, .regular, .extraLight
-        let visualEffect = UIVisualEffectView(frame: UIScreen.main.bounds)
-        visualEffect.effect = blurEffect
-        addSubview(visualEffect)
-    }
+
     private func setupViews() {
-        let viewObjects = [containerView, userNameLabel, userNameTextField, emailLabel, emailTextField, passwordLabel, passwordTextField, confirmPasswordLabel, confirmPasswordTextField, submitButton, dismissView] as [UIView]
+        blurView.frame = bounds
+        let viewObjects = [blurView, containerView, userNameLabel, userNameTextField, emailLabel, emailTextField, passwordLabel, passwordTextField, confirmPasswordLabel, confirmPasswordTextField, submitButton] as [UIView]
         viewObjects.forEach{addSubview($0)}
         let padding = 20
+        
         
         containerView.snp.makeConstraints { (view) in
             view.center.equalTo(self)

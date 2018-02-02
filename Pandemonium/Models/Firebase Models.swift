@@ -44,6 +44,7 @@ struct Post: Codable {
     }
 }
 
+
 struct Comment: Codable {
     let commentUID: String
     let userUID: String

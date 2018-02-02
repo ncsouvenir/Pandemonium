@@ -28,6 +28,7 @@ class FirebaseUserManager {
     func login(with email: String,
                and password: String,
                completionHandler: @escaping (User?, Error?) -> Void) {
+
         
         let completion: (User?, Error?) -> Void = { (user, error) in
             if let error = error {
@@ -42,8 +43,8 @@ class FirebaseUserManager {
     }
     func userNameCheck(username: String) {
         
+
     }
-    
     func createAccount(with email: String,
                        and password: String,
                        username: String,

@@ -166,13 +166,21 @@ class HomeFeedTableViewCell: UITableViewCell {
         self.userName.text = postSetup.userUID
         self.tags.text = postSetup.tags.joined(separator: " ")
         self.numberOfComments.text = "\(postSetup.comments.count)"
-        self.numberOfUpDown.text = "\(postSetup.upvotes - postSetup.downvotes)"
+        let postUpDownValue = postSetup.upvotes - postSetup.downvotes
+        if postUpDownValue > 1000{
+                    self.numberOfUpDown.text = "\(Double(postUpDownValue/1000))k"
+            
+        }else{
+                 self.numberOfUpDown.text = "\(postUpDownValue)"
+        }
+
     }
     
     
     @objc private func upVoteAction() {
         // TODO set delegate
         self.delegate?.upVoted(from: self)
+
     }
     
     @objc private func downVoteAction() {

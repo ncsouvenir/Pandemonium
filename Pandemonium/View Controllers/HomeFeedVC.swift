@@ -65,7 +65,7 @@ class HomeFeedVC: UIViewController {
 // MARK: - tabelView DataSource
 extension HomeFeedVC:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
+        return posts.count+1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -105,14 +105,18 @@ extension HomeFeedVC: UITableViewDelegate, HomeFeedTableViewCellDelegate{
         return [delete, add]
     }
     func upVoted(from tablVieCell: HomeFeedTableViewCell) {
+        //TODO update the upVote for a post
         if let indexPath = tablVieCell.currentIndexPath{
-            print(posts[indexPath.row-1].postUID)
+            let postSetup = posts[indexPath.row-1]
+            FirebasePostManager.manager.updatePostUpVote(for: postSetup)
         }
         print("delegate fired")
     }
     func downVoted(from tablVieCell: HomeFeedTableViewCell) {
+        //TODO update the downVote for a post
         if let indexPath = tablVieCell.currentIndexPath{
-            print(posts[indexPath.row-1].postUID)
+            let postSetup = posts[indexPath.row-1]
+            FirebasePostManager.manager.updatePostDownVote(for: postSetup)
         }
         print("delegate fired")
     }

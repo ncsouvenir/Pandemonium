@@ -18,7 +18,6 @@ class FirebasePostManager{
     func loadPosts(completionHandler: @escaping ([Post]?, Error?) -> Void){
         // getting the reference for the node that is Posts
         let dbReference = Database.database().reference().child("posts")
-        
         dbReference.observe(.value){(snapshot) in
             guard let snapshots = snapshot.children.allObjects as? [DataSnapshot] else {print("posts node has no children");return}
             var allPosts = [Post]()
@@ -51,7 +50,23 @@ class FirebasePostManager{
 
         let dbReference = Database.database().reference().child("posts")
         let id = dbReference.childByAutoId()
-                let post2 = Post(postUID: id.key, userUID: "1", date: "010118", title: "Awesome Cats", upvotes: 2, downvotes: 0, tags: [""], bodyText: "Cats are the best ever", url: nil, image: "sdfs", comments: ["CommentID": comment1])
+                let post2 = Post(postUID: id.key, userUID: "1", date: "010118", title: "Awesome Cats", upvotes: 1999, downvotes: 0, tags: [""], bodyText: "Cats are the best ever", url: nil, image: "sdfs", comments: ["CommentID": comment1])
         id.setValue(post2.postToJSON())
+    }
+    func updatePostUpVote(for post: Post){
+        let dbReference = Database.database().reference().child("posts")
+        let postReference = dbReference.child(post.postUID)
+        let postUpVotesValue = post.upvotes + 1
+        postReference.updateChildValues(["upvotes": postUpVotesValue])
+    }
+    func updatePostDownVote(for post: Post){
+        let dbReference = Database.database().reference().child("posts")
+        let postReference = dbReference.child(post.postUID)
+        guard (post.upvotes - post.downvotes) > 0 else {
+            return
+        }
+        
+        let postUpVotesValue = post.downvotes + 1
+        postReference.updateChildValues(["downvotes": postUpVotesValue])
     }
 }

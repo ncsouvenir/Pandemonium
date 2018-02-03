@@ -45,6 +45,10 @@ class HomeFeedVC: UIViewController {
     }
     @objc func listNavBarButtonAction(){
         //TODO Load the list
+        
+        //MarkTest ProfileViewController
+        let profileViewController = ProfileViewController()
+        navigationController?.pushViewController(profileViewController, animated: true)
     }
     @objc func addPostNavBarButtonAction(){
         //TODO Load the Add Post ViewController

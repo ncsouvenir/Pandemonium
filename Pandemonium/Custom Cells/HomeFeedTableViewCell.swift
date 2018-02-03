@@ -85,12 +85,12 @@ class HomeFeedTableViewCell: UITableViewCell {
         setupTitle()
         setupTagLabel()
         setupUserName()
-        setupPostImage()
         setupUpButton()
         setupNumberOfComments()
         setupCommentsButton()
         setupNumbOfUpDown()
         setupDownButton()
+        setupPostImage()
         
     }
     private func setupTitle(){
@@ -121,7 +121,8 @@ class HomeFeedTableViewCell: UITableViewCell {
         postImage.snp.makeConstraints { (constraint) in
             constraint.top.equalTo(snp.top).offset(5)
             constraint.left.equalTo(postTitle.snp.right).offset(5)
-            constraint.height.width.equalTo(snp.width).multipliedBy(0.20)
+            constraint.height.equalTo(snp.width).multipliedBy(0.20)
+            constraint.right.equalTo(downButton.snp.left).offset(-2)
         }
     }
     private func setupDownButton(){

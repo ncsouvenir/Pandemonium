@@ -8,18 +8,27 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+    let profileView = ProfileView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupProfileView()
+        setupNavigationBar()
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func setupNavigationBar(){
+        navigationItem.title = "John Jack Jones"
+        
     }
-    
+    func setupProfileView(){
+        self.view.addSubview(profileView)
+        profileView.snp.makeConstraints { (constraint) in
+            constraint.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
+        }
+        self.profileView.tableView.dataSource = self
+        self.profileView.tableView.delegate = self
+    }
 
     /*
     // MARK: - Navigation
@@ -31,4 +40,31 @@ class ProfileViewController: UIViewController {
     }
     */
 
+}
+
+extension ProfileViewController: UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 0{
+            let profileCell = tableView.dequeueReusableCell(withIdentifier: "profileImageCell") as! ProfileImageCustomTableViewCell
+            return profileCell
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "profilePostCell", for: indexPath) as! ProfilePostCustomTableViewCell
+        return cell
+    }
+    
+    
+}
+extension ProfileViewController: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0{
+            return UIScreen.main.bounds.height*0.45
+        }else{
+            return UIScreen.main.bounds.height*0.20
+        }
+    }
+    
 }

@@ -8,6 +8,16 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+//    let user: Parrot
+//    init(user: Parrot){
+//    self.user = user
+//        super.init(nibName: nil, bundle: nil)
+//    }
+
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//    
     let profileView = ProfileView()
     
     override func viewDidLoad() {
@@ -44,6 +54,7 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return (self.user?.posts.count + 1)
         return 10
     }
     

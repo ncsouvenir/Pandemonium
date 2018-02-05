@@ -40,6 +40,8 @@ class HomeFeedTableViewCell: UITableViewCell {
     lazy var userName: UILabel = {
         let label = UILabel()
         label.text = "Username"
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor.lightGray
         return label
     }()
     
@@ -47,6 +49,8 @@ class HomeFeedTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "Wego wego, some cats and dogs with some parots flying with a mystery on there shoulders, who knows, who cares"
         label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         label.numberOfLines = 3
         return label
     }()
@@ -101,13 +105,13 @@ class HomeFeedTableViewCell: UITableViewCell {
     private func setupViews(){
         setupPostTitle()
         setupTags()
-        setupUpVotesAndDownVotesImageView()
-        setupPostImage()
-        setupNumberOfUpDownVotes()
-        setupCommentImageView()
-        setupNumberOfComments()
+        setupUserName()
         setupUpbutton()
+        setupNumberOfUpDownVotes()
         setupDownButton()
+        setupPostImage()
+        setupNumberOfComments()
+        setupCommentImageView()
     }
     private func setupPostTitle(){
         addSubview(postTitle)
@@ -136,23 +140,23 @@ class HomeFeedTableViewCell: UITableViewCell {
     private func setupPostImage(){
         addSubview(postImage)
         postImage.snp.makeConstraints { (constraint) in
-            constraint.top.equalTo(upVotesAndDownVotesImageView.snp.bottom).offset(2)
-            constraint.right.equalTo(snp.right).offset(-5)
+            constraint.top.equalTo(snp.top).offset(5)
+            constraint.right.equalTo(upButton.snp.left).offset(-5)
             constraint.width.height.equalTo(snp.width).multipliedBy(0.20)
         }
     }
     private func setupNumberOfUpDownVotes(){
         addSubview(numberOfUpDown)
         numberOfUpDown.snp.makeConstraints { (constraint) in
-            constraint.left.equalTo(upVotesAndDownVotesImageView.snp.right).offset(2)
-            constraint.centerY.equalTo(upVotesAndDownVotesImageView.snp.centerY)
+            constraint.right.equalTo(snp.right).offset(-5)
+            constraint.top.equalTo(upButton.snp.bottom).offset(2)
         }
     }
     private func setupCommentImageView(){
         addSubview(commentImageView)
         commentImageView.snp.makeConstraints { (constraint) in
-            constraint.left.equalTo(numberOfUpDown.snp.right).offset(2)
-            constraint.centerY.equalTo(upVotesAndDownVotesImageView.snp.centerY)
+            constraint.right.equalTo(numberOfComments.snp.left).offset(-2)
+            constraint.centerY.equalTo(numberOfComments.snp.centerY)
             constraint.width.height.equalTo(snp.width).multipliedBy(0.07)
             
         }
@@ -160,32 +164,39 @@ class HomeFeedTableViewCell: UITableViewCell {
     private func setupNumberOfComments(){
         addSubview(numberOfComments)
         numberOfComments.snp.makeConstraints { (constraint) in
-            constraint.left.equalTo(commentImageView.snp.right)
-            constraint.centerY.equalTo(commentImageView.snp.centerY)
+            constraint.right.equalTo(snp.right).offset(-5)
+            constraint.top.equalTo(downButton.snp.bottom).offset(10)
         }
     }
     private func setupUpbutton(){
         addSubview(upButton)
         upButton.snp.makeConstraints { (constraint) in
-            constraint.top.equalTo(upVotesAndDownVotesImageView.snp.bottom).offset(2)
-            constraint.centerX.equalTo(upVotesAndDownVotesImageView.snp.centerX)
+            constraint.top.equalTo(snp.top).offset(5)
+            constraint.right.equalTo(snp.right).offset(-5)
         }
     }
     private func setupDownButton(){
         addSubview(downButton)
         downButton.snp.makeConstraints { (constraint) in
-            constraint.top.equalTo(upButton.snp.bottom).offset(2)
-            constraint.centerX.equalTo(upButton.snp.centerX)
+            constraint.top.equalTo(numberOfUpDown.snp.bottom).offset(2)
+            constraint.right.equalTo(snp.right).offset(-5)
+        }
+    }
+    private func setupUserName(){
+        addSubview(userName)
+        userName.snp.makeConstraints { (constraint) in
+            constraint.top.equalTo(postTitle.snp.bottom).offset(2)
+            constraint.left.equalTo(snp.left).offset(5)
         }
     }
     
-    func setupCell(with postSetup: Post){
-        self.postTitle.text = postSetup.title
+    func setupCell(with post: Post){
+        self.postTitle.text = post.title
         //TODO: this will be replaced with a function to get the user by the userID
-        self.userName.text = postSetup.userUID
-        self.tags.setTitle(postSetup.tags.joined(separator: ","), for: .normal)
-        self.numberOfComments.text = "\(postSetup.comments.count)"
-        let postUpDownValue = postSetup.upvotes - postSetup.downvotes
+        self.userName.text = post.userUID
+        self.tags.setTitle(post.tags.joined(separator: ","), for: .normal)
+        self.numberOfComments.text = "\(post.comments.count)"
+        let postUpDownValue = post.upvotes - post.downvotes
         if postUpDownValue > 1000{
             self.numberOfUpDown.text = "\(Double(postUpDownValue/1000))k"
             

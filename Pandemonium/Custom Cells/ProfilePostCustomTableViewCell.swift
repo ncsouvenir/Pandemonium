@@ -54,7 +54,13 @@ class ProfilePostCustomTableViewCell: UITableViewCell {
         imageView.image = #imageLiteral(resourceName: "comments")
         return imageView
     }()
-    
+    lazy var userName: UILabel = {
+        let label = UILabel()
+        label.text = "Username"
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor.lightGray
+        return label
+    }()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: "profilePostCell")
@@ -79,6 +85,7 @@ class ProfilePostCustomTableViewCell: UITableViewCell {
         setupNumberOfUpDownVotes()
         setupCommentImageView()
         setupNumberOfComments()
+        setupUserName()
     }
     private func setupPostTitle(){
         addSubview(postTitle)
@@ -134,6 +141,29 @@ class ProfilePostCustomTableViewCell: UITableViewCell {
             constraint.left.equalTo(commentImageView.snp.right)
             constraint.centerY.equalTo(commentImageView.snp.centerY)
         }
+    }
+    private func setupUserName(){
+        addSubview(userName)
+        userName.snp.makeConstraints { (constraint) in
+            constraint.top.equalTo(postTitle.snp.bottom).offset(2)
+            constraint.left.equalTo(snp.left).offset(5)
+        }
+    }
+    
+    func setupCell(from post: Post){
+        self.postTitle.text = post.title
+        //TODO: this will be replaced with a function to get the user by the userID
+        self.userName.text = post.userUID
+        self.tags.setTitle(post.tags.joined(separator: ","), for: .normal)
+        self.numberOfComments.text = "\(post.comments.count)"
+        let postUpDownValue = post.upvotes - post.downvotes
+        if postUpDownValue > 1000{
+            self.numberOfUpDown.text = "\(Double(postUpDownValue/1000))k"
+            
+        }else{
+            self.numberOfUpDown.text = "\(postUpDownValue)"
+        }
+        
     }
     
 }

@@ -26,6 +26,7 @@ class ProfilePostCustomTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "256"
         label.font = UIFont.systemFont(ofSize: 10)
+
         return label
     }()
     lazy var upVotesAndDownVotesImageView: UIImageView = {

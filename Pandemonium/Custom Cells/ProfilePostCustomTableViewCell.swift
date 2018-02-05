@@ -1,48 +1,14 @@
 //
-//  HomeFeedTableViewCell.swift
-//  
+//  ProfilePostCustomTableViewCell.swift
+//  Pandemonium
 //
-//  Created by C4Q on 1/30/18.
+//  Created by C4Q on 2/2/18.
+//  Copyright © 2018 C4Q. All rights reserved.
 //
 
 import UIKit
-protocol HomeFeedTableViewCellDelegate: class{
-    func upVoted(from tablVieCell: HomeFeedTableViewCell)
-    func downVoted(from tablVieCell: HomeFeedTableViewCell)
-}
 
-//MARK: called "Feed Cell"
-class HomeFeedTableViewCell: UITableViewCell {
-    var currentIndexPath: IndexPath?
-    weak var delegate: HomeFeedTableViewCellDelegate?
-    
-    
-    lazy var numberOfComments: UILabel = {
-        let label = UILabel()
-        label.text = "256"
-        label.font = UIFont.systemFont(ofSize: 10)
-        return label
-    }()
-    
-    lazy var upButton: UIButton = {
-        let button = UIButton.init(type: UIButtonType.system)
-        button.setImage(#imageLiteral(resourceName: "up-arrow"), for: .normal)
-        button.addTarget(self, action: #selector(upVoteAction), for: .touchUpInside)
-        return button
-    }()
-    lazy var downButton: UIButton = {
-        let button = UIButton.init(type: UIButtonType.system)
-        button.setImage(#imageLiteral(resourceName: "down-arrow"), for: .normal)
-        button.addTarget(self, action: #selector(downVoteAction), for: .touchUpInside)
-        return button
-    }()
-    
-    lazy var userName: UILabel = {
-        let label = UILabel()
-        label.text = "Username"
-        return label
-    }()
-    
+class ProfilePostCustomTableViewCell: UITableViewCell {
     lazy var postTitle: UILabel = {
         let label = UILabel()
         label.text = "Wego wego, some cats and dogs with some parots flying with a mystery on there shoulders, who knows, who cares"
@@ -55,6 +21,12 @@ class HomeFeedTableViewCell: UITableViewCell {
         button.setTitle("#Nature, #Adventure", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         return button
+    }()
+    lazy var numberOfComments: UILabel = {
+        let label = UILabel()
+        label.text = "256"
+        label.font = UIFont.systemFont(ofSize: 10)
+        return label
     }()
     lazy var upVotesAndDownVotesImageView: UIImageView = {
         var imageView = UIImageView()
@@ -106,8 +78,6 @@ class HomeFeedTableViewCell: UITableViewCell {
         setupNumberOfUpDownVotes()
         setupCommentImageView()
         setupNumberOfComments()
-        setupUpbutton()
-        setupDownButton()
     }
     private func setupPostTitle(){
         addSubview(postTitle)
@@ -164,49 +134,5 @@ class HomeFeedTableViewCell: UITableViewCell {
             constraint.centerY.equalTo(commentImageView.snp.centerY)
         }
     }
-    private func setupUpbutton(){
-        addSubview(upButton)
-        upButton.snp.makeConstraints { (constraint) in
-            constraint.top.equalTo(upVotesAndDownVotesImageView.snp.bottom).offset(2)
-            constraint.centerX.equalTo(upVotesAndDownVotesImageView.snp.centerX)
-        }
-    }
-    private func setupDownButton(){
-        addSubview(downButton)
-        downButton.snp.makeConstraints { (constraint) in
-            constraint.top.equalTo(upButton.snp.bottom).offset(2)
-            constraint.centerX.equalTo(upButton.snp.centerX)
-        }
-    }
-    
-    func setupCell(with postSetup: Post){
-        self.postTitle.text = postSetup.title
-        //TODO: this will be replaced with a function to get the user by the userID
-        self.userName.text = postSetup.userUID
-        self.tags.setTitle(postSetup.tags.joined(separator: ","), for: .normal)
-        self.numberOfComments.text = "\(postSetup.comments.count)"
-        let postUpDownValue = postSetup.upvotes - postSetup.downvotes
-        if postUpDownValue > 1000{
-            self.numberOfUpDown.text = "\(Double(postUpDownValue/1000))k"
-            
-        }else{
-            self.numberOfUpDown.text = "\(postUpDownValue)"
-        }
-        
-    }
-    
-    
-    @objc private func upVoteAction() {
-        // TODO set delegate
-        self.delegate?.upVoted(from: self)
-        
-    }
-    
-    @objc private func downVoteAction() {
-        self.delegate?.downVoted(from: self)
-        // TODO set delegate
-    }
-    
     
 }
-

@@ -45,6 +45,9 @@ class HomeFeedVC: UIViewController {
     }
     @objc func listNavBarButtonAction(){
         //TODO Load the list
+        //MarkTest ProfileViewController
+        let profileViewController = ProfileViewController()
+        navigationController?.pushViewController(profileViewController, animated: true)
     }
     @objc func addPostNavBarButtonAction(){
         //TODO Load the Add Post ViewController
@@ -125,7 +128,7 @@ extension HomeFeedVC: UITableViewDelegate, HomeFeedTableViewCellDelegate{
 //Mark:  - TableView Cell setup
 extension HomeFeedVC{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let cellHeight = UIScreen.main.bounds.height * 0.15
+        let cellHeight = UIScreen.main.bounds.height*0.20
         return cellHeight
     }
 }

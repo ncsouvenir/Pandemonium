@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        detailPostInfo.tabBarItem = UITabBarItem(title: "Detail", image: nil, tag: 1)
         
         //tab 3
-        let createAPost = CreateAPostTableViewController()
+        let createAPost = CreateAPostTableViewController.storyBoardInstance()
         let createNavController = UINavigationController(rootViewController: createAPost)
         createNavController.tabBarItem = UITabBarItem(title: "Create Post", image: nil, tag: 2)
         

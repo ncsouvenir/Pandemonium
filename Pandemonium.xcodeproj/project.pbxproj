@@ -31,7 +31,7 @@
 		81C9ED75202A4BD000446157 /* CreatePostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C9ED74202A4BD000446157 /* CreatePostTableViewController.swift */; };
 		81C9ED77202A4BE200446157 /* CreatePostSelectedImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C9ED76202A4BE200446157 /* CreatePostSelectedImageVC.swift */; };
 		81C9ED79202A4BF300446157 /* CreatePostSelectedImageViewdelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C9ED78202A4BF300446157 /* CreatePostSelectedImageViewdelete.swift */; };
-		81C9ED7C202A4D0600446157 /* CreateAPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81C9ED7B202A4D0600446157 /* CreateAPost.storyboard */; };
+		81C9ED7E202A524400446157 /* CreateAPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81C9ED7D202A524400446157 /* CreateAPost.storyboard */; };
 		81CF09D1202127B300ECACE5 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF09D0202127B300ECACE5 /* MenuView.swift */; };
 		81CF09D3202127C300ECACE5 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF09D2202127C300ECACE5 /* MenuVC.swift */; };
 		81CF09E8202128B100ECACE5 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF09E7202128B100ECACE5 /* UserDefaults.swift */; };
@@ -108,7 +108,7 @@
 		81C9ED74202A4BD000446157 /* CreatePostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePostTableViewController.swift; sourceTree = "<group>"; };
 		81C9ED76202A4BE200446157 /* CreatePostSelectedImageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePostSelectedImageVC.swift; sourceTree = "<group>"; };
 		81C9ED78202A4BF300446157 /* CreatePostSelectedImageViewdelete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePostSelectedImageViewdelete.swift; sourceTree = "<group>"; };
-		81C9ED7B202A4D0600446157 /* CreateAPost.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CreateAPost.storyboard; path = ../../../../JobMarketPlace/JobMarketPlace/StoryBoards/CreateAPost.storyboard; sourceTree = "<group>"; };
+		81C9ED7D202A524400446157 /* CreateAPost.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CreateAPost.storyboard; path = Pandemonium/StoryBoard/CreateAPost.storyboard; sourceTree = SOURCE_ROOT; };
 		81CF09D0202127B300ECACE5 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		81CF09D2202127C300ECACE5 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		81CF09E7202128B100ECACE5 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
@@ -278,7 +278,7 @@
 		81C9ED7A202A4CEE00446157 /* StoryBoard */ = {
 			isa = PBXGroup;
 			children = (
-				81C9ED7B202A4D0600446157 /* CreateAPost.storyboard */,
+				81C9ED7D202A524400446157 /* CreateAPost.storyboard */,
 			);
 			name = StoryBoard;
 			path = Services/StoryBoard;
@@ -455,7 +455,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81C9ED7C202A4D0600446157 /* CreateAPost.storyboard in Resources */,
+				81C9ED7E202A524400446157 /* CreateAPost.storyboard in Resources */,
 				818555402021230E0089752E /* LaunchScreen.storyboard in Resources */,
 				8185553D2021230E0089752E /* Assets.xcassets in Resources */,
 				81AB4DCE2022908E0034B761 /* GoogleService-Info.plist in Resources */,

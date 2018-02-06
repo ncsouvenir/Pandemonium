@@ -9,27 +9,63 @@
 import UIKit
 
 class NewCommentViewController: UIViewController {
+    
+//    var post: Post!
+    
+//    init(post: Post) {
+//        super.init(nibName: nil, bundle: nil)
+//        self.post = post
+//    }
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError()
+//    }
 
+    let commentView = NewCommentView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        configNavBar()
+        constrainView()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        commentView.commentTextView.becomeFirstResponder()
     }
-    */
+    
+    private func constrainView() {
+        view.addSubview(commentView)
+        commentView.snp.makeConstraints { (make) in
+            make.edges.equalTo(self.view.safeAreaLayoutGuide)
+        }
+    }
+    
+    private func configNavBar() {
+        navigationItem.title = "New Comment"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(submitPost))
+        navigationController?.navigationBar.backgroundColor = .orange
+        
+    }
+    @objc private func dismissView() {
+        commentView.commentTextView.resignFirstResponder()
+        dismiss(animated: true, completion: nil)
+    }
+    @objc private func submitPost() {
+        //TODO: post comment
+        guard let comment = commentView.commentTextView.text else {return}
+        guard !comment.isEmpty else {
+            showAlert(title: "Error", message: "No comment added")
+            return
+        }
+        FirebaseCommentManager.manager.addComment(comment: comment)
+    }
+     private func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default) { (alert) in }
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
 
 }

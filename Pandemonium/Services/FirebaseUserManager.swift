@@ -24,12 +24,14 @@ class FirebaseUserManager {
     private var dataBaseRef: DatabaseReference!
     private var usersReference: DatabaseReference!
     
+    func getCurrentUser() -> User? {
+        return Auth.auth().currentUser
+    }
     
     func login(with email: String,
                and password: String,
                completionHandler: @escaping (User?, Error?) -> Void) {
 
-        
         let completion: (User?, Error?) -> Void = { (user, error) in
             if let error = error {
                 completionHandler(nil, error)
@@ -55,7 +57,7 @@ class FirebaseUserManager {
             } else if let _ = user {
             //TODO reference user
                 let child = self.usersReference.childByAutoId()
-            child.setValue(Parrot(userUID: child.key, appUserName: username, upvotes: 0, downvotes: 0, numberOfComments: 0, image: nil, posts: [:]).toJSON())
+            child.setValue(Parrot(userUID: child.key, appUserName: username, upvotes: 0, downvotes: 0, numberOfComments: 0, image: nil, posts: nil).toJSON())
             }
         }
         Auth.auth().createUser(withEmail: email, password: password, completion: completion)

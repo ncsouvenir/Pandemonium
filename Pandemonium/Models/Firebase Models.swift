@@ -19,7 +19,7 @@ struct Parrot: Codable {
     var downvotes: Int?
     var numberOfComments: Int?
     var image: String?
-    var posts: [String : Post]
+    var posts: [String]?
     func toJSON() -> Any {
         let jsonData = try! JSONEncoder().encode(self)
         return try! JSONSerialization.jsonObject(with: jsonData, options: [])
@@ -37,7 +37,7 @@ struct Post: Codable {
     var bodyText: String?
     var url: String?
     var image: String?
-    var comments: [String: Comment]
+    var comments: [String]?
     func postToJSON()->Any{
         let jsonData = try! JSONEncoder().encode(self)
         return try! JSONSerialization.jsonObject(with: jsonData, options: [])
@@ -51,6 +51,8 @@ struct Comment: Codable {
     let postUID: String
     let date: String
     var commentText: String
-    var upvotes: Int
-    var downvotes: Int
+    func commentToJson() -> Any {
+        let jsonData = try! JSONEncoder().encode(self)
+        return try! JSONSerialization.jsonObject(with: jsonData, options: [])
+    }
 }

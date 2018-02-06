@@ -17,6 +17,7 @@ class CreateAccountVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        testColors()
         setupView()
         submitButton()
     }
@@ -32,6 +33,13 @@ class CreateAccountVC: UIViewController {
         createView.snp.makeConstraints { (view) in
             view.edges.equalTo(self.view.safeAreaLayoutGuide)
         }
+    }
+    
+    func testColors() {
+        let gradient = CAGradientLayer()
+        gradient.frame = view.bounds
+        gradient.colors = [UIColor.cyan.cgColor, UIColor.purple.cgColor]
+        view.layer.addSublayer(gradient)
     }
     
     private func submitButton() {

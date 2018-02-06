@@ -10,6 +10,7 @@ pod 'Firebase/Core'
 pod 'Firebase/Auth’
 pod 'Firebase/Database’
 pod ’SnapKit’
+pod 'Firebase/Storage'
 
   target 'PandemoniumTests' do
     inherit! :search_paths

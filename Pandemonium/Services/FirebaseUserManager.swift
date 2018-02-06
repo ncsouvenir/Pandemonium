@@ -43,10 +43,12 @@ class FirebaseUserManager {
         Auth.auth().signIn(withEmail: email, password: password, completion: completion)
         
     }
+    
     func userNameCheck(username: String) {
         
 
     }
+    
     func createAccount(with email: String,
                        and password: String,
                        username: String,

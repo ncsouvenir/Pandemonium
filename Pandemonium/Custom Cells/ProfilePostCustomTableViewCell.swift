@@ -155,7 +155,7 @@ class ProfilePostCustomTableViewCell: UITableViewCell {
         //TODO: this will be replaced with a function to get the user by the userID
         self.userName.text = post.userUID
         self.tags.setTitle(post.tags.joined(separator: ","), for: .normal)
-        self.numberOfComments.text = "\(post.comments.count)"
+        self.numberOfComments.text = "\(post.comments?.count)"
         let postUpDownValue = post.upvotes - post.downvotes
         if postUpDownValue > 1000{
             self.numberOfUpDown.text = "\(Double(postUpDownValue/1000))k"

@@ -29,8 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         homeNavController.tabBarItem = UITabBarItem(title: "Home", image: nil, tag: 0)
         
         //tab 2
-        let detailPostInfo = DetailPostVC()
-        detailPostInfo.tabBarItem = UITabBarItem(title: "Detail", image: nil, tag: 1)
+//        let detailPostInfo = DetailPostVC()
+//        detailPostInfo.tabBarItem = UITabBarItem(title: "Detail", image: nil, tag: 1)
         
         //tab 3
         let createAPost = CreatePostVC()
@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       
         
         //embedding all VC's into Tab bar
-        tbc.viewControllers = [login, homeNavController, detailPostInfo, createNavController]
+        tbc.viewControllers = [login, homeNavController, createNavController] //detailPostInfo,
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = tbc

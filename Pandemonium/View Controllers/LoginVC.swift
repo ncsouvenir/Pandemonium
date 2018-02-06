@@ -15,6 +15,8 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
         view.addSubview(loginView)
         setupButtonActions()
+        
+        
         //turnRedAndShakeAnimation(view: loginView.containerView)
     }
 
@@ -108,6 +110,7 @@ extension LoginVC {
                 print(error)
             } else if let user = user {
                 print("\(user) has logged in")
+                self.tabBarController?.selectedIndex = 1
             }
         }
     }
@@ -139,9 +142,16 @@ extension LoginVC {
     }
     
     @objc private func createNewAccountButtonTapped() {
-        let createAccountVC = CreateAccountVC()
-        createAccountVC.modalTransitionStyle = .crossDissolve
-        createAccountVC.modalPresentationStyle = .overCurrentContext
-        present(createAccountVC, animated: true, completion: nil)
+        let post = Post(postUID: "a", userUID: "s", date: "s", title: "f", upvotes: 0, downvotes: 0, tags: ["j"], bodyText: nil, url: "f", image: nil, comments: [:])
+        
+        let vc = DetailPostVC(post: post)
+        
+        present(vc, animated: true, completion: nil)
+        
+        
+//        let createAccountVC = CreateAccountVC()
+//        createAccountVC.modalTransitionStyle = .crossDissolve
+//        createAccountVC.modalPresentationStyle = .overCurrentContext
+//        present(createAccountVC, animated: true, completion: nil)
     }
 }

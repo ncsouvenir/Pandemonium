@@ -19,8 +19,6 @@
 		81855567202124AA0089752E /* HomeFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81855566202124AA0089752E /* HomeFeedView.swift */; };
 		8185556A202124D30089752E /* HomeFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81855569202124D30089752E /* HomeFeedVC.swift */; };
 		8185556C202125230089752E /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8185556B202125230089752E /* CreateAccountVC.swift */; };
-		81855572202125960089752E /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81855571202125960089752E /* CreatePostView.swift */; };
-		81855574202125BD0089752E /* CreatePostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81855573202125BD0089752E /* CreatePostVC.swift */; };
 		8185557A202126F40089752E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81855579202126F40089752E /* ProfileView.swift */; };
 		81855582202127360089752E /* UserEditPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81855581202127360089752E /* UserEditPostView.swift */; };
 		818B08312028FE84005B130F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818B08302028FE84005B130F /* Settings.swift */; };
@@ -29,6 +27,11 @@
 		81AB4DCC20223DC50034B761 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AB4DCB20223DC50034B761 /* CreateAccountView.swift */; };
 		81AB4DCE2022908E0034B761 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81AB4DCD2022908E0034B761 /* GoogleService-Info.plist */; };
 		81AB4DD12022937D0034B761 /* FirebaseUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AB4DD02022937D0034B761 /* FirebaseUserManager.swift */; };
+		81C9ED73202A4BA200446157 /* CreatePostSelectedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C9ED72202A4BA200446157 /* CreatePostSelectedImageView.swift */; };
+		81C9ED75202A4BD000446157 /* CreatePostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C9ED74202A4BD000446157 /* CreatePostTableViewController.swift */; };
+		81C9ED77202A4BE200446157 /* CreatePostSelectedImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C9ED76202A4BE200446157 /* CreatePostSelectedImageVC.swift */; };
+		81C9ED79202A4BF300446157 /* CreatePostSelectedImageViewdelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C9ED78202A4BF300446157 /* CreatePostSelectedImageViewdelete.swift */; };
+		81C9ED7C202A4D0600446157 /* CreateAPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81C9ED7B202A4D0600446157 /* CreateAPost.storyboard */; };
 		81CF09D1202127B300ECACE5 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF09D0202127B300ECACE5 /* MenuView.swift */; };
 		81CF09D3202127C300ECACE5 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF09D2202127C300ECACE5 /* MenuVC.swift */; };
 		81CF09E8202128B100ECACE5 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF09E7202128B100ECACE5 /* UserDefaults.swift */; };
@@ -93,8 +96,6 @@
 		81855566202124AA0089752E /* HomeFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedView.swift; sourceTree = "<group>"; };
 		81855569202124D30089752E /* HomeFeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeFeedVC.swift; sourceTree = "<group>"; };
 		8185556B202125230089752E /* CreateAccountVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
-		81855571202125960089752E /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
-		81855573202125BD0089752E /* CreatePostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostVC.swift; sourceTree = "<group>"; };
 		81855579202126F40089752E /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileView.swift; path = Pandemonium/Views/ProfileView.swift; sourceTree = SOURCE_ROOT; };
 		81855581202127360089752E /* UserEditPostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserEditPostView.swift; path = Pandemonium/Views/UserEditPostView.swift; sourceTree = SOURCE_ROOT; };
 		818B08302028FE84005B130F /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -103,6 +104,11 @@
 		81AB4DCB20223DC50034B761 /* CreateAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		81AB4DCD2022908E0034B761 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		81AB4DD02022937D0034B761 /* FirebaseUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserManager.swift; sourceTree = "<group>"; };
+		81C9ED72202A4BA200446157 /* CreatePostSelectedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePostSelectedImageView.swift; sourceTree = "<group>"; };
+		81C9ED74202A4BD000446157 /* CreatePostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePostTableViewController.swift; sourceTree = "<group>"; };
+		81C9ED76202A4BE200446157 /* CreatePostSelectedImageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePostSelectedImageVC.swift; sourceTree = "<group>"; };
+		81C9ED78202A4BF300446157 /* CreatePostSelectedImageViewdelete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePostSelectedImageViewdelete.swift; sourceTree = "<group>"; };
+		81C9ED7B202A4D0600446157 /* CreateAPost.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CreateAPost.storyboard; path = ../../../../JobMarketPlace/JobMarketPlace/StoryBoards/CreateAPost.storyboard; sourceTree = "<group>"; };
 		81CF09D0202127B300ECACE5 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		81CF09D2202127C300ECACE5 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		81CF09E7202128B100ECACE5 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
@@ -187,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				818555322021230E0089752E /* AppDelegate.swift */,
+				81C9ED7A202A4CEE00446157 /* StoryBoard */,
 				81AB4DCF2022935C0034B761 /* Services */,
 				81CF0A24202135EF00ECACE5 /* Models */,
 				81CF09E9202128BE00ECACE5 /* Data Persistence */,
@@ -225,7 +232,9 @@
 			children = (
 				81855569202124D30089752E /* HomeFeedVC.swift */,
 				8185556B202125230089752E /* CreateAccountVC.swift */,
-				81855573202125BD0089752E /* CreatePostVC.swift */,
+				81C9ED78202A4BF300446157 /* CreatePostSelectedImageViewdelete.swift */,
+				81C9ED76202A4BE200446157 /* CreatePostSelectedImageVC.swift */,
+				81C9ED74202A4BD000446157 /* CreatePostTableViewController.swift */,
 				81CF0A072021336D00ECACE5 /* DetailPostVC.swift */,
 				81CF0A192021350800ECACE5 /* ProfileViewController.swift */,
 				81CF0A092021337700ECACE5 /* CurrentUserProfileVC.swift */,
@@ -242,7 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				81855566202124AA0089752E /* HomeFeedView.swift */,
-				81855571202125960089752E /* CreatePostView.swift */,
+				81C9ED72202A4BA200446157 /* CreatePostSelectedImageView.swift */,
 				81CF0A0F202133D500ECACE5 /* DetailPostView.swift */,
 				81855579202126F40089752E /* ProfileView.swift */,
 				81CF0A152021341A00ECACE5 /* CurrentUserProfileView.swift */,
@@ -264,6 +273,15 @@
 				81CF0B1E2023B36E00ECACE5 /* FirebasePostManager.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		81C9ED7A202A4CEE00446157 /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				81C9ED7B202A4D0600446157 /* CreateAPost.storyboard */,
+			);
+			name = StoryBoard;
+			path = Services/StoryBoard;
 			sourceTree = "<group>";
 		};
 		81CF09E9202128BE00ECACE5 /* Data Persistence */ = {
@@ -437,6 +455,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81C9ED7C202A4D0600446157 /* CreateAPost.storyboard in Resources */,
 				818555402021230E0089752E /* LaunchScreen.storyboard in Resources */,
 				8185553D2021230E0089752E /* Assets.xcassets in Resources */,
 				81AB4DCE2022908E0034B761 /* GoogleService-Info.plist in Resources */,
@@ -622,12 +641,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81C9ED77202A4BE200446157 /* CreatePostSelectedImageVC.swift in Sources */,
+				81C9ED73202A4BA200446157 /* CreatePostSelectedImageView.swift in Sources */,
 				81CF0A0A2021337800ECACE5 /* CurrentUserProfileVC.swift in Sources */,
 				81855582202127360089752E /* UserEditPostView.swift in Sources */,
-				81855572202125960089752E /* CreatePostView.swift in Sources */,
 				81CF0A10202133D600ECACE5 /* DetailPostView.swift in Sources */,
 				81CF0A162021341A00ECACE5 /* CurrentUserProfileView.swift in Sources */,
 				81CF0A1A2021350800ECACE5 /* ProfileViewController.swift in Sources */,
+				81C9ED79202A4BF300446157 /* CreatePostSelectedImageViewdelete.swift in Sources */,
+				81C9ED75202A4BD000446157 /* CreatePostTableViewController.swift in Sources */,
 				81CF0B1D2023B34B00ECACE5 /* FirebaseCommentManager.swift in Sources */,
 				81CF0A202021352900ECACE5 /* NewCommentView.swift in Sources */,
 				81CF09D1202127B300ECACE5 /* MenuView.swift in Sources */,
@@ -636,7 +658,6 @@
 				81AB4DCC20223DC50034B761 /* CreateAccountView.swift in Sources */,
 				81AB4DD12022937D0034B761 /* FirebaseUserManager.swift in Sources */,
 				81CF0A0220212B8F00ECACE5 /* AppInstructionsTableViewCell.swift in Sources */,
-				81855574202125BD0089752E /* CreatePostVC.swift in Sources */,
 				81347F432027FB750067931B /* ProfileImageCustomTableViewCell.swift in Sources */,
 				81CF0A262021360000ECACE5 /* Firebase Models.swift in Sources */,
 				81CF09D3202127C300ECACE5 /* MenuVC.swift in Sources */,

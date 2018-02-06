@@ -10,7 +10,7 @@ import Firebase
 import AVFoundation
 
 class CreateAPostTableViewController: UITableViewController {
-    
+
     @IBOutlet weak var ImageCell: UITableViewCell!
     @IBOutlet weak var linkCell: UITableViewCell!
     
@@ -23,20 +23,22 @@ class CreateAPostTableViewController: UITableViewController {
     @IBOutlet weak var bodytextView: UITextView!
     @IBOutlet weak var addImageButton: UIButton!
     
+    
     var detailedImageView = CreatePostSelectedImageView()
     private let imagePickerView = UIImagePickerController()
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         imagePickerView.delegate = self
-        configureImageGesture()
         configureTextFieldDelegates()
         configureNavBar()
         configureImageButton()
         configureSegmentedControl()
         //2
         segmentedControl.addUnderlineForSelectedSegment()
+        configureImageGesture()
         
         //        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
         //            cameraButtonItem.isEnabled = false
@@ -55,14 +57,14 @@ class CreateAPostTableViewController: UITableViewController {
         //setting up what the modal presentation will look like
         
         //connecting the imageView to the image selected from photo library
-        //        var largeDetailImage = UIImage()
-        //
-        //        if let image = imageView.image {
-        //
-        //            largeDetailImage = image //image is nil here
-        //        } else {
-        //            largeDetailImage = #imageLiteral(resourceName: "noImg")//UIImage(named: "placeholder-image")
-        //        }
+                var largeDetailImage = UIImage()
+        
+                if let image = imageView.image {
+        
+                    largeDetailImage = image //image is nil here
+                } else {
+                    largeDetailImage = #imageLiteral(resourceName: "noImg")//UIImage(named: "placeholder-image")
+                }
         
         let presentImageVC = CreatePostSelectedImageVC(largeImageView: #imageLiteral(resourceName: "editPencil"))
         presentImageVC.modalTransitionStyle = .crossDissolve
@@ -244,7 +246,7 @@ extension CreateAPostTableViewController: UITextFieldDelegate {
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard let text = textField.text else {return true}
+        //guard let text = textField.text else {return true}
         
         //TODO bring up and resign keyboard for each text field
         guard let userName = userNameTextField.text else {print("textField is empty");return false}

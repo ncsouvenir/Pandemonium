@@ -82,6 +82,9 @@ class ProfileImageCustomTableViewCell: UITableViewCell {
             constraint.centerX.equalTo(snp.centerX)
         }
     }
+    func setupProfileImage(from image: UIImage){
+        self.profileImage.image = image
+    }
     private func convertImageToBW(image:UIImage) -> UIImage {
     let filter = CIFilter(name: "CIPhotoEffectMono")
     // convert UIImage to CIImage and set as input

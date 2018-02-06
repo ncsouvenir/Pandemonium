@@ -24,11 +24,12 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setupProfileView()
         setupNavigationBar()
+        
         // Do any additional setup after loading the view.
     }
     
     func setupNavigationBar(){
-        navigationItem.title = "John Jack Jones"
+//        navigationItem.title = "John Jack Jones"
         
     }
     func setupProfileView(){
@@ -39,16 +40,7 @@ class ProfileViewController: UIViewController {
         self.profileView.tableView.dataSource = self
         self.profileView.tableView.delegate = self
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+
     
 }
 

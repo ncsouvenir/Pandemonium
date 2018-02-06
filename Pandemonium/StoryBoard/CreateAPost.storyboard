@@ -12,7 +12,7 @@
         <!--CreateA Post Table View Controller-->
         <scene sceneID="4Zf-CX-N9M">
             <objects>
-                <tableViewController storyboardIdentifier="CreateAPostTableViewController" id="De5-7R-YMX" customClass="CreateAPostTableViewController" customModule="Pandemonium" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CreateAPostTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="De5-7R-YMX" customClass="CreateAPostTableViewController" customModule="Pandemonium" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="YRU-Ko-63X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -205,16 +205,16 @@
                         <nil key="title"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="ImageCell" destination="qOU-ST-X1n" id="fAx-AH-fvw"/>
-                        <outlet property="addImageButton" destination="Vc7-o9-1Da" id="NXg-rl-WIW"/>
-                        <outlet property="bodytextView" destination="yqw-VV-tDy" id="Bnc-3W-K8q"/>
-                        <outlet property="imageView" destination="vti-Bh-FEy" id="ros-Hh-t7J"/>
-                        <outlet property="linkCell" destination="TVs-GM-V0n" id="COF-bj-Wg5"/>
-                        <outlet property="segmentedControl" destination="o17-Fr-Mue" id="Y5l-PD-z5m"/>
-                        <outlet property="tagsTextField" destination="nGg-sx-5hp" id="hcv-pZ-ncO"/>
-                        <outlet property="titleTextField" destination="T2H-9Z-KkV" id="7jI-da-BKw"/>
-                        <outlet property="urlTextField" destination="aP0-HZ-onJ" id="H4V-Zp-099"/>
-                        <outlet property="userNameTextField" destination="hfQ-1f-9iv" id="3ZC-pa-c3i"/>
+                        <outlet property="ImageCell" destination="qOU-ST-X1n" id="xBo-vW-mjr"/>
+                        <outlet property="addImageButton" destination="Vc7-o9-1Da" id="cjp-gs-Qnh"/>
+                        <outlet property="bodytextView" destination="yqw-VV-tDy" id="w8n-cd-ccv"/>
+                        <outlet property="imageView" destination="vti-Bh-FEy" id="u5R-oz-7oK"/>
+                        <outlet property="linkCell" destination="TVs-GM-V0n" id="jdo-kJ-ekU"/>
+                        <outlet property="segmentedControl" destination="o17-Fr-Mue" id="rxb-g0-3sg"/>
+                        <outlet property="tagsTextField" destination="nGg-sx-5hp" id="qRl-Yi-HmS"/>
+                        <outlet property="titleTextField" destination="T2H-9Z-KkV" id="rbm-Cm-EK1"/>
+                        <outlet property="urlTextField" destination="aP0-HZ-onJ" id="K9v-xQ-Njt"/>
+                        <outlet property="userNameTextField" destination="hfQ-1f-9iv" id="Qdv-aV-pyb"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4bh-cJ-fnu" userLabel="First Responder" sceneMemberID="firstResponder"/>

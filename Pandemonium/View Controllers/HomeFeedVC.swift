@@ -6,8 +6,8 @@
 //
 
 import UIKit
-class HomeFeedVC: UIViewController {
-
+class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
+    
     var posts = [Post](){
         didSet{
             self.homeFeedView.tableView.reloadData()
@@ -35,9 +35,17 @@ class HomeFeedVC: UIViewController {
     func configNavBar(){
         let listNavBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "list"), style: .plain, target: self, action: #selector(listNavBarButtonAction))
         let addPostNavBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus-symbol"), style: .plain, target: self, action: #selector(addPostNavBarButtonAction))
-        let logoIconButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "compass_background"), style: .done, target: self, action: #selector(logoIconButtonItemAction))
-        logoIconButtonItem.tintColor = .black
-        navigationItem.leftBarButtonItem = logoIconButtonItem
+        //        let logoIconButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "compass_background"), style: .done, target: self, action: #selector(logoIconButtonItemAction))
+        let logo = #imageLiteral(resourceName: "parrot")
+        let imageView = UIImageView(image:logo)
+        imageView.contentMode = .scaleAspectFit
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(logoIconButtonItemAction))
+        tap.delegate = self
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(tap)
+        self.navigationItem.titleView = imageView
+        //        navigationItem.leftBarButtonItem = logoIconButtonItem
         navigationItem.rightBarButtonItems = [listNavBarButtonItem, addPostNavBarButtonItem]
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Pandemonium"
@@ -45,13 +53,17 @@ class HomeFeedVC: UIViewController {
     }
     @objc func listNavBarButtonAction(){
         //TODO Load the list
+        //MarkTest ProfileViewController
+        let profileViewController = ProfileViewController()
+        navigationController?.pushViewController(profileViewController, animated: true)
     }
     @objc func addPostNavBarButtonAction(){
         //TODO Load the Add Post ViewController
-                FirebasePostManager.manager.addPosts()
+        FirebasePostManager.manager.addPosts()
     }
-    @objc func logoIconButtonItemAction(){
+    @objc func logoIconButtonItemAction(_ sender: UITapGestureRecognizer){
         //TODO Make the app switch to the night mode
+        print("Dev: Logo has been pressed")
     }
     
     func setupHomeFeedView(){
@@ -95,11 +107,11 @@ extension HomeFeedVC: UITableViewDelegate, HomeFeedTableViewCellDelegate{
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .destructive, title: "delete") { (action, indexPath) in
             // delete item at indexPath
-
+            
         }
         let add = UITableViewRowAction(style: .normal, title: "add") { (action, indexPath) in
             // add to favorites item at indexPath
-
+            
         }
         add.backgroundColor = .green
         return [delete, add]
@@ -125,7 +137,7 @@ extension HomeFeedVC: UITableViewDelegate, HomeFeedTableViewCellDelegate{
 //Mark:  - TableView Cell setup
 extension HomeFeedVC{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let cellHeight = UIScreen.main.bounds.height * 0.15
+        let cellHeight = UIScreen.main.bounds.height*0.20
         return cellHeight
     }
 }

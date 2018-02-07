@@ -134,7 +134,7 @@ extension HomeFeedVC: UITableViewDelegate, HomeFeedTableViewCellDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let post = posts[indexPath.row]
+        let post = posts[indexPath.row - 1]
         let detailPostVC = DetailPostVC(post: post)
         navigationController?.pushViewController(detailPostVC, animated: true)
     }

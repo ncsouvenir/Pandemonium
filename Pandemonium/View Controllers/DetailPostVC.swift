@@ -63,7 +63,7 @@ class DetailPostVC: UIViewController {
         
         navigationController?.navigationBar.prefersLargeTitles = false
         
-        //setupPostInfo()
+        setupPostInfo()
         if let state = postState {
             switch state {
             case .text:
@@ -95,7 +95,7 @@ class DetailPostVC: UIViewController {
     
     private func setupPostInfo() {
         // TODO: - Stuff in comments
-        detailPostView.usernameLabel.text = getUsernameFromUID(uid: post.userUID)
+        getUsernameFromUID(uid: post.userUID, completionHandler: { self.detailPostView.usernameLabel.text = $0 }, errorHandler: { print($0) })
         detailPostView.karmaLabel.text = (post.upvotes - post.downvotes).description
         detailPostView.dateLabel.text = post.date
     }
@@ -104,11 +104,21 @@ class DetailPostVC: UIViewController {
     }
     
     // Get username from the userUID in injected Post
-    func getUsernameFromUID(uid: String) -> String? {
-        if let username = Database.database().reference(withPath: "users").value(forKey: uid) as? String {
-            return username
+    func getUsernameFromUID(uid: String,
+                            completionHandler: @escaping (String) -> Void,
+                            errorHandler: @escaping (Error) -> Void) {
+        Database.database().reference(withPath: "users").child(uid).observeSingleEvent(of: .value) { (snapshot) in
+            if let json = snapshot.value {
+                do {
+                    let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
+                    let user = try JSONDecoder().decode(Parrot.self, from: jsonData)
+                    completionHandler(user.appUserName)
+                } catch {
+                    print(error)
+                    errorHandler(error)
+                }
+            }
         }
-        return nil
     }
     
     // Gets Array of commentUIDs
@@ -160,7 +170,7 @@ extension DetailPostVC: UITableViewDataSource {
         let comment = comments[indexPath.row]
         cell.commentLabel.text = comment.commentText
         cell.dateLabel.text = comment.date
-        cell.usernameLabel.text = getUsernameFromUID(uid: comment.userUID)
+        getUsernameFromUID(uid: comment.userUID, completionHandler: { cell.usernameLabel.text =  $0 }, errorHandler: { print($0) })
         return cell
     }
 }

@@ -61,7 +61,9 @@ class DetailPostVC: UIViewController {
         
         view.addSubview(detailPostView)
         
-        setupPostInfo()
+        navigationController?.navigationBar.prefersLargeTitles = false
+        
+        //setupPostInfo()
         if let state = postState {
             switch state {
             case .text:
@@ -71,7 +73,7 @@ class DetailPostVC: UIViewController {
                 detailPostView.postImageView.image = UIImage(contentsOfFile: post.image!)
             case .url:
                 // TODO: - Handle optionals
-                //detailPostView.postWebKitView.uiDelegate = self
+//                detailPostView.postWebKitView.uiDelegate = self
                 let google = URLRequest(url: URL(string: "http://www.reddit.com")!)
                 
                 let url = URL(string: post.url!)
@@ -86,7 +88,7 @@ class DetailPostVC: UIViewController {
         detailPostView.tableView.delegate = self
         
         
-        
+        print("the post state is \(postState)")
         observeComments()
 
     }
@@ -112,14 +114,18 @@ class DetailPostVC: UIViewController {
     // Gets Array of commentUIDs
     // Then asynchroniously get the values for the comments
     func observeComments() {
-        Database.database().reference(withPath: "posts").child("id").child("comments").observe(.value) { (dataSnapshot) in
-            guard let commentUIDArrayAsJSON = dataSnapshot.value else { print("comments array in post is nil"); return }
+        Database.database().reference(withPath: "posts").child("postUID").child("comments").observe(.value) { (dataSnapshot) in
+            guard let commentsUIDSnapshot = dataSnapshot.children.allObjects as? [DataSnapshot] else { print("comments array in post is nil"); return }
+            
             var commentUIDArray = [String]()
-            do {
-                let arrayJSONData = try JSONSerialization.data(withJSONObject: commentUIDArrayAsJSON, options: [])
-                commentUIDArray = try JSONDecoder().decode([String].self, from: arrayJSONData)
-            } catch {
-                print(error)
+            for snap in commentsUIDSnapshot {
+                guard let json = snap.value else { return }
+                do {
+                    let arrayJSONData = try JSONSerialization.data(withJSONObject: json, options: [])
+                    commentUIDArray = try JSONDecoder().decode([String].self, from: arrayJSONData)
+                } catch {
+                    print(error)
+                }
             }
             var firComments = [Comment]()
             for uid in commentUIDArray {

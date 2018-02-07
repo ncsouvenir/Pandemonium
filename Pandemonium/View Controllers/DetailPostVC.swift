@@ -93,7 +93,7 @@ class DetailPostVC: UIViewController {
     
     private func setupPostInfo() {
         // TODO: - Stuff in comments
-        detailPostView.usernameLabel.text = post.postUID // get username from UIS
+        detailPostView.usernameLabel.text = getUsernameFromUID()
         detailPostView.karmaLabel.text = (post.upvotes - post.downvotes).description
         detailPostView.dateLabel.text = post.date
     }
@@ -101,29 +101,44 @@ class DetailPostVC: UIViewController {
     func getImageFromFirebaseStorage(imageUID: String) {
     }
     
+    // Get username from the userUID in injected Post
+    func getUsernameFromUID() -> String? {
+        if let username = Database.database().reference(withPath: "users").value(forKey: post.userUID) as? String {
+            return username
+        }
+        return nil
+    }
+    
+    // Gets Array of commentUIDs
+    // Then asynchroniously get the values for the comments
     func observeComments() {
         Database.database().reference(withPath: "posts").child("id").child("comments").observe(.value) { (dataSnapshot) in
-            let snapshots = dataSnapshot.children.allObjects as! [DataSnapshot]
-            var loadedComments = [Comment]()
-            DispatchQueue.main.async {
-                for snap in snapshots {
-                    if let json = snap.value {
+            guard let commentUIDArrayAsJSON = dataSnapshot.value else { print("comments array in post is nil"); return }
+            var commentUIDArray = [String]()
+            do {
+                let arrayJSONData = try JSONSerialization.data(withJSONObject: commentUIDArrayAsJSON, options: [])
+                commentUIDArray = try JSONDecoder().decode([String].self, from: arrayJSONData)
+            } catch {
+                print(error)
+            }
+            var firComments = [Comment]()
+            for uid in commentUIDArray {
+
+                DispatchQueue.main.async {
+                    if let firCommentAsJSON = Database.database().reference(withPath: "comments").value(forKey: uid) {
                         do {
-                            let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
-                            let comment = try JSONDecoder().decode(Comment.self, from: jsonData)
-                            loadedComments.append(comment)
+                            let firCommentJSONData = try JSONSerialization.data(withJSONObject: firCommentAsJSON, options: [])
+                            let firComment = try JSONDecoder().decode(Comment.self, from: firCommentJSONData)
+                            firComments.append(firComment)
                         } catch {
                             print(error)
                         }
                     }
-                    
                 }
             }
-            self.comments = loadedComments
+            self.comments = firComments
         }
     }
-    
-    
     
 }
 
@@ -131,7 +146,6 @@ class DetailPostVC: UIViewController {
 
 extension DetailPostVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
         return comments.count
     }
     

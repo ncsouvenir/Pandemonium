@@ -69,6 +69,13 @@ extension ProfileViewController: UITableViewDelegate{
             return UIScreen.main.bounds.height*0.20
         }
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard indexPath.row != 0 else{
+            return
+        }
+        let detailedPostViewController = DetailPostVC()
+        navigationController?.present(detailedPostViewController, animated: true, completion: nil)
+    }
     
 }
 

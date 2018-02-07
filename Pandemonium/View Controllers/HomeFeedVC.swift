@@ -53,13 +53,16 @@ class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
     }
     @objc func listNavBarButtonAction(){
         //TODO Load the list
-        //MarkTest ProfileViewController
+        //Mark: Test ProfileViewController
         let profileViewController = ProfileViewController()
         navigationController?.pushViewController(profileViewController, animated: true)
     }
     @objc func addPostNavBarButtonAction(){
-        //TODO Load the Add Post ViewController
-        FirebasePostManager.manager.addPosts()
+        let createAPostVC = CreateAPostTableViewController.storyBoardInstance()
+        createAPostVC.modalTransitionStyle = .crossDissolve
+        createAPostVC.modalPresentationStyle = .overCurrentContext
+        let navController = UINavigationController(rootViewController: createAPostVC)
+        present(navController, animated: true, completion: nil)
     }
     @objc func logoIconButtonItemAction(_ sender: UITapGestureRecognizer){
         //TODO Make the app switch to the night mode
@@ -132,11 +135,13 @@ extension HomeFeedVC: UITableViewDelegate, HomeFeedTableViewCellDelegate{
         }
         print("delegate fired")
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let post = posts[indexPath.row - 1]
-        let detailPostVC = DetailPostVC(post: post)
-        navigationController?.pushViewController(detailPostVC, animated: true)
+        guard indexPath.row != 0 else{
+            return
+        }
+        let detailedPostViewController = DetailPostVC()
+        navigationController?.present(detailedPostViewController, animated: true, completion: nil)
     }
 }
 

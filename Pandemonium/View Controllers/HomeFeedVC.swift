@@ -140,8 +140,8 @@ extension HomeFeedVC: UITableViewDelegate, HomeFeedTableViewCellDelegate{
         guard indexPath.row != 0 else{
             return
         }
-        let detailedPostViewController = DetailPostVC()
-        navigationController?.present(detailedPostViewController, animated: true, completion: nil)
+        let detailedPostViewController = DetailPostVC(post: posts[indexPath.row - 1])
+        navigationController?.pushViewController(detailedPostViewController, animated: true)
     }
 }
 

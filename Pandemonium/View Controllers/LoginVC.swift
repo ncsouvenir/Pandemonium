@@ -142,16 +142,9 @@ extension LoginVC {
     }
     
     @objc private func createNewAccountButtonTapped() {
-        let post = Post(postUID: "a", userUID: "s", date: "s", title: "f", upvotes: 0, downvotes: 0, tags: ["j"], bodyText: nil, url: "f", image: nil, comments: [""])
-        
-        let vc = DetailPostVC(post: post)
-        
-        present(vc, animated: true, completion: nil)
-        
-        
-//        let createAccountVC = CreateAccountVC()
-//        createAccountVC.modalTransitionStyle = .crossDissolve
-//        createAccountVC.modalPresentationStyle = .overCurrentContext
-//        present(createAccountVC, animated: true, completion: nil)
+        let createAccountVC = CreateAccountVC()
+        createAccountVC.modalTransitionStyle = .crossDissolve
+        createAccountVC.modalPresentationStyle = .overCurrentContext
+        present(createAccountVC, animated: true, completion: nil)
     }
 }

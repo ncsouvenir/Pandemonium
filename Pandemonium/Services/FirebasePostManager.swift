@@ -50,7 +50,7 @@ class FirebasePostManager{
 
         let dbReference = Database.database().reference().child("posts")
         let id = dbReference.childByAutoId()
-                let post2 = Post(postUID: id.key, userUID: "1", date: "010118", title: "Awesome Cats", upvotes: 1999, downvotes: 0, tags: [""], bodyText: "Cats are the best ever", url: nil, image: "sdfs", comments: [""])
+                let post2 = Post(postUID: id.key, userUID: "-L4laCvUNm9VvaiqnXxh", date: "010118", title: "Awesome Cats", upvotes: 1999, downvotes: 0, tags: [""], bodyText: "Cats are the best ever", url: nil, image: "sdfs", comments: [""])
         id.setValue(post2.postToJSON())
     }
     func updatePostUpVote(for post: Post){

@@ -44,13 +44,13 @@ class DetailPostView: UIView {
     
     lazy var upvoteButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setImage(#imageLiteral(resourceName: "like.png"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "up-arrow"), for: .normal)
         return button
     }()
     
     lazy var downvoteButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setImage(#imageLiteral(resourceName: "dislike-thumb"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "down-arrow"), for: .normal)
         return button
     }()
     

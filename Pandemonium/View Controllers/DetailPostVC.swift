@@ -93,7 +93,7 @@ class DetailPostVC: UIViewController {
     
     private func setupPostInfo() {
         // TODO: - Stuff in comments
-        detailPostView.usernameLabel.text = getUsernameFromUID()
+        detailPostView.usernameLabel.text = getUsernameFromUID(uid: post.userUID)
         detailPostView.karmaLabel.text = (post.upvotes - post.downvotes).description
         detailPostView.dateLabel.text = post.date
     }
@@ -102,8 +102,8 @@ class DetailPostVC: UIViewController {
     }
     
     // Get username from the userUID in injected Post
-    func getUsernameFromUID() -> String? {
-        if let username = Database.database().reference(withPath: "users").value(forKey: post.userUID) as? String {
+    func getUsernameFromUID(uid: String) -> String? {
+        if let username = Database.database().reference(withPath: "users").value(forKey: uid) as? String {
             return username
         }
         return nil
@@ -151,21 +151,10 @@ extension DetailPostVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! UserCommentTableViewCell
-
-//        let comment = comments[indexPath.row]
-//        
-//        DispatchQueue.main.async {
-//            cell.commentLabel.text = comment.commentText
-//            cell.dateLabel.text = comment.date
-//
-//            let user = Database.database().reference(withPath: "users").value(forKey: comment.userUID) as! Parrot
-//            cell.usernameLabel.text = user.appUserName
-//            
-//            cell.setNeedsLayout()
-//        }
-        
-        
-
+        let comment = comments[indexPath.row]
+        cell.commentLabel.text = comment.commentText
+        cell.dateLabel.text = comment.date
+        cell.usernameLabel.text = getUsernameFromUID(uid: comment.userUID)
         return cell
     }
 }

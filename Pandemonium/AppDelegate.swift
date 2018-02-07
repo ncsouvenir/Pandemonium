@@ -23,33 +23,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Make tab bars for testing now
         let tbc = UITabBarController()
         
-        //tab 1
+  
         let homeFeedVC = HomeFeedVC()
         let homeNavController = UINavigationController(rootViewController: homeFeedVC)
         homeNavController.tabBarItem = UITabBarItem(title: "Home", image: nil, tag: 0)
         
-        //tab 2
-//        let detailPostInfo = DetailPostVC()
-//        detailPostInfo.tabBarItem = UITabBarItem(title: "Detail", image: nil, tag: 1)
+       
+        let currentUserProfileVC = CurrentUserProfileVC()
+        let currentUserProfileNavController = UINavigationController(rootViewController: currentUserProfileVC)
+        currentUserProfileNavController.tabBarItem = UITabBarItem(title: "User Profile", image: nil, tag: 1)
         
-        //tab 3
+        
+   
         let createAPost = CreateAPostTableViewController.storyBoardInstance()
         let createNavController = UINavigationController(rootViewController: createAPost)
         createNavController.tabBarItem = UITabBarItem(title: "Create Post", image: nil, tag: 2)
         
-        //tab 4
+      
+        let editAPost = UserEditPostTableViewController.storyBoardInstance()
+        let editNavController = UINavigationController(rootViewController: editAPost)
+        editNavController.tabBarItem = UITabBarItem(title: "Edit Post", image: nil, tag: 3)
+    
+        
+  
         let login = LoginVC()
-        login.tabBarItem = UITabBarItem(title: "Login", image: nil, tag: 3)
+        login.tabBarItem = UITabBarItem(title: "Login", image: nil, tag: 4)
       
         
         //embedding all VC's into Tab bar
-        tbc.viewControllers = [login, homeNavController, createNavController] //detailPostInfo,
+        tbc.viewControllers = [login, homeNavController, createNavController, currentUserProfileNavController, editNavController]
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = tbc
         window?.makeKeyAndVisible()
         
         //Configures Firebase on launch
+        //FirebaseApp.configure()
         
         
         return true

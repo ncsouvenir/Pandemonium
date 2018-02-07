@@ -57,9 +57,9 @@ class CreatePostSelectedImageView: UIView {
         addSubview(dismissView)
     }
     
-    func changeImage(to newImage: UIImage) {
-        largeImageView.image = newImage
-    }
+//    func changeImage(to newImage: UIImage) {
+//        largeImageView.image = newImage
+//    }
     
     ///////Constraints
     private func setupAndConstrainObjects() {
@@ -80,12 +80,11 @@ class CreatePostSelectedImageView: UIView {
             largeImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
             largeImageView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20)
             ])
-        
-        
+
     }
     
-    //TODO
-    public func configureImage(detailLargeImage: UIImage) {
-        largeImageView.image = detailLargeImage //optional<UIImage> after debugging
+    //Configuring cell function for injection
+    public func configureImage(to selectedImage: UIImage) {
+        largeImageView.image = selectedImage //optional<UIImage> after debugging
     }
 }

@@ -8,15 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		7A7B152AA9DC99C983621B62 /* Pods_Pandemonium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F0D7812268DEF37A090C2FA /* Pods_Pandemonium.framework */; };
-		811EEE62202A577A00D8BC94 /* CreateAPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 811EEE61202A577900D8BC94 /* CreateAPost.storyboard */; };
+		810C8FC3202C022A0070C3A1 /* UserEditPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 810C8FC2202C022A0070C3A1 /* UserEditPost.storyboard */; };
+		810C8FC4202C03E50070C3A1 /* CreateAPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 811EEE61202A577900D8BC94 /* CreateAPost.storyboard */; };
 		81347F412027FAD50067931B /* ProfilePostCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81347F402027FAD50067931B /* ProfilePostCustomTableViewCell.swift */; };
 		81347F432027FB750067931B /* ProfileImageCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81347F422027FB750067931B /* ProfileImageCustomTableViewCell.swift */; };
-<<<<<<< HEAD
-		81590360202ABFB400284A83 /* UserEditPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8159035F202ABFB400284A83 /* UserEditPost.storyboard */; };
-		81590362202AC18500284A83 /* UserEditPostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590361202AC18500284A83 /* UserEditPostTableViewController.swift */; };
-=======
 		8138C115202BB5B5004355DA /* FirebaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8138C114202BB5B5004355DA /* FirebaseStorageManager.swift */; };
->>>>>>> 799080359c88968b99de44e40b25765c8c88aa70
+		81590362202AC18500284A83 /* UserEditPostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590361202AC18500284A83 /* UserEditPostTableViewController.swift */; };
 		818555332021230E0089752E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818555322021230E0089752E /* AppDelegate.swift */; };
 		8185553B2021230E0089752E /* Pandemonium.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 818555392021230E0089752E /* Pandemonium.xcdatamodeld */; };
 		8185553D2021230E0089752E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8185553C2021230E0089752E /* Assets.xcassets */; };
@@ -83,15 +80,12 @@
 		0F0D7812268DEF37A090C2FA /* Pods_Pandemonium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pandemonium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		33CFD054AE80991FD7066CD1 /* Pods-PandemoniumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PandemoniumUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PandemoniumUITests/Pods-PandemoniumUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5E6DB434F704BE94789B1E1D /* Pods-PandemoniumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PandemoniumTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PandemoniumTests/Pods-PandemoniumTests.release.xcconfig"; sourceTree = "<group>"; };
+		810C8FC2202C022A0070C3A1 /* UserEditPost.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserEditPost.storyboard; sourceTree = "<group>"; };
 		811EEE61202A577900D8BC94 /* CreateAPost.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateAPost.storyboard; sourceTree = "<group>"; };
 		81347F402027FAD50067931B /* ProfilePostCustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePostCustomTableViewCell.swift; sourceTree = "<group>"; };
 		81347F422027FB750067931B /* ProfileImageCustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImageCustomTableViewCell.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		8159035F202ABFB400284A83 /* UserEditPost.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserEditPost.storyboard; sourceTree = "<group>"; };
-		81590361202AC18500284A83 /* UserEditPostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditPostTableViewController.swift; sourceTree = "<group>"; };
-=======
 		8138C114202BB5B5004355DA /* FirebaseStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageManager.swift; sourceTree = "<group>"; };
->>>>>>> 799080359c88968b99de44e40b25765c8c88aa70
+		81590361202AC18500284A83 /* UserEditPostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditPostTableViewController.swift; sourceTree = "<group>"; };
 		8185552F2021230E0089752E /* Pandemonium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pandemonium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		818555322021230E0089752E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8185553A2021230E0089752E /* Pandemonium.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pandemonium.xcdatamodel; sourceTree = "<group>"; };
@@ -179,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				811EEE61202A577900D8BC94 /* CreateAPost.storyboard */,
+				810C8FC2202C022A0070C3A1 /* UserEditPost.storyboard */,
 			);
 			path = StoryBoard;
 			sourceTree = "<group>";
@@ -258,11 +253,7 @@
 				81CF0A0B2021338800ECACE5 /* LoginVC.swift */,
 				81CF09D2202127C300ECACE5 /* MenuVC.swift */,
 				81CF0A0520212C2300ECACE5 /* NewCommentViewController.swift */,
-<<<<<<< HEAD
-				818B08322029710A005B130F /* SettingsVC.swift */,
 				81590361202AC18500284A83 /* UserEditPostTableViewController.swift */,
-=======
->>>>>>> 799080359c88968b99de44e40b25765c8c88aa70
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -295,19 +286,6 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
-		81C9ED7A202A4CEE00446157 /* StoryBoard */ = {
-			isa = PBXGroup;
-			children = (
-				81C9ED7D202A524400446157 /* CreateAPost.storyboard */,
-				8159035F202ABFB400284A83 /* UserEditPost.storyboard */,
-			);
-			name = StoryBoard;
-			path = Services/StoryBoard;
-			sourceTree = "<group>";
-		};
-=======
->>>>>>> 799080359c88968b99de44e40b25765c8c88aa70
 		81CF09E9202128BE00ECACE5 /* Data Persistence */ = {
 			isa = PBXGroup;
 			children = (
@@ -479,13 +457,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
-				81C9ED7E202A524400446157 /* CreateAPost.storyboard in Resources */,
-				81590360202ABFB400284A83 /* UserEditPost.storyboard in Resources */,
-=======
-				811EEE62202A577A00D8BC94 /* CreateAPost.storyboard in Resources */,
->>>>>>> 799080359c88968b99de44e40b25765c8c88aa70
 				818555402021230E0089752E /* LaunchScreen.storyboard in Resources */,
+				810C8FC4202C03E50070C3A1 /* CreateAPost.storyboard in Resources */,
+				810C8FC3202C022A0070C3A1 /* UserEditPost.storyboard in Resources */,
 				8185553D2021230E0089752E /* Assets.xcassets in Resources */,
 				81AB4DCE2022908E0034B761 /* GoogleService-Info.plist in Resources */,
 			);

@@ -21,7 +21,34 @@ class FirebaseCommentManager {
         
         let comment1 = Comment(commentUID: child.key, userUID: FirebaseUserManager.shared.getCurrentUser()!.uid , postUID: post.postUID, date: DateFormatterManager.formatDate(Date()), commentText: comment)
         child.setValue(comment1.commentToJson())
+        
+        let postChild = getPostChild(uid: "post.uid")
+        let key = postChild.key
+        
+        postChild.updateChildValues(["comments" : "comment.uid"])
+
     }
+    
+    func getPostChild(uid: String) -> DatabaseReference {
+        return Database.database().reference(withPath: "posts").child(uid)
+    }
+    
+//    func getPost(uid: String,
+//                 completionHandler: @escaping (Post) -> Void,
+//                 errorHandler: @escaping (Error) -> Void) {
+//        Database.database().reference(withPath: "posts").child(uid).observeSingleEvent(of: .value) { (snapshot) in
+//            if let json = snapshot.value {
+//                do {
+//                    let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
+//                    let post = try JSONDecoder().decode(Post.self, from: jsonData)
+//                    completionHandler(post)
+//                } catch {
+//                    print(error)
+//                    errorHandler(error)
+//                }
+//            }
+//        }
+//    }
     
     //MARK: Loading Comments from FireBase
     func loadComments(completionHandler: @escaping ([Comment]?, Error?) -> Void){

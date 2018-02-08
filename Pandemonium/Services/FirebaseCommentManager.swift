@@ -19,11 +19,8 @@ class FirebaseCommentManager {
         let dbReference = Database.database().reference().child("comments")
         let child = dbReference.childByAutoId()
         
-        let comment1 = Comment(commentUID: child.key, userUID: FirebaseUserManager.shared.getCurrentUser()!.uid , postUID: post.postUID, date: "\(Date())", commentText: comment)
+        let comment1 = Comment(commentUID: child.key, userUID: FirebaseUserManager.shared.getCurrentUser()!.uid , postUID: post.postUID, date: DateFormatterManager.formatDate(Date()), commentText: comment)
         child.setValue(comment1.commentToJson())
-        
-        //        let post2 = Post(postUID: id.key, userUID: "1", date: "010118", title: "Awesome Cats", upvotes: 1999, downvotes: 0, tags: [""], bodyText: "Cats are the best ever", url: nil, image: "sdfs", comments: ["CommentID": comment1])
-        //id.setValue(comment1.commentToJson())
     }
     
     //MARK: Loading Comments from FireBase

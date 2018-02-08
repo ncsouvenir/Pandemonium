@@ -74,11 +74,10 @@ class DetailPostVC: UIViewController {
             case .url:
                 // TODO: - Handle optionals
 //                detailPostView.postWebKitView.uiDelegate = self
-                let google = URLRequest(url: URL(string: "http://www.reddit.com")!)
                 
                 let url = URL(string: post.url!)
                 let request = URLRequest(url: url!)
-                detailPostView.postWebKitView.load(google)
+                detailPostView.postWebKitView.load(request)
                 detailPostView.postWebKitView.reload()
             }
         }

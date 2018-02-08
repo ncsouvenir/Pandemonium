@@ -55,6 +55,9 @@ class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
         let menueViewController = MenuVC(safeArea: self.homeFeedView.safeAreaLayoutGuide)
         menueViewController.modalPresentationStyle = .overCurrentContext
         present(menueViewController, animated: true, completion: nil)
+        if let user = FirebaseUserManager.shared.getCurrentUser(){
+            //TODO test the usersLoadPosts
+        }
     }
     @objc func addPostNavBarButtonAction(){
         if FirebaseUserManager.shared.getCurrentUser() == nil {

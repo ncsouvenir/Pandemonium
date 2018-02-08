@@ -8,6 +8,11 @@
 
 import Foundation
 import Firebase
+enum FireBasePostManagerStatus: Error {
+    case postAddedSuccessfully
+    case noCurrentUserSignedIn
+    case userHaveNoPost
+}
 
 class FirebasePostManager{
     
@@ -49,9 +54,53 @@ class FirebasePostManager{
         let child = Database.database().reference(withPath: "posts").childByAutoId()
         let post = Post(postUID: child.key, userUID: userUID, date: date, title: title, upvotes: 0, downvotes: 0, tags: tags, bodyText: bodyText, url: url, image: nil, comments: nil)
         child.setValue(post.postToJSON())
+        
+    }
+    func addPosting(post: Post)->FireBasePostManagerStatus{
+        guard let currentUser = FirebaseUserManager.shared.getCurrentUser() else{return FireBasePostManagerStatus.noCurrentUserSignedIn}
+        let child = Database.database().reference(withPath: "posts").childByAutoId()
+        let childKey = child.key
+        child.setValue(post.postToJSON())
+        //get the user by looking in the dataBase for the UID and add the childKey to the user postUIDS
+        let userChild = Database.database().reference(withPath: "users").child(currentUser.uid)
+        
+        
+        
+        
+        return FireBasePostManagerStatus.postAddedSuccessfully
+    }
+    //this function will load the post of a user
+    func loadUserPosts(user: Parrot, completionHandler: @escaping ([Post]) -> Void, errorHandler: @escaping (Error) -> Void) {
+        //here I need to loop through the userPost's array and get the posts
+        guard let postUIDS = user.posts else {
+            errorHandler(FireBasePostManagerStatus.userHaveNoPost)
+            return
+        }
+        var posts = [Post]()
+        for postUID in postUIDS{
+            getPost(from: postUID, completion: {posts.append($0)}, errorHandler: {print($0)})
+        }
+        completionHandler(posts)
     }
     
-    
+    // this function will get a post from posUID
+    func getPost(from postUID: String, completion: @escaping (Post)->Void, errorHandler: @escaping (Error)->Void){
+        let postReference = Database.database().reference(withPath: "posts").child(postUID)
+        postReference.observe(.value) { (snapshot) in
+            guard let rawJSON = snapshot.value else{
+                return
+            }
+            do{
+                let jsonData = try JSONSerialization.data(withJSONObject: rawJSON, options: [])
+                let post = try JSONDecoder().decode(Post.self, from: jsonData)
+                completion(post)
+            }
+            catch let error{
+                errorHandler(error)
+            }
+        }
+        
+    }
     func updatePostUpVote(for post: Post){
         let dbReference = Database.database().reference().child("posts")
         let postReference = dbReference.child(post.postUID)
@@ -65,4 +114,5 @@ class FirebasePostManager{
         let postUpVotesValue = post.downvotes + 1
         postReference.updateChildValues(["downvotes": postUpVotesValue])
     }
+    
 }

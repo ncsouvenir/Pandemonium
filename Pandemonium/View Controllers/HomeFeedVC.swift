@@ -48,8 +48,10 @@ class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
         //        navigationItem.leftBarButtonItem = logoIconButtonItem
         navigationItem.rightBarButtonItems = [listNavBarButtonItem, addPostNavBarButtonItem]
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.tintColor = Settings.manager.textColor
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: Settings.manager.textColor]
         navigationItem.title = "Pandemonium"
-        navigationController?.navigationBar.backgroundColor = .orange
+        navigationController?.navigationBar.backgroundColor = Settings.manager.backgroundColor
     }
     @objc func listNavBarButtonAction(){
         //TODO Load the list
@@ -63,6 +65,16 @@ class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
     }
     @objc func logoIconButtonItemAction(_ sender: UITapGestureRecognizer){
         //TODO Make the app switch to the night mode
+        if Settings.manager.logoPressed == false {
+            Settings.manager.logoPressed = true
+        } else {
+            Settings.manager.logoPressed = false
+        }
+        Settings.manager.nightModeSwitch()
+        self.homeFeedView.tableView.backgroundColor = Settings.manager.backgroundColor
+        self.viewDidLoad()
+        self.viewWillAppear(true)
+        self.homeFeedView.tableView.reloadData()
         print("Dev: Logo has been pressed")
     }
     
@@ -84,6 +96,8 @@ extension HomeFeedVC:UITableViewDataSource{
         //instruction cell setup
         if indexPath.row == 0{
             let instructionCell = UITableViewCell()
+            instructionCell.backgroundColor = Settings.manager.backgroundColor
+            instructionCell.tintColor = Settings.manager.textColor
             instructionCell.textLabel?.text = "Here is some instruction two how things going"
             return instructionCell
         }
@@ -96,6 +110,8 @@ extension HomeFeedVC:UITableViewDataSource{
             cell.currentIndexPath = indexPath
             let postSetup = posts[indexPath.row-1]
             cell.setupCell(with: postSetup)
+            cell.tintColor = Settings.manager.textColor
+            cell.backgroundColor = Settings.manager.backgroundColor
             return cell
         }
     }

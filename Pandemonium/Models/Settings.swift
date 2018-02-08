@@ -13,25 +13,34 @@ class Settings {
     private init() {}
     static let manager = Settings()
     
-    let schemes = ["Normal", "Nightmode", "Cottoncandy"]
+    var backgroundColor = UIColor.white
+    var textColor = UIColor.black
+    
+    var logoPressed = false
+    
+    public func nightModeSwitch() {
+        if logoPressed == true {
+            backgroundColor = UIColor.black
+            textColor = UIColor.white
+        } else {
+            backgroundColor = UIColor.white
+            textColor = UIColor.black
+        }
+    }
     
     let fontSize = UIFont(name: "Damascus", size: 15)
     let titleSize = UIFont(name: "Damascus", size: 20)
-    
-    var background = UIColor.white
-    var textColor = UIColor.black
+
+    let schemes = ["Normal", "Nightmode"]
     
     public func colorSetting(_ button: String) {
         switch button {
         case "Normal":
-            background = UIColor.white
+            backgroundColor = UIColor.white
             textColor = UIColor.black
         case "Nightmode":
-            background = UIColor.black
+            backgroundColor = UIColor.black
             textColor = UIColor.white
-        case "Cottoncandy":
-            background = UIColor.purple
-            textColor = UIColor.cyan
         default:
             break
         }

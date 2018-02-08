@@ -9,6 +9,10 @@
 import Foundation
 import Firebase
 
+enum CommentError: Error {
+    case emptyCommentArrayInPost
+}
+
 class FirebaseCommentManager {
     private init() {}
     static let manager = FirebaseCommentManager()
@@ -22,11 +26,19 @@ class FirebaseCommentManager {
         let comment1 = Comment(commentUID: child.key, userUID: FirebaseUserManager.shared.getCurrentUser()!.uid , postUID: post.postUID, date: DateFormatterManager.formatDate(Date()), commentText: comment)
         child.setValue(comment1.commentToJson())
         
-        let postChild = getPostChild(uid: "post.uid")
-        let key = postChild.key
+        let postChild = getPostChild(uid: post.postUID)
         
-        postChild.updateChildValues(["comments" : "comment.uid"])
+        
+        loadCommentUIDs(postUID: post.postUID, completionHandler: {
+            var currentUIDs = $0
+            currentUIDs.append(child.key)
+            postChild.child("comments").setValue(currentUIDs)
 
+        }, errorHandler: {
+            print($0)
+            postChild.child("comments").setValue([child.key])
+        })
+        
     }
     
     func getPostChild(uid: String) -> DatabaseReference {
@@ -77,4 +89,58 @@ class FirebaseCommentManager {
             }
         }
     }
+    
+    
+    
+    func observeComments(commentUIDs: [String],
+                         completionHandler: @escaping ([Comment]) -> Void,
+                         errorHandler: @escaping (Error) -> Void) {
+        var firComments = [Comment]()
+        for uid in commentUIDs {
+            let reference = Database.database().reference(withPath: "comments")
+            reference.child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    guard let commentJSON = snapshot.value else { return }
+                    do {
+                        let commentJSONData = try JSONSerialization.data(withJSONObject: commentJSON, options: [])
+                        let comment = try JSONDecoder().decode(Comment.self, from: commentJSONData)
+                        firComments.append(comment)
+                    } catch {
+                        errorHandler(error)
+                        print(error)
+                    }
+                completionHandler(firComments)
+
+            })
+            
+        }
+
+    }
+    
+    
+    func observeCommentUIDs(postUID: String,
+                         completionHandler: @escaping ([String]) -> Void,
+                         errorHandler: @escaping (Error) -> Void) {
+        Database.database().reference(withPath: "posts").child(postUID).child("comments").observe(.value) { (snapshot) in
+            if let uids = snapshot.value as? [String] {
+                completionHandler(uids)
+            } else {
+                errorHandler(CommentError.emptyCommentArrayInPost)
+            }
+            
+        }
+    }
+    
+    func loadCommentUIDs(postUID: String,
+                         completionHandler: @escaping ([String]) -> Void,
+                         errorHandler: @escaping (Error) -> Void) {
+        Database.database().reference(withPath: "posts").child(postUID).child("comments").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let uids = snapshot.value as? [String] {
+                completionHandler(uids)
+            } else {
+                errorHandler(CommentError.emptyCommentArrayInPost)
+            }
+        })
+        
+    }
+    
 }

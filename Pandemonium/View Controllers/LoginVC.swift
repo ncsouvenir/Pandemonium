@@ -27,8 +27,7 @@ extension LoginVC {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
             if touch.view == loginView.blurView {
-                // TODO: - Dismiss login view controller and go back to previous vc
-                print("")
+                dismiss(animated: true, completion: nil)
             } else {
                 return
             }
@@ -110,7 +109,7 @@ extension LoginVC {
                 print(error)
             } else if let user = user {
                 print("\(user) has logged in")
-                self.tabBarController?.selectedIndex = 1
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }

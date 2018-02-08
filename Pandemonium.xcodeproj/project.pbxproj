@@ -11,6 +11,7 @@
 		811EEE62202A577A00D8BC94 /* CreateAPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 811EEE61202A577900D8BC94 /* CreateAPost.storyboard */; };
 		81347F412027FAD50067931B /* ProfilePostCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81347F402027FAD50067931B /* ProfilePostCustomTableViewCell.swift */; };
 		81347F432027FB750067931B /* ProfileImageCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81347F422027FB750067931B /* ProfileImageCustomTableViewCell.swift */; };
+		8138C115202BB5B5004355DA /* FirebaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8138C114202BB5B5004355DA /* FirebaseStorageManager.swift */; };
 		818555332021230E0089752E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818555322021230E0089752E /* AppDelegate.swift */; };
 		8185553B2021230E0089752E /* Pandemonium.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 818555392021230E0089752E /* Pandemonium.xcdatamodeld */; };
 		8185553D2021230E0089752E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8185553C2021230E0089752E /* Assets.xcassets */; };
@@ -83,6 +84,7 @@
 		811EEE61202A577900D8BC94 /* CreateAPost.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateAPost.storyboard; sourceTree = "<group>"; };
 		81347F402027FAD50067931B /* ProfilePostCustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePostCustomTableViewCell.swift; sourceTree = "<group>"; };
 		81347F422027FB750067931B /* ProfileImageCustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImageCustomTableViewCell.swift; sourceTree = "<group>"; };
+		8138C114202BB5B5004355DA /* FirebaseStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageManager.swift; sourceTree = "<group>"; };
 		8185552F2021230E0089752E /* Pandemonium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pandemonium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		818555322021230E0089752E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8185553A2021230E0089752E /* Pandemonium.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pandemonium.xcdatamodel; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				81AB4DD02022937D0034B761 /* FirebaseUserManager.swift */,
+				8138C114202BB5B5004355DA /* FirebaseStorageManager.swift */,
 				81CF0B1C2023B34B00ECACE5 /* FirebaseCommentManager.swift */,
 				81CF0B1E2023B36E00ECACE5 /* FirebasePostManager.swift */,
 			);
@@ -648,6 +651,7 @@
 				81855582202127360089752E /* UserEditPostView.swift in Sources */,
 				81CF0A10202133D600ECACE5 /* DetailPostView.swift in Sources */,
 				81CF0A162021341A00ECACE5 /* CurrentUserProfileView.swift in Sources */,
+				8138C115202BB5B5004355DA /* FirebaseStorageManager.swift in Sources */,
 				81CF0A1A2021350800ECACE5 /* ProfileViewController.swift in Sources */,
 				81C9ED79202A4BF300446157 /* CreatePostSelectedImageViewdelete.swift in Sources */,
 				81C9ED75202A4BD000446157 /* CreatePostTableViewController.swift in Sources */,

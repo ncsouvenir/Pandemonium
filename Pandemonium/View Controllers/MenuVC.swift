@@ -68,9 +68,6 @@ class MenuVC: UIViewController, UIGestureRecognizerDelegate {
     }
     @objc func segueToProfile(){
         //        TODO Check if ther is a current user or not
-        let profileViewController = ProfileViewController()
-//        let navigationController = UINavigationController(rootViewController: profileViewController)
-        self.navigationController?.pushViewController(profileViewController, animated: true)
         let alertViewController = UIAlertController(title: "Your aren't signed in please sign in ", message: "", preferredStyle: UIAlertControllerStyle.alert)
         let alertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
         alertViewController.addAction(alertAction)

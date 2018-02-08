@@ -11,7 +11,7 @@ import UIKit
 class SettingsVC: UIViewController {
     
     let settings = SettingsView()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         constrainView()
@@ -20,7 +20,7 @@ class SettingsVC: UIViewController {
         buttonSetup()
         settings.colorTableView.reloadData()
     }
-
+    
     private func constrainView () {
         view.addSubview(settings)
         
@@ -40,7 +40,7 @@ class SettingsVC: UIViewController {
         
     }
     
-
+    
 }
 extension SettingsVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,7 +61,7 @@ extension SettingsVC: UITableViewDataSource, UITableViewDelegate {
         buttonText.setTitle(Settings.manager.schemes[indexPath.row], for: .normal)
         Settings.manager.colorSetting(buttonText.titleLabel!.text!)
         settings.colorTableView.isHidden = true
-//        view.backgroundColor =
+        //        view.backgroundColor =
         self.viewDidLoad()
         self.viewWillAppear(true)
     }

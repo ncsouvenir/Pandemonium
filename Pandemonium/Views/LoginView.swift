@@ -26,7 +26,7 @@ class LoginView: UIView {
         view.layer.shadowOffset = CGSize(width: 2, height: 2)
         return view
     }()
-
+    
     var userNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Email"
@@ -115,7 +115,7 @@ class LoginView: UIView {
         setupCreateNewAccountButton()
     }
     
-
+    
 }
 
 // MARK: - Setup Views

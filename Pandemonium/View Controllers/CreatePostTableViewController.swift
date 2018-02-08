@@ -10,7 +10,7 @@ import Firebase
 import AVFoundation
 
 class CreateAPostTableViewController: UITableViewController {
-
+    
     @IBOutlet weak var ImageCell: UITableViewCell!
     @IBOutlet weak var linkCell: UITableViewCell!
     
@@ -57,14 +57,14 @@ class CreateAPostTableViewController: UITableViewController {
         //setting up what the modal presentation will look like
         
         //connecting the imageView to the image selected from photo library
-                var largeDetailImage = UIImage()
+        var largeDetailImage = UIImage()
         
-                if let image = imageView.image {
-        
-                    largeDetailImage = image //image is nil here
-                } else {
-                    largeDetailImage = #imageLiteral(resourceName: "noImg")//UIImage(named: "placeholder-image")
-                }
+        if let image = imageView.image {
+            
+            largeDetailImage = image //image is nil here
+        } else {
+            largeDetailImage = #imageLiteral(resourceName: "noImg")//UIImage(named: "placeholder-image")
+        }
         
         let presentImageVC = CreatePostSelectedImageVC(largeImageView: #imageLiteral(resourceName: "editPencil"))
         presentImageVC.modalTransitionStyle = .crossDissolve

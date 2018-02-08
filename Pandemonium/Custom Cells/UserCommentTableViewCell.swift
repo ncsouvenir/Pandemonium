@@ -9,7 +9,7 @@ import UIKit
 
 //MARK: called "CommentCell"
 class UserCommentTableViewCell: UITableViewCell {
-
+    
     lazy var usernameLabel: UILabel = {
         let label = UILabel()
         return label
@@ -70,5 +70,5 @@ extension UserCommentTableViewCell {
             make.bottom.equalTo(snp.bottom).offset(-4)
         }
     }
-
+    
 }

@@ -10,7 +10,7 @@ import SnapKit
 import WebKit
 
 class DetailPostView: UIView {
-
+    
     let postState: PostState
     
     lazy var tableView: UITableView = {
@@ -60,13 +60,13 @@ class DetailPostView: UIView {
     }()
     
     lazy var headerView: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.backgroundColor = .blue
         return view
     }()
     
     lazy var postImageView: UIImageView = {
-       let imageView = UIImageView()
+        let imageView = UIImageView()
         return imageView
     }()
     
@@ -79,7 +79,7 @@ class DetailPostView: UIView {
     }()
     
     lazy var postTextView: UITextView = {
-       let textView = UITextView()
+        let textView = UITextView()
         return textView
     }()
     
@@ -114,7 +114,7 @@ class DetailPostView: UIView {
         }
     }
     
-
+    
 }
 
 // MARK: - Setup Views
@@ -171,7 +171,7 @@ extension DetailPostView {
             make.width.equalTo(upvoteButton)
         }
     }
-
+    
     private func setupDownvoteButton() {
         postInfoView.addSubview(downvoteButton)
         downvoteButton.snp.makeConstraints { (make) in
@@ -188,9 +188,9 @@ extension DetailPostView {
         }
     }
     
-//    private func setupHeaderView() {
-//
-//    }
+    //    private func setupHeaderView() {
+    //
+    //    }
     
     private func setupTableView() {
         addSubview(tableView)

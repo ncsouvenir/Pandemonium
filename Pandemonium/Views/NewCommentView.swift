@@ -8,7 +8,7 @@
 import UIKit
 
 class NewCommentView: UIView {
-
+    
     lazy var commentTextView: UITextView = {
         let tv = UITextView()
         tv.textColor = Settings.manager.textColor
@@ -35,5 +35,5 @@ class NewCommentView: UIView {
             make.height.equalTo(self).multipliedBy(0.5)
         }
     }
-
+    
 }

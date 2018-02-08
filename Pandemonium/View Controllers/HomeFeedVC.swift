@@ -57,8 +57,8 @@ class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
         let menueViewController = MenuVC()
         menueViewController.modalPresentationStyle = .overCurrentContext
         present(menueViewController, animated: true, completion: nil)
-//        let profileViewController = ProfileViewController()
-//        navigationController?.pushViewController(profileViewController, animated: true)
+        //        let profileViewController = ProfileViewController()
+        //        navigationController?.pushViewController(profileViewController, animated: true)
     }
     @objc func addPostNavBarButtonAction(){
         let createAPostVC = CreateAPostTableViewController.storyBoardInstance()
@@ -138,7 +138,7 @@ extension HomeFeedVC: UITableViewDelegate, HomeFeedTableViewCellDelegate{
         }
         print("delegate fired")
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard indexPath.row != 0 else{
             return

@@ -44,5 +44,5 @@ class CreatePostSelectedImageVC: UIViewController {
     @objc func dismissView() {
         dismiss(animated: true, completion: nil)
     }
-
+    
 }

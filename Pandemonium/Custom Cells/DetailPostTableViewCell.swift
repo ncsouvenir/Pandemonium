@@ -11,5 +11,5 @@ import SnapKit
 //MARK: called "Detail Post Cell"
 class DetailPostTableViewCell: UITableViewCell {
     
-
+    
 }

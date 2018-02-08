@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 class HomeFeedView: UIView {
-
+    
     lazy var tableView: UITableView = {
         let tView = UITableView()
         tView.register(HomeFeedTableViewCell.self, forCellReuseIdentifier: "customTableViewCell")
@@ -33,6 +33,6 @@ class HomeFeedView: UIView {
             constraint.edges.equalTo(snp.edges)
         }
     }
-
-
+    
+    
 }

@@ -10,17 +10,17 @@ import UIKit
 
 class NewCommentViewController: UIViewController {
     
-//    var post: Post!
+    //    var post: Post!
     
-//    init(post: Post) {
-//        super.init(nibName: nil, bundle: nil)
-//        self.post = post
-//    }
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError()
-//    }
-
+    //    init(post: Post) {
+    //        super.init(nibName: nil, bundle: nil)
+    //        self.post = post
+    //    }
+    //
+    //    required init?(coder aDecoder: NSCoder) {
+    //        fatalError()
+    //    }
+    
     let commentView = NewCommentView()
     
     override func viewDidLoad() {
@@ -61,11 +61,11 @@ class NewCommentViewController: UIViewController {
         }
         FirebaseCommentManager.manager.addComment(comment: comment)
     }
-     private func showAlert(title: String, message: String) {
+    private func showAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default) { (alert) in }
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
     }
-
+    
 }

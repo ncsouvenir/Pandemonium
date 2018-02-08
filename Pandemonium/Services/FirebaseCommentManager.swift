@@ -21,7 +21,7 @@ class FirebaseCommentManager {
         let comment1 = Comment(commentUID: child.key, userUID: "ggr15", postUID: "somePostID", date: "\(Date())", commentText: comment)
         child.setValue(comment1.commentToJson())
         
-//        let post2 = Post(postUID: id.key, userUID: "1", date: "010118", title: "Awesome Cats", upvotes: 1999, downvotes: 0, tags: [""], bodyText: "Cats are the best ever", url: nil, image: "sdfs", comments: ["CommentID": comment1])
+        //        let post2 = Post(postUID: id.key, userUID: "1", date: "010118", title: "Awesome Cats", upvotes: 1999, downvotes: 0, tags: [""], bodyText: "Cats are the best ever", url: nil, image: "sdfs", comments: ["CommentID": comment1])
         //id.setValue(comment1.commentToJson())
     }
     

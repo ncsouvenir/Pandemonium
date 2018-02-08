@@ -16,7 +16,7 @@ enum PostState {
 }
 
 class DetailPostVC: UIViewController {
-
+    
     var post: Post!
     private var comments = [Comment]() {
         didSet {
@@ -29,22 +29,22 @@ class DetailPostVC: UIViewController {
     convenience init(post: Post) {
         self.init(nibName: nil, bundle: nil)
         self.post = post
-
+        
         if post.bodyText != nil {
             postState = .text
             detailPostView = DetailPostView(postState: postState)
         }
-
+        
         if post.url != nil {
             postState = .url
             detailPostView = DetailPostView(postState: postState)
         }
-
+        
         if post.image != nil {
             postState = .image
             detailPostView = DetailPostView(postState: postState)
         }
-
+        
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -73,7 +73,7 @@ class DetailPostVC: UIViewController {
                 detailPostView.postImageView.image = UIImage(contentsOfFile: post.image!)
             case .url:
                 // TODO: - Handle optionals
-//                detailPostView.postWebKitView.uiDelegate = self
+                //                detailPostView.postWebKitView.uiDelegate = self
                 
                 let url = URL(string: post.url!)
                 let request = URLRequest(url: url!)
@@ -81,7 +81,7 @@ class DetailPostVC: UIViewController {
                 detailPostView.postWebKitView.reload()
             }
         }
-
+        
         
         detailPostView.tableView.dataSource = self
         detailPostView.tableView.delegate = self
@@ -89,7 +89,7 @@ class DetailPostVC: UIViewController {
         
         print("the post state is \(postState)")
         observeComments()
-
+        
     }
     
     private func setupPostInfo() {
@@ -138,7 +138,7 @@ class DetailPostVC: UIViewController {
             }
             var firComments = [Comment]()
             for uid in commentUIDArray {
-
+                
                 DispatchQueue.main.async {
                     if let firCommentAsJSON = Database.database().reference(withPath: "comments").value(forKey: uid) {
                         do {

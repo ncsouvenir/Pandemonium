@@ -8,7 +8,7 @@
 import UIKit
 
 class LoginVC: UIViewController {
-
+    
     let loginView = LoginView()
     
     override func viewDidLoad() {
@@ -19,7 +19,7 @@ class LoginVC: UIViewController {
         
         //turnRedAndShakeAnimation(view: loginView.containerView)
     }
-
+    
 }
 
 // MARK: - Gestures
@@ -49,7 +49,7 @@ extension LoginVC {
                 
                 view.frame.origin.x += 10
             }, completion: { (done) in
-
+                
             })
             //
             

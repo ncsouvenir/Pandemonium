@@ -13,7 +13,7 @@ class CreateAccountVC: UIViewController {
     
     let createView = CreateAccountView()
     let userInfo = [Parrot]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
@@ -70,23 +70,23 @@ class CreateAccountVC: UIViewController {
         }
         
     }
-        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-            if let touch = touches.first {
-                if touch.view == createView.containerView {
-                    self.view.endEditing(true)
-                    self.resignFirstResponder()
-                    
-                }
-                if touch.view == createView.blurView {
-                    // TODO: - Dismiss login view controller and go back to previous vc
-                    dismiss(animated: true, completion: nil)
-                } else {
-                    return
-                }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first {
+            if touch.view == createView.containerView {
+                self.view.endEditing(true)
+                self.resignFirstResponder()
+                
+            }
+            if touch.view == createView.blurView {
+                // TODO: - Dismiss login view controller and go back to previous vc
+                dismiss(animated: true, completion: nil)
+            } else {
+                return
             }
         }
-    
     }
+    
+}
 
 extension CreateAccountVC: UITextFieldDelegate {
     

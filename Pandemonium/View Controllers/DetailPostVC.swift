@@ -20,6 +20,7 @@ class DetailPostVC: UIViewController {
     var post: Post!
     private var comments = [Comment]() {
         didSet {
+            print(comments)
             detailPostView.tableView.reloadData()
         }
     }

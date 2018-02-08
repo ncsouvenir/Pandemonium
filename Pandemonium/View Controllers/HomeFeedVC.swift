@@ -54,8 +54,11 @@ class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
     @objc func listNavBarButtonAction(){
         //TODO Load the list
         //Mark: Test ProfileViewController
-        let profileViewController = ProfileViewController()
-        navigationController?.pushViewController(profileViewController, animated: true)
+        let menueViewController = MenuVC()
+        menueViewController.modalPresentationStyle = .overCurrentContext
+        present(menueViewController, animated: true, completion: nil)
+//        let profileViewController = ProfileViewController()
+//        navigationController?.pushViewController(profileViewController, animated: true)
     }
     @objc func addPostNavBarButtonAction(){
         let createAPostVC = CreateAPostTableViewController.storyBoardInstance()

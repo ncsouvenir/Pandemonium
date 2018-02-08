@@ -9,13 +9,24 @@
 import UIKit
 
 class MenuVC: UIViewController, UIGestureRecognizerDelegate {
+
+    var safeArea: UILayoutGuide
+     init(safeArea: UILayoutGuide) {
+        self.safeArea = safeArea
+        super.init(nibName: nil, bundle: nil)
+    }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     let menuView = MenuView()
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view.
+    }
+    override func viewWillLayoutSubviews() {
         seutupBackgroundView()
         setupMenuView()
-        // Do any additional setup after loading the view.
     }
     func seutupBackgroundView(){
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.extraLight)
@@ -24,7 +35,7 @@ class MenuVC: UIViewController, UIGestureRecognizerDelegate {
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(blurEffectView)
         blurEffectView.snp.makeConstraints { (constraint) in
-            constraint.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(98)
+            constraint.top.equalTo(self.safeArea.snp.top)
             constraint.right.equalTo(view.safeAreaLayoutGuide.snp.right)
             constraint.width.equalTo(view.safeAreaLayoutGuide.snp.width)
             constraint.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
@@ -38,7 +49,7 @@ class MenuVC: UIViewController, UIGestureRecognizerDelegate {
     func setupMenuView(){
         view.addSubview(menuView)
         menuView.snp.makeConstraints { (constraint) in
-            constraint.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(98)
+            constraint.top.equalTo(self.safeArea.snp.top)
             constraint.right.equalTo(view.safeAreaLayoutGuide.snp.right)
             constraint.width.equalTo(view.safeAreaLayoutGuide.snp.width).multipliedBy(0.50)
             constraint.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
@@ -52,7 +63,7 @@ class MenuVC: UIViewController, UIGestureRecognizerDelegate {
     }
     //this method will exit the menue
     @objc func exit(){
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: false, completion: nil)
     }
     //this function will lead you to the loginVC
     @objc func segueToSignIn(){
@@ -78,8 +89,7 @@ class MenuVC: UIViewController, UIGestureRecognizerDelegate {
     @objc func segueToCreateAccount(){
         //TODO: segue to the create account
         let createAccountViewController = CreateAccountVC()
-        let navigationController = UINavigationController(rootViewController: createAccountViewController)
-        present(navigationController, animated: true, completion: nil)
+        present(createAccountViewController, animated: true, completion: nil)
     }
     
     

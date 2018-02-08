@@ -51,7 +51,6 @@ class FirebasePostManager{
         child.setValue(post.postToJSON())
     }
     
-    
     func updatePostUpVote(for post: Post){
         let dbReference = Database.database().reference().child("posts")
         let postReference = dbReference.child(post.postUID)
@@ -64,5 +63,9 @@ class FirebasePostManager{
         guard (post.upvotes - post.downvotes) > 0 else {return}
         let postUpVotesValue = post.downvotes + 1
         postReference.updateChildValues(["downvotes": postUpVotesValue])
+    }
+    
+    func loadPostsFromUser(_ uid: String) {
+        
     }
 }

@@ -37,7 +37,7 @@ class DetailPostVC: UIViewController {
     convenience init(post: Post) {
         self.init(nibName: nil, bundle: nil)
         self.post = post
-
+        
         if post.url != nil && post.url != "" {
             postState = .url
             detailPostView = DetailPostView(postState: postState)
@@ -74,7 +74,7 @@ class DetailPostVC: UIViewController {
                 detailPostView.postTextView.text = post.bodyText
             case .image:
                 // TODO: - Get image
-                detailPostView.postImageView.image = UIImage(contentsOfFile: post.image!)
+                detailPostView.postImageView.image = UIImage(data: try! Data.init(contentsOf: URL(string: post.image!)!) )
             case .url:
                 // TODO: - Handle optionals
                 //                detailPostView.postWebKitView.uiDelegate = self
@@ -82,8 +82,8 @@ class DetailPostVC: UIViewController {
                 
                 if let url = URL(string: post.url!) {
                     let request = URLRequest(url: url)
-                        detailPostView.postWebKitView.load(request)
-                        detailPostView.postWebKitView.reload()
+                    detailPostView.postWebKitView.load(request)
+                    detailPostView.postWebKitView.reload()
                 } else {
                     detailPostView.postWebKitView.load(URLRequest(url: URL(string: "https://www.google.com/404")!))
                 }
@@ -116,8 +116,8 @@ class DetailPostVC: UIViewController {
     }
     
     @objc private func addCommentButtonTapped() {
-//        let addCommentVC = NewCommentViewController(post: post)
-//        navigationController?.pushViewController(addCommentVC, animated: true)
+        //        let addCommentVC = NewCommentViewController(post: post)
+        //        navigationController?.pushViewController(addCommentVC, animated: true)
         if FirebaseUserManager.shared.getCurrentUser() == nil {
             present(LoginVC(), animated: true, completion: nil)
         }
@@ -136,7 +136,7 @@ class DetailPostVC: UIViewController {
     func getImageFromFirebaseStorage(imageUID: String) {
     }
     
-
+    
     
     // Gets Array of commentUIDs
     // Then asynchroniously get the values for the comments
@@ -153,12 +153,13 @@ extension DetailPostVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! UserCommentTableViewCell
+        cell.isUserInteractionEnabled = false
         let comment = comments[indexPath.row]
         cell.commentLabel.text = comment.commentText
         cell.dateLabel.text = comment.date
         FirebaseUserManager.shared.getUsernameFromUID(uid: comment.userUID, completionHandler: { cell.usernameLabel.text =  $0 }, errorHandler: { print($0) })
         cell.setNeedsLayout()
-
+        
         return cell
     }
 }

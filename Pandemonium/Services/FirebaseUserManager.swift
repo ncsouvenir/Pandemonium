@@ -25,7 +25,12 @@ class FirebaseUserManager {
     private var usersReference: DatabaseReference!
     
     func getCurrentUser() -> User? {
-        return Auth.auth().currentUser
+        if Auth.auth().currentUser != nil {
+            // User is signed in.
+            // ...
+            return Auth.auth().currentUser
+        }
+        return nil
     }
     
     func login(with email: String,

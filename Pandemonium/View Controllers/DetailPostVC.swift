@@ -100,9 +100,14 @@ class DetailPostVC: UIViewController {
     }
     
     @objc private func addCommentButtonTapped() {
-        let addCommentVC = NewCommentViewController()
-        navigationController?.pushViewController(addCommentVC, animated: true)
-        //present(addCommentVC, animated: true, completion: nil)
+//        let addCommentVC = NewCommentViewController(post: post)
+//        navigationController?.pushViewController(addCommentVC, animated: true)
+        if FirebaseUserManager.shared.getCurrentUser() == nil {
+            present(LoginVC(), animated: true, completion: nil)
+        }
+        
+        let addCommentVC = UINavigationController(rootViewController: NewCommentViewController(post: post))
+        present(addCommentVC, animated: true, completion: nil)
     }
     
     private func setupPostInfo() {

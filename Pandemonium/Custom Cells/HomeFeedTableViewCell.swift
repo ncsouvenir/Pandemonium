@@ -206,7 +206,9 @@ class HomeFeedTableViewCell: UITableViewCell {
         
         // NightMode
         self.postTitle.textColor = Settings.manager.textColor
-        
+        self.numberOfComments.textColor = Settings.manager.textColor
+        self.postImage.backgroundColor = Settings.manager.textColor
+        self.numberOfUpDown.textColor = Settings.manager.textColor
     }
     
     

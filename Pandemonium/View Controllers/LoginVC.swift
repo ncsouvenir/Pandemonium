@@ -15,8 +15,8 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
         view.addSubview(loginView)
         setupButtonActions()
-        
-        
+        view.backgroundColor = .clear
+        loginView.backgroundColor = .clear
         //turnRedAndShakeAnimation(view: loginView.containerView)
     }
     

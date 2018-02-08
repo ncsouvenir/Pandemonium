@@ -110,6 +110,8 @@ class CreateAPostTableViewController: UITableViewController {
     
     @objc func sendButtonPressed(){
         //TODO: call FirebasePostManager.manager.addPosts() to populate the new post in the HomeFeed VC
+        let currentUser = FirebaseUserManager.shared.getCurrentUser()!
+        FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: Date().description, title: titleTextField.text!, tags: ["#BANANA", "#NATE SUX"], bodyText: bodytextView.text, url: urlTextField.text, image: imageView.image)
         //TODO: alert to notify user that the post was added
         dismiss(animated: true, completion: nil)
         resignFirstResponder()

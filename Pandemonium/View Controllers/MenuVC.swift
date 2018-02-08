@@ -9,6 +9,8 @@
 import UIKit
 
 class MenuVC: UIViewController, UIGestureRecognizerDelegate {
+    
+    var user: Parrot!
 
     var safeArea: UILayoutGuide
      init(safeArea: UILayoutGuide) {
@@ -54,12 +56,12 @@ class MenuVC: UIViewController, UIGestureRecognizerDelegate {
             constraint.width.equalTo(view.safeAreaLayoutGuide.snp.width).multipliedBy(0.50)
             constraint.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
-        menuView.exitButton.addTarget(self, action: #selector(exit), for: .touchUpInside)
+//        menuView.exitButton.addTarget(self, action: #selector(exit), for: .touchUpInside)
         menuView.signInButton.addTarget(self, action: #selector(segueToSignIn), for: .touchUpInside)
         menuView.signOutButton.addTarget(self, action: #selector(signOutAction), for: .touchUpInside)
         menuView.profileButton.addTarget(self, action: #selector(segueToProfile), for: .touchUpInside)
         menuView.homeButton.addTarget(self, action: #selector(exit), for: .touchUpInside)
-        menuView.createNewAccount.addTarget(self, action: #selector(segueToCreateAccount), for: .touchUpInside)
+//        menuView.createNewAccount.addTarget(self, action: #selector(segueToCreateAccount), for: .touchUpInside)
     }
     //this method will exit the menue
     @objc func exit(){
@@ -83,6 +85,17 @@ class MenuVC: UIViewController, UIGestureRecognizerDelegate {
             present(LoginVC(), animated: true, completion: nil)
         }
         self.present(CurrentUserProfileVC(), animated: true, completion: nil)
+        //TODO: initialize the viewController with the user
+        let currentUserProfileVC = CurrentUserProfileVC(user: user)
+        currentUserProfileVC.modalPresentationStyle = .overCurrentContext
+        currentUserProfileVC.modalTransitionStyle = .crossDissolve
+        present(currentUserProfileVC, animated: true, completion: nil)
+        
+        
+        let alertViewController = UIAlertController(title: "Your aren't signed in please sign in ", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        let alertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alertViewController.addAction(alertAction)
+        present(alertViewController, animated: true, completion: nil)
         
     }
     @objc func segueToCreateAccount(){

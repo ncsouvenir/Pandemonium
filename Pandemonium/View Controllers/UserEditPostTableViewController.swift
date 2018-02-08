@@ -29,19 +29,33 @@ class UserEditPostTableViewController: UITableViewController {
     var detailedImageView = CreatePostSelectedImageView()
     private let imagePickerView = UIImagePickerController()
     
+    //Inject Post
+    //var post : Post //initialize by injection
     
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         imagePickerView.delegate = self
-        configureTextFieldDelegates()
+              configureTextFieldDelegates()
         configureNavBar()
         configureImageButton()
         configureSegmentedControl()
         //2
         segmentedControl.addUnderlineForSelectedSegment()
         configureImageGesture()
+    }
+    
+    override func viewDidLoad() {
         
+        super.viewDidLoad()
+//        imagePickerView.delegate = self
+////        configureTextFieldDelegates()
+//        configureNavBar()
+//        configureImageButton()
+//        configureSegmentedControl()
+//        //2
+//        segmentedControl.addUnderlineForSelectedSegment()
+//        configureImageGesture()
+//
         //        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
         //            cameraButtonItem.isEnabled = false
         //        }
@@ -102,7 +116,7 @@ class UserEditPostTableViewController: UITableViewController {
     }
     
     private func configureTextFieldDelegates() {
-        userNameTextField.delegate = self
+        //userNameTextField.delegate = self
         titleTextField.delegate = self
         tagsTextField.delegate = self
         urlTextField.delegate = self
@@ -126,7 +140,7 @@ class UserEditPostTableViewController: UITableViewController {
     private func configureNavBar(){
         navigationItem.title = "Edit A Post"
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Send", style: .plain, target: self, action: #selector(sendButtonPressed))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Update", style: .plain, target: self, action: #selector(sendButtonPressed))
     }
     
     
@@ -222,7 +236,6 @@ class UserEditPostTableViewController: UITableViewController {
     private func showImagePicker() {
         present(imagePickerView, animated: true, completion: nil)
     }
-    
     
     //MARK: Making a storyBoard instance to call in the AppDelegate
     public static func storyBoardInstance() -> UserEditPostTableViewController {
@@ -350,11 +363,6 @@ extension UserEditPostTableViewController: UITextViewDelegate {
         tableView.setContentOffset(topLeftPoint, animated: false)
         print("done editing")
     }
-    
-    //    func textViewDidBeginEditing(_ textView: UITextView) {
-    //        let bottomLeftPoint = CGPoint(x: <#T##CGFloat#>, y: <#T##CGFloat#>)
-    //        tableView.setContentOffset(bottomLeftPoint, animated: false)
-    //    }
 }
 
 

@@ -8,19 +8,20 @@
 import UIKit
 import SnapKit
 
+//TOTO: rename protocol file
 //1
-protocol CurrentUserProfileTableViewCellDelegate: class {
-    func didEditUserName(_ tableViewCell: CurrentUserTableViewCell)
-    func didEditProfileImage(_ tableViewCell:  CurrentUserTableViewCell)
+protocol CurrentUserProfileImageTableViewCellDelegate: class {
+    func didEditUserName(_ tableViewCell: CurrentUserProfileImageCustomTableViewCell)
+    func didEditProfileImage(_ tableViewCell:  CurrentUserProfileImageCustomTableViewCell)
 }
 
 //MARK: called "Current User Cell"
-class CurrentUserTableViewCell: UITableViewCell {
+class CurrentUserProfileImageCustomTableViewCell: UITableViewCell {
     
     var indexPath = IndexPath()
     
     //2: initializing delegate: this is where you want to call the delegate
-    weak var delegate: CurrentUserProfileTableViewCellDelegate?
+    weak var delegate: CurrentUserProfileImageTableViewCellDelegate?
     
     lazy var profileBackGroundView: UIImageView = {
         let imageView = UIImageView()
@@ -38,7 +39,7 @@ class CurrentUserTableViewCell: UITableViewCell {
     //User name label
     lazy var userNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "warMachines"
+        label.text = "Talking Parrot"
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.textColor = .white
         return label
@@ -58,9 +59,9 @@ class CurrentUserTableViewCell: UITableViewCell {
     //Name Edit Button
     lazy var userNameEditButton: UIButton = {
         let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "editPencil"), for: .normal)
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.white.cgColor
+        button.setImage(#imageLiteral(resourceName: "pencil"), for: .normal)
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.red.cgColor
         button.layer.backgroundColor = UIColor.white.cgColor
         button.addTarget(self, action: #selector(editUserNameButtonPressed), for: .touchUpInside)
         return button
@@ -70,9 +71,9 @@ class CurrentUserTableViewCell: UITableViewCell {
     //Edit Image Button
     lazy var imageEditButton: UIButton = {
         let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "editPencil"), for: .normal)
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.white.cgColor
+        button.setImage(#imageLiteral(resourceName: "pencil"), for: .normal)
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.red.cgColor
         button.layer.backgroundColor = UIColor.white.cgColor
         button.addTarget(self, action: #selector(editImageButtonPressed), for: .touchUpInside)
         return button
@@ -83,8 +84,7 @@ class CurrentUserTableViewCell: UITableViewCell {
         let imageView = roundedImageView()
         imageView.layer.borderWidth = 2
         imageView.clipsToBounds = true
-        imageView.image = #imageLiteral(resourceName: "warMachine")
-        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.image = #imageLiteral(resourceName: "emptyProfileImg")
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
@@ -101,6 +101,7 @@ class CurrentUserTableViewCell: UITableViewCell {
         self.delegate?.didEditProfileImage(self)
     }
     
+    
     ////////////////  Initializtion
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -112,11 +113,16 @@ class CurrentUserTableViewCell: UITableViewCell {
     //get the actual frmae size of the elements before getting laid out on screen
     override func layoutSubviews() {
         super.layoutSubviews()
-        //make profile image a circle
         imageEditButton.layer.cornerRadius = imageEditButton.bounds.height / 2.0
         imageEditButton.layer.masksToBounds = true
+        
         userNameEditButton.layer.cornerRadius = userNameEditButton.bounds.height / 2.0
         userNameEditButton.layer.masksToBounds = true
+        
+        userNameTextField.layer.borderColor = UIColor.white.cgColor
+        userNameTextField.layer.borderWidth = 1
+        
+        profileImage.layer.borderColor = UIColor.white.cgColor
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -204,19 +210,29 @@ class CurrentUserTableViewCell: UITableViewCell {
     private func setupImageEditButton() {
         addSubview(imageEditButton)
         imageEditButton.snp.makeConstraints{(constraint) in
-            constraint.centerX.equalTo(snp.centerX).offset(65)
             constraint.center.equalTo(snp.center).offset(70)
             constraint.width.equalTo(snp.width).multipliedBy(0.08)
             constraint.height.equalTo(snp.width).multipliedBy(0.08)
         }
     }
+    
+    func configureProfileView(user: Parrot){
+        userNameLabel.text = user.appUserName
+    }
 }
 
+
+
 //MARK: TextField Delegate
-extension CurrentUserTableViewCell: UITextFieldDelegate {
+extension CurrentUserProfileImageCustomTableViewCell: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        userNameTextField.text = ""
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        //guard let text = textField.text else {return false}
         self.userNameLabel.text = textField.text!
-        print(textField.text!)
         self.userNameLabel.isHidden = false
         self.userNameTextField.isHidden = true
         textField.resignFirstResponder()

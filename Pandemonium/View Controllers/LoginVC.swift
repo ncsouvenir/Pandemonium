@@ -18,6 +18,8 @@ class LoginVC: UIViewController {
         view.backgroundColor = .clear
         loginView.backgroundColor = .clear
         //turnRedAndShakeAnimation(view: loginView.containerView)
+        loginView.userNameTextField.delegate = self
+        loginView.passwordTextField.delegate = self
     }
     
 }
@@ -28,6 +30,9 @@ extension LoginVC {
         if let touch = touches.first {
             if touch.view == loginView.blurView {
                 dismiss(animated: true, completion: nil)
+            } else if touch.view == loginView.containerView {
+                loginView.passwordTextField.resignFirstResponder()
+                loginView.userNameTextField.resignFirstResponder()
             } else {
                 return
             }
@@ -99,16 +104,20 @@ extension LoginVC {
     @objc private func submitButtonTapped() {
         // if successful log in, present success message and dismiss vc
         // else shake view and make red and prompt to verify info
-        guard let usernameText = loginView.userNameTextField.text else { return }
-        guard let passwordText = loginView.passwordTextField.text else { return }
-        guard !usernameText.isEmpty else { return }
-        guard !passwordText.isEmpty else { return }
+        loginView.passwordTextField.resignFirstResponder()
+        loginView.userNameTextField.resignFirstResponder()
+        guard let usernameText = loginView.userNameTextField.text else { self.warningVibration(); return }
+        guard let passwordText = loginView.passwordTextField.text else { self.warningVibration(); return }
+        guard !usernameText.isEmpty else { self.warningVibration(); return }
+        guard !passwordText.isEmpty else { self.warningVibration(); return }
         
         FirebaseUserManager.shared.login(with: usernameText, and: passwordText) { (user, error) in
             if let error = error {
                 print(error)
+                self.errorVibration()
             } else if let user = user {
                 print("\(user) has logged in")
+                self.successVibration()
                 self.dismiss(animated: true, completion: nil)
             }
         }
@@ -116,6 +125,8 @@ extension LoginVC {
     
     @objc private func forgotPasswordButtonTapped() {
         // show alert controller and do firebase stuff
+        loginView.passwordTextField.resignFirstResponder()
+        loginView.userNameTextField.resignFirstResponder()
         let alertController = UIAlertController(title: "Alert", message: "Please enter your email address", preferredStyle: .alert)
         alertController.addTextField { (textField) in
             textField.autocorrectionType = .no
@@ -141,9 +152,18 @@ extension LoginVC {
     }
     
     @objc private func createNewAccountButtonTapped() {
+        loginView.passwordTextField.resignFirstResponder()
+        loginView.userNameTextField.resignFirstResponder()
         let createAccountVC = CreateAccountVC()
         createAccountVC.modalTransitionStyle = .crossDissolve
         createAccountVC.modalPresentationStyle = .overCurrentContext
         present(createAccountVC, animated: true, completion: nil)
+    }
+}
+
+extension LoginVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

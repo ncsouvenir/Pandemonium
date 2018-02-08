@@ -115,4 +115,10 @@ class FirebasePostManager{
         postReference.updateChildValues(["downvotes": postUpVotesValue])
     }
     
+<<<<<<< HEAD
+=======
+    func loadPostsFromUser(_ uid: String) {
+        
+    }
+>>>>>>> 36fae7206866452efd0fe9df02d0a7b8dcda11ba
 }

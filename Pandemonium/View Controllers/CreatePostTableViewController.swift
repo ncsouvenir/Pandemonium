@@ -27,7 +27,6 @@ class CreateAPostTableViewController: UITableViewController {
     var detailedImageView = CreatePostSelectedImageView()
     private let imagePickerView = UIImagePickerController()
     
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -57,13 +56,13 @@ class CreateAPostTableViewController: UITableViewController {
         //setting up what the modal presentation will look like
         
         //connecting the imageView to the image selected from photo library
-                var selectedImage = UIImage()
-                if let image = imageView.image {
-                    selectedImage = image //image is nil here
-                } else {
-                    selectedImage = UIImage(named: "noImg")!
-                }
-
+        var selectedImage = UIImage()
+        if let image = imageView.image {
+            selectedImage = image //image is nil here
+        } else {
+            selectedImage = UIImage(named: "noImg")!
+        }
+        
         let presentCreatePostSelectedImageVC = CreatePostSelectedImageVC(selectedImage: selectedImage)
         presentCreatePostSelectedImageVC.modalTransitionStyle = .crossDissolve
         presentCreatePostSelectedImageVC.modalPresentationStyle = .overCurrentContext
@@ -108,7 +107,18 @@ class CreateAPostTableViewController: UITableViewController {
     @objc func sendButtonPressed(){
         //TODO: call FirebasePostManager.manager.addPosts() to populate the new post in the HomeFeed VC
         let currentUser = FirebaseUserManager.shared.getCurrentUser()!
-        FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: Date().description, title: titleTextField.text!, tags: ["#BANANA", "#NATE SUX"], bodyText: bodytextView.text, url: urlTextField.text, image: imageView.image)
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: Date().description, title: titleTextField.text!, tags: ["#EMPIREDIDNOTHINGWRONG", "#KHALEESI"], bodyText: bodytextView.text, url: urlTextField.text, image: nil)
+        case 1:
+            FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: Date().description, title: titleTextField.text!, tags: ["#THOTS", "#21"], bodyText: bodytextView.text, url: nil, image: nil)
+        case 2:
+            FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: Date().description, title: titleTextField.text!, tags: ["#DOYOU", "#KNOW", "#DAWAE"], bodyText: bodytextView.text, url: nil, image: imageView.image)
+        default:
+            print("error choosing type of post")
+            return
+        }
+        
         //TODO: alert to notify user that the post was added
         let alertController = UIAlertController(title: "Success!",
                                                 message:"Post added to the feed",

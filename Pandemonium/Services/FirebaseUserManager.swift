@@ -62,9 +62,15 @@ class FirebaseUserManager {
             if let error = error {
                 print(error.localizedDescription)
             } else if let user = user {
-                //TODO reference user
                 let child = self.usersReference.child(user.uid)
                 child.setValue(Parrot(userUID: user.uid, appUserName: username, upvotes: 0, downvotes: 0, numberOfComments: 0, image: nil, posts: nil).toJSON())
+                
+                // Send verification email
+                user.sendEmailVerification(completion: { (error) in
+                    if let error = error {
+                        print(error)
+                    }
+                })
             }
         }
         Auth.auth().createUser(withEmail: email, password: password, completion: completion)
@@ -97,6 +103,23 @@ class FirebaseUserManager {
                     let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
                     let user = try JSONDecoder().decode(Parrot.self, from: jsonData)
                     completionHandler(user.appUserName)
+                } catch {
+                    print(error)
+                    errorHandler(error)
+                }
+            }
+        }
+    }
+    
+    func getParrotFrom(uid: String,
+                       completionHandler: @escaping (Parrot) -> Void,
+                       errorHandler: @escaping (Error) -> Void) {
+        Database.database().reference(withPath: "users").child(uid).observeSingleEvent(of: .value) { (snapshot) in
+            if let json = snapshot.value {
+                do {
+                    let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
+                    let user = try JSONDecoder().decode(Parrot.self, from: jsonData)
+                    completionHandler(user)
                 } catch {
                     print(error)
                     errorHandler(error)

@@ -1,15 +1,17 @@
 //
-//  CreatePostTableViewController.swift
+//  UserEditPostTableViewController.swift
 //  Pandemonium
 //
-//  Created by C4Q on 2/6/18.
+//  Created by C4Q on 2/7/18.
 //  Copyright © 2018 C4Q. All rights reserved.
 //
+
 import UIKit
 import Firebase
 import AVFoundation
 
-class CreateAPostTableViewController: UITableViewController {
+class UserEditPostTableViewController: UITableViewController {
+    
     
     @IBOutlet weak var ImageCell: UITableViewCell!
     @IBOutlet weak var linkCell: UITableViewCell!
@@ -22,7 +24,7 @@ class CreateAPostTableViewController: UITableViewController {
     @IBOutlet weak var urlTextField: UITextField!
     @IBOutlet weak var bodytextView: UITextView!
     @IBOutlet weak var addImageButton: UIButton!
-    
+    @IBOutlet weak var deleteButton: UIButton!
     
     var detailedImageView = CreatePostSelectedImageView()
     private let imagePickerView = UIImagePickerController()
@@ -45,6 +47,33 @@ class CreateAPostTableViewController: UITableViewController {
         //        }
     }
     
+    @IBAction func deleteButtonPressed(_ sender: UIButton) {
+        //TODO: add alert Controller
+        let alertController = UIAlertController(title: "Absolutely Sure?",
+                                                message:"Final call before post is deleted",
+                                                preferredStyle: UIAlertControllerStyle.alert)
+        
+        let deleteAction = UIAlertAction(title: "Delete Post", style: UIAlertActionStyle.default){(post) in
+            //TODO: removes post from Firebase which should delete it everywhere else in the app
+                //FirebasePostManager.manager.deletePost()
+            //TODO: alert notifiying user of deletion
+            let alertController = UIAlertController(title: "Gone!",
+                                                    message:"Post was deleted",
+                                                    preferredStyle: UIAlertControllerStyle.alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
+            alertController.addAction(okAction)
+            //present alert controller
+            self.present(alertController, animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default)
+        //for other actions add in actions incompletion{}
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        //present alert controller
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     private func configureImageGesture() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         imageView.isUserInteractionEnabled = true
@@ -57,16 +86,17 @@ class CreateAPostTableViewController: UITableViewController {
         //setting up what the modal presentation will look like
         
         //connecting the imageView to the image selected from photo library
-                var selectedImage = UIImage()
-                if let image = imageView.image {
-                    selectedImage = image //image is nil here
-                } else {
-                    selectedImage = UIImage(named: "noImg")!
-                }
-
+        var selectedImage = UIImage()
+        if let image = imageView.image {
+            selectedImage = image //image is nil here
+        } else {
+            selectedImage = UIImage(named: "noImg")!
+        }
+        
         let presentCreatePostSelectedImageVC = CreatePostSelectedImageVC(selectedImage: selectedImage)
         presentCreatePostSelectedImageVC.modalTransitionStyle = .crossDissolve
         presentCreatePostSelectedImageVC.modalPresentationStyle = .overCurrentContext
+        
         present(presentCreatePostSelectedImageVC, animated: true, completion: nil)
         print("image tapped")
     }
@@ -94,7 +124,7 @@ class CreateAPostTableViewController: UITableViewController {
     }
     
     private func configureNavBar(){
-        navigationItem.title = "Create A Post"
+        navigationItem.title = "Edit A Post"
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Send", style: .plain, target: self, action: #selector(sendButtonPressed))
     }
@@ -106,21 +136,11 @@ class CreateAPostTableViewController: UITableViewController {
     }
     
     @objc func sendButtonPressed(){
-        //TODO: call FirebasePostManager.manager.addPosts() to populate the new post in the HomeFeed VC
-        let currentUser = FirebaseUserManager.shared.getCurrentUser()!
-        FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: Date().description, title: titleTextField.text!, tags: ["#BANANA", "#NATE SUX"], bodyText: bodytextView.text, url: urlTextField.text, image: imageView.image)
-        //TODO: alert to notify user that the post was added
-        let alertController = UIAlertController(title: "Success!",
-                                                message:"Post added to the feed",
-                                                preferredStyle: UIAlertControllerStyle.alert)
-        
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
-        //for other actions add in actions incompletion{}
-        alertController.addAction(okAction)
-        //present alert controller
-        self.present(alertController, animated: true, completion: nil)
-        
-        dismiss(animated: true, completion: nil)
+        let currentUserProfileVC = CurrentUserProfileVC()
+        currentUserProfileVC.modalTransitionStyle = .crossDissolve
+        currentUserProfileVC.modalPresentationStyle = .overCurrentContext
+        present(currentUserProfileVC, animated: true, completion: nil)
+        //dismiss(animated: true, completion: nil)
         resignFirstResponder()
     }
     
@@ -205,10 +225,10 @@ class CreateAPostTableViewController: UITableViewController {
     
     
     //MARK: Making a storyBoard instance to call in the AppDelegate
-    public static func storyBoardInstance() -> CreateAPostTableViewController {
-        let storyboard = UIStoryboard(name: "CreateAPost", bundle: nil)//storyBoard File Name
-        let createAPostVC = storyboard.instantiateViewController(withIdentifier: "CreateAPostTableViewController") as! CreateAPostTableViewController //name of ViewController File
-        return createAPostVC
+    public static func storyBoardInstance() -> UserEditPostTableViewController {
+        let storyboard = UIStoryboard(name: "UserEditPost", bundle: nil)//storyBoard File Name
+        let editAPostVC = storyboard.instantiateViewController(withIdentifier: "UserEditPostTableViewController") as! UserEditPostTableViewController //name of ViewController File
+        return editAPostVC
     }
     
     //MARK: - Tableview delegate
@@ -227,16 +247,16 @@ class CreateAPostTableViewController: UITableViewController {
             return 80.0
         }
         
-        //set bodyView to fill the rest of the VC
+        //set bodyView to fill space between other textfields and delete button
         if indexPath.row == 6 {
-            return view.bounds.height - 330
+            return view.bounds.height - 420
         }
         return 60.0
     }
 }
 
 //MARK: TextField Delegates
-extension CreateAPostTableViewController: UITextFieldDelegate {
+extension UserEditPostTableViewController: UITextFieldDelegate {
     
     //Did Begin Editing
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -315,7 +335,7 @@ extension CreateAPostTableViewController: UITextFieldDelegate {
 }
 
 //MARK: TextView Delegates
-extension CreateAPostTableViewController: UITextViewDelegate {
+extension UserEditPostTableViewController: UITextViewDelegate {
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if(text == "\n") {
@@ -330,11 +350,16 @@ extension CreateAPostTableViewController: UITextViewDelegate {
         tableView.setContentOffset(topLeftPoint, animated: false)
         print("done editing")
     }
+    
+    //    func textViewDidBeginEditing(_ textView: UITextView) {
+    //        let bottomLeftPoint = CGPoint(x: <#T##CGFloat#>, y: <#T##CGFloat#>)
+    //        tableView.setContentOffset(bottomLeftPoint, animated: false)
+    //    }
 }
 
 
 //MARK: Configuring Photo Library
-extension CreateAPostTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension UserEditPostTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else { print("image is nil"); return }
         imageView.image = image
@@ -350,60 +375,5 @@ extension CreateAPostTableViewController: UIImagePickerControllerDelegate, UINav
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
-    }
-}
-
-
-
-
-/////////////////////////////////////MARK: this will remove the the border from the segmented control and add an underline for the selected segment
-//inspiration: https://stackoverflow.com/questions/42755590/how-to-display-only-bottom-border-for-selected-item-in-uisegmentedcontrol
-extension UISegmentedControl{
-    
-    func removeBorder(){
-        let backgroundImage = UIImage.getColoredRectImageWith(color: UIColor.white.cgColor, andSize: self.bounds.size)
-        self.setBackgroundImage(backgroundImage, for: .normal, barMetrics: .default)
-        self.setBackgroundImage(backgroundImage, for: .selected, barMetrics: .default)
-        self.setBackgroundImage(backgroundImage, for: .highlighted, barMetrics: .default)
-        
-        let deviderImage = UIImage.getColoredRectImageWith(color: UIColor.white.cgColor, andSize: CGSize(width: 1.0, height: self.bounds.size.height))
-        self.setDividerImage(deviderImage, forLeftSegmentState: .selected, rightSegmentState: .normal, barMetrics: .default)
-        self.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.gray], for: .normal)
-        self.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor(red: 67/255, green: 129/255, blue: 244/255, alpha: 1.0)], for: .selected)
-    }
-    
-    func addUnderlineForSelectedSegment(){
-        removeBorder()
-        let underlineWidth: CGFloat = self.bounds.size.width / CGFloat(self.numberOfSegments)
-        let underlineHeight: CGFloat = 2.0
-        let underlineXPosition = CGFloat(selectedSegmentIndex * Int(underlineWidth))
-        let underLineYPosition = self.bounds.size.height - 1.0
-        let underlineFrame = CGRect(x: underlineXPosition, y: underLineYPosition, width: underlineWidth, height: underlineHeight)
-        let underline = UIView(frame: underlineFrame)
-        underline.backgroundColor = UIColor(red: 67/255, green: 129/255, blue: 244/255, alpha: 1.0)
-        underline.tag = 1
-        self.addSubview(underline)
-    }
-    
-    func changeUnderlinePosition(){
-        guard let underline = self.viewWithTag(1) else {return}
-        let underlineFinalXPosition = (self.bounds.width / CGFloat(self.numberOfSegments)) * CGFloat(selectedSegmentIndex)
-        UIView.animate(withDuration: 0.1, animations: {
-            underline.frame.origin.x = underlineFinalXPosition
-        })
-    }
-}
-
-extension UIImage{
-    
-    class func getColoredRectImageWith(color: CGColor, andSize size: CGSize) -> UIImage{
-        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-        let graphicsContext = UIGraphicsGetCurrentContext()
-        graphicsContext?.setFillColor(color)
-        let rectangle = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
-        graphicsContext?.fill(rectangle)
-        let rectangleImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return rectangleImage!
     }
 }

@@ -14,9 +14,11 @@ class ProfileView: UIView {
         let tView = UITableView()
         tView.register(UITableViewCell.self, forCellReuseIdentifier: "defaulCell")
         tView.register(ProfileImageCustomTableViewCell.self, forCellReuseIdentifier: "profileImageCell")
+        tView.register(CurrentUserTableViewCell.self, forCellReuseIdentifier: "currentUserImageCell")
         tView.register(ProfilePostCustomTableViewCell.self, forCellReuseIdentifier: "profilePostCell")
         return tView
     }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()

@@ -10,33 +10,42 @@ import UIKit
 
 class CreatePostSelectedImageVC: UIViewController {
     
-    let detailLargeImageView = CreatePostSelectedImageView()
+    let detailSelectedmageView = CreatePostSelectedImageView()
     
-    private var largeImage: UIImage
+    private var selectedImage: UIImage!
     
     //Injecting the larger detailed image into this View Controller
-    init(largeImageView: UIImage){ //initializing what was sent over fom createPostVC
-        self.largeImage = largeImageView // this is nil
+    
+    init(selectedImage: UIImage){
         super.init(nibName: nil, bundle: nil)
-        print("New image set")
+        self.selectedImage = selectedImage
+        detailSelectedmageView.configureImage(to: selectedImage)
+        
+    }
+//    init(largeImageView: UIImage){ //initializing what was sent over fom createPostVC
+//        super.init(nibName: nil, bundle: nil)
+//        self.selectedImage = largeImageView
+//        detailLargeImageView.configureImage(to: largeImageView)
+//        print("New image set")
+//    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {//
+        super.init(nibName: nibNameOrNil, bundle: nil)
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required init?(coder aDecoder: NSCoder){// required becuase subclassing
+        super.init(coder: aDecoder)
     }
-    
-    
     /////////////////////////////////////////////////////////
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        view.addSubview(detailLargeImageView)
+        view.addSubview(detailSelectedmageView)
         //setup buttons
-        
-        self.detailLargeImageView.largeImageView.image = #imageLiteral(resourceName: "panda")
-        self.detailLargeImageView.largeImageView.setNeedsLayout()
-        detailLargeImageView.dismissView.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
+        //        self.detailLargeImageView.largeImageView.image = #imageLiteral(resourceName: "panda")
+        //        self.detailLargeImageView.largeImageView.setNeedsLayout()
+        detailSelectedmageView.dismissView.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
     }
     
     

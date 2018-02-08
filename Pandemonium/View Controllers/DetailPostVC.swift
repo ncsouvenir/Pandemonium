@@ -30,17 +30,13 @@ class DetailPostVC: UIViewController {
         self.init(nibName: nil, bundle: nil)
         self.post = post
 
-        if post.bodyText != nil {
-            postState = .text
-            detailPostView = DetailPostView(postState: postState)
-        }
-
-        if post.url != nil {
+        if post.url != nil && post.url != "" {
             postState = .url
             detailPostView = DetailPostView(postState: postState)
-        }
-
-        if post.image != nil {
+        } else if post.bodyText != nil {
+            postState = .text
+            detailPostView = DetailPostView(postState: postState)
+        } else if post.image != nil {
             postState = .image
             detailPostView = DetailPostView(postState: postState)
         }
@@ -62,7 +58,7 @@ class DetailPostVC: UIViewController {
         view.addSubview(detailPostView)
         
         navigationController?.navigationBar.prefersLargeTitles = false
-        
+        setupNavBar()
         setupPostInfo()
         if let state = postState {
             switch state {
@@ -72,24 +68,38 @@ class DetailPostVC: UIViewController {
                 // TODO: - Get image
                 detailPostView.postImageView.image = UIImage(contentsOfFile: post.image!)
             case .url:
-                // TODO: - Handle optionals
-//                detailPostView.postWebKitView.uiDelegate = self
+                // detailPostView.postWebKitView.uiDelegate = self
                 
-                let url = URL(string: post.url!)
-                let request = URLRequest(url: url!)
-                detailPostView.postWebKitView.load(request)
-                detailPostView.postWebKitView.reload()
+                if let url = URL(string: post.url!) {
+                    let request = URLRequest(url: url)
+                        detailPostView.postWebKitView.load(request)
+                        detailPostView.postWebKitView.reload()
+                } else {
+                    detailPostView.postWebKitView.load(URLRequest(url: URL(string: "https://www.google.com/404")!))
+                }
             }
         }
-
         
         detailPostView.tableView.dataSource = self
         detailPostView.tableView.delegate = self
         
-        
-        print("the post state is \(postState)")
         observeComments()
-
+    }
+    
+    private func setupNavBar() {
+        let menuButton = UIBarButtonItem(image: #imageLiteral(resourceName: "list"), style: .plain, target: self, action: #selector(menuButtonTapped))
+        let addCommentButton = UIBarButtonItem(image: #imageLiteral(resourceName: "plus-symbol"), style: .plain, target: self, action: #selector(addCommentButtonTapped))
+        navigationItem.rightBarButtonItems = [menuButton, addCommentButton]
+    }
+    
+    @objc private func menuButtonTapped() {
+        
+    }
+    
+    @objc private func addCommentButtonTapped() {
+        let addCommentVC = NewCommentViewController()
+        navigationController?.pushViewController(addCommentVC, animated: true)
+        //present(addCommentVC, animated: true, completion: nil)
     }
     
     private func setupPostInfo() {

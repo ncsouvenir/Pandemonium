@@ -55,13 +55,19 @@ class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
     }
     @objc func listNavBarButtonAction(){
         //TODO Load the list
-        //MarkTest ProfileViewController
-        let profileViewController = ProfileViewController()
-        navigationController?.pushViewController(profileViewController, animated: true)
+        //Mark: Test ProfileViewController
+        let menueViewController = MenuVC()
+        menueViewController.modalPresentationStyle = .overCurrentContext
+        present(menueViewController, animated: true, completion: nil)
+//        let profileViewController = ProfileViewController()
+//        navigationController?.pushViewController(profileViewController, animated: true)
     }
     @objc func addPostNavBarButtonAction(){
-        //TODO Load the Add Post ViewController
-        FirebasePostManager.manager.addPosts()
+        let createAPostVC = CreateAPostTableViewController.storyBoardInstance()
+        createAPostVC.modalTransitionStyle = .crossDissolve
+        createAPostVC.modalPresentationStyle = .overCurrentContext
+        let navController = UINavigationController(rootViewController: createAPostVC)
+        present(navController, animated: true, completion: nil)
     }
     @objc func logoIconButtonItemAction(_ sender: UITapGestureRecognizer){
         //TODO Make the app switch to the night mode
@@ -148,11 +154,13 @@ extension HomeFeedVC: UITableViewDelegate, HomeFeedTableViewCellDelegate{
         }
         print("delegate fired")
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let post = posts[indexPath.row - 1]
-        let detailPostVC = DetailPostVC(post: post)
-        navigationController?.pushViewController(detailPostVC, animated: true)
+        guard indexPath.row != 0 else{
+            return
+        }
+        let detailedPostViewController = DetailPostVC(post: posts[indexPath.row - 1])
+        navigationController?.pushViewController(detailedPostViewController, animated: true)
     }
 }
 

@@ -14,8 +14,9 @@ class ProfileView: UIView {
         let tView = UITableView()
         tView.register(UITableViewCell.self, forCellReuseIdentifier: "defaulCell")
         tView.register(ProfileImageCustomTableViewCell.self, forCellReuseIdentifier: "profileImageCell")
-        tView.register(CurrentUserTableViewCell.self, forCellReuseIdentifier: "currentUserImageCell")
+        tView.register(CurrentUserProfileImageCustomTableViewCell.self, forCellReuseIdentifier: "currentUserImageCell")
         tView.register(ProfilePostCustomTableViewCell.self, forCellReuseIdentifier: "profilePostCell")
+        tView.register(CurrentUserProfilePostCustomCustomTableViewCell.self, forCellReuseIdentifier: "currentUserProfilePostCell")
         return tView
     }()
     

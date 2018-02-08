@@ -19,7 +19,7 @@ class CurrentUserProfileVC: UIViewController {
         super.viewDidLoad()
         configureProfileView()
         view.backgroundColor = .cyan
-        
+       // configureLongPressGesture()
     }
     
     
@@ -59,7 +59,6 @@ class CurrentUserProfileVC: UIViewController {
         addImageMenu.addAction(accessCameraAction)
         addImageMenu.addAction(accessPhotoLibraryAction)
         addImageMenu.addAction(cancelAction)
-        
         // 4
         self.present(addImageMenu, animated: true, completion: nil)
     }
@@ -100,6 +99,39 @@ class CurrentUserProfileVC: UIViewController {
         present(imagePickerView, animated: true, completion: nil)
     }
     
+//        private func configureLongPressGesture(){
+//            let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(postCellLongPressed))
+//            cell.isUserInteractionEnabled = true
+//            cell.addGestureRecognizer(longPressGestureRecognizer)
+//    }
+//
+
+    
+    //MARK ACTIONSHEET : long press gesture on post cell
+    private func configureEditPostActionSheet(){
+        // 1
+        let addMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        // 2
+        let editPostAction = UIAlertAction(title: "Edit Post", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("Edit button pressed")
+            //TODO: segue to Edit Post VC
+            let editPostVC = UserEditPostTableViewController.storyBoardInstance()
+            editPostVC.modalTransitionStyle = .crossDissolve
+            editPostVC.modalPresentationStyle = .overCurrentContext
+            self.present(editPostVC, animated: true, completion: nil)
+            print("cell long pressed")
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("user pressed cancel")
+        })
+        // 3
+        addMenu.addAction(editPostAction)
+        addMenu.addAction(cancelAction)
+        // 4
+        self.present(addMenu, animated: true, completion: nil)
+    }
     
 }
 
@@ -113,7 +145,7 @@ extension CurrentUserProfileVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             //dequee currentUserCell
-            let profileCell = tableView.dequeueReusableCell(withIdentifier: "currentUserImageCell") as! CurrentUserTableViewCell
+            let profileCell = tableView.dequeueReusableCell(withIdentifier: "currentUserImageCell") as! CurrentUserProfileImageCustomTableViewCell
             //4 setting the delegate
             profileCell.delegate = self
             profileCell.indexPath = indexPath
@@ -121,7 +153,10 @@ extension CurrentUserProfileVC: UITableViewDataSource{
             return profileCell
         }
         
-        let profilePostCell = tableView.dequeueReusableCell(withIdentifier: "profilePostCell") as! ProfilePostCustomTableViewCell
+        let profilePostCell = tableView.dequeueReusableCell(withIdentifier: "currentUserProfilePostCell") as! CurrentUserProfilePostCustomCustomTableViewCell
+        //4 setting the delegate
+        profilePostCell.delegate = self
+        profilePostCell.indexPath = indexPath
         return profilePostCell
     }
 }
@@ -136,27 +171,31 @@ extension CurrentUserProfileVC: UITableViewDelegate{
             return UIScreen.main.bounds.height * 0.20
         }
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {}
-    
-    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {}
 }
 
 ///// MARK: TextField Delegate: in the custom cell file /////
 
 
-//MARK: Custom Delegates
-extension CurrentUserProfileVC: CurrentUserProfileTableViewCellDelegate{
+//MARK: 5. Custom Image Cell Delegates
+extension CurrentUserProfileVC: CurrentUserProfileImageTableViewCellDelegate{
     
-    func didEditUserName(_ tableViewCell: CurrentUserTableViewCell) {
+    func didEditUserName(_ tableViewCell: CurrentUserProfileImageCustomTableViewCell) {
         self.indexPathForImage = tableViewCell.indexPath
-        let cell = profileView.tableView.cellForRow(at: self.indexPathForImage) as! CurrentUserTableViewCell
+        let cell = profileView.tableView.cellForRow(at: self.indexPathForImage) as! CurrentUserProfileImageCustomTableViewCell
         cell.userNameTextField.isHidden = false
     }
     
-    func didEditProfileImage(_ tableViewCell: CurrentUserTableViewCell) {
+    func didEditProfileImage(_ tableViewCell: CurrentUserProfileImageCustomTableViewCell) {
         self.indexPathForImage = tableViewCell.indexPath
         editImageOptions()
+    }
+}
+
+//MARK: 5. Custom Post Cell Delegates
+extension CurrentUserProfileVC: CurrentUserProfilePostCustomCustomTableViewCellDelegate{
+    
+    func didUseLongPressGesture(_ tableViewCell: CurrentUserProfilePostCustomCustomTableViewCell) {
+        configureEditPostActionSheet()
     }
 }
 
@@ -166,7 +205,7 @@ extension CurrentUserProfileVC: UIImagePickerControllerDelegate, UINavigationCon
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else { print("image is nil"); return }
         
-        let cell = profileView.tableView.cellForRow(at: self.indexPathForImage) as! CurrentUserTableViewCell
+        let cell = profileView.tableView.cellForRow(at: self.indexPathForImage) as! CurrentUserProfileImageCustomTableViewCell
         cell.profileImage.image = image
         
         

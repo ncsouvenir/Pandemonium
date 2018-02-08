@@ -42,7 +42,6 @@ class UserEditPostTableViewController: UITableViewController {
         segmentedControl.addUnderlineForSelectedSegment()
         configureImageGesture()
         
-        
         //        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
         //            cameraButtonItem.isEnabled = false
         //        }

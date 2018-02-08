@@ -61,7 +61,7 @@ class CreateAccountVC: UIViewController {
                 if let error = error {
                     print(error.localizedDescription)
                 } else if let user = user {
-                    print("Success")
+                    self.dismiss(animated: true, completion: nil)
                 }
             }
             

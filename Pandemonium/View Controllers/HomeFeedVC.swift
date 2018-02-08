@@ -13,6 +13,7 @@ class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
         }
     }
     let homeFeedView = HomeFeedView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHomeFeedView()
@@ -78,9 +79,9 @@ class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
         }
         Settings.manager.nightModeSwitch()
         self.homeFeedView.tableView.backgroundColor = Settings.manager.backgroundColor
-        self.viewDidLoad()
-        self.viewWillAppear(true)
         self.homeFeedView.tableView.reloadData()
+        configNavBar()
+        print("Dev: Logo has been pressed")
     }
     
     func setupHomeFeedView(){
@@ -126,18 +127,39 @@ extension HomeFeedVC:UITableViewDataSource{
 
 // MARK: - tabelView Delegates
 extension HomeFeedVC: UITableViewDelegate, HomeFeedTableViewCellDelegate{
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let delete = UITableViewRowAction(style: .destructive, title: "delete") { (action, indexPath) in
-            // delete item at indexPath
-            
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+       
+        let likeAction = UIContextualAction(style: .normal, title: "Like") { (action, view, handler) in
+            handler(true)
+            print("Like Action Tapped")
         }
-        let add = UITableViewRowAction(style: .normal, title: "add") { (action, indexPath) in
-            // add to favorites item at indexPath
-            
-        }
-        add.backgroundColor = .green
-        return [delete, add]
+        likeAction.backgroundColor = .green
+        let configuration = UISwipeActionsConfiguration(actions: [likeAction])
+        configuration.performsFirstActionWithFullSwipe = true //HERE..
+        return configuration
     }
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let dislikeAction = UIContextualAction(style: .normal, title: "Dislike") { (action, view, handler) in
+            handler(true)
+            print("Dislike Action Tapped")
+        }
+        dislikeAction.backgroundColor = .red
+        let configuration = UISwipeActionsConfiguration(actions: [dislikeAction])
+        configuration.performsFirstActionWithFullSwipe = true //HERE..
+        return configuration
+    }
+//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+//        let delete = UITableViewRowAction(style: .destructive, title: "delete") { (action, indexPath) in
+//            // delete item at indexPath
+//
+//        }
+//        let add = UITableViewRowAction(style: .normal, title: "add") { (action, indexPath) in
+//            // add to favorites item at indexPath
+//
+//        }
+//        add.backgroundColor = .green
+//        return [delete, add]
+//    }
     func upVoted(from tablVieCell: HomeFeedTableViewCell) {
         //TODO update the upVote for a post
         if let indexPath = tablVieCell.currentIndexPath{

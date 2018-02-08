@@ -204,6 +204,9 @@ class HomeFeedTableViewCell: UITableViewCell {
             self.numberOfUpDown.text = "\(postUpDownValue)"
         }
         
+        // NightMode
+        self.postTitle.textColor = Settings.manager.textColor
+        
     }
     
     

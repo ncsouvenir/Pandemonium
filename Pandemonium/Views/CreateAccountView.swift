@@ -83,7 +83,8 @@ class CreateAccountView: UIView {
     var submitButton: UIButton = {
         let button = UIButton(type: .roundedRect)
         button.setTitle("   Submit   ", for: .normal)
-        button.backgroundColor = .green
+        button.backgroundColor = .white
+        button.tintColor = .purple
         button.layer.cornerRadius = 10
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.black.cgColor

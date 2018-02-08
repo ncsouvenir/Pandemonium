@@ -10,16 +10,16 @@ import UIKit
 
 class NewCommentViewController: UIViewController {
     
-    //    var post: Post!
+        var post: Post!
     
-    //    init(post: Post) {
-    //        super.init(nibName: nil, bundle: nil)
-    //        self.post = post
-    //    }
-    //
-    //    required init?(coder aDecoder: NSCoder) {
-    //        fatalError()
-    //    }
+        init(post: Post) {
+            super.init(nibName: nil, bundle: nil)
+            self.post = post
+        }
+    
+        required init?(coder aDecoder: NSCoder) {
+            fatalError()
+        }
     
     let commentView = NewCommentView()
     
@@ -45,7 +45,7 @@ class NewCommentViewController: UIViewController {
         navigationItem.title = "New Comment"
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(submitPost))
-        navigationController?.navigationBar.backgroundColor = .orange
+        navigationController?.navigationBar.backgroundColor = Settings.manager.backgroundColor
         
     }
     @objc private func dismissView() {
@@ -59,7 +59,9 @@ class NewCommentViewController: UIViewController {
             showAlert(title: "Error", message: "No comment added")
             return
         }
-        FirebaseCommentManager.manager.addComment(comment: comment)
+        
+        FirebaseCommentManager.manager.addComment(comment: comment, post: post)
+        dismiss(animated: true, completion: nil)
     }
     private func showAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)

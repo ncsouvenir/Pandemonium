@@ -28,8 +28,8 @@ class Settings {
         }
     }
     
-    let fontSize = UIFont(name: "Damascus", size: 15)
     let titleSize = UIFont(name: "Damascus", size: 20)
+    let fontSize = UIFont(name: "Damascus", size: 15)
 
     let schemes = ["Normal", "Nightmode"]
     

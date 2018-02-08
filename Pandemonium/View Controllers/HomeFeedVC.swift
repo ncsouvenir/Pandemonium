@@ -63,6 +63,9 @@ class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
         //        navigationController?.pushViewController(profileViewController, animated: true)
     }
     @objc func addPostNavBarButtonAction(){
+        if FirebaseUserManager.shared.getCurrentUser() == nil {
+            present(LoginVC(), animated: true, completion: nil)
+        }
         let createAPostVC = CreateAPostTableViewController.storyBoardInstance()
         createAPostVC.modalTransitionStyle = .crossDissolve
         createAPostVC.modalPresentationStyle = .overCurrentContext
@@ -103,8 +106,10 @@ extension HomeFeedVC:UITableViewDataSource{
         if indexPath.row == 0{
             let instructionCell = UITableViewCell()
             instructionCell.backgroundColor = Settings.manager.backgroundColor
-            instructionCell.tintColor = Settings.manager.textColor
-            instructionCell.textLabel?.text = "Here is some instruction two how things going"
+            instructionCell.textLabel?.numberOfLines = 0
+            instructionCell.textLabel?.text = "Here are some rules for to help navigate through our app"
+            instructionCell.textLabel?.font = Settings.manager.titleSize
+            instructionCell.textLabel?.textColor = Settings.manager.textColor
             return instructionCell
         }
             //post cell setup

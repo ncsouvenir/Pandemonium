@@ -9,10 +9,11 @@ import UIKit
 protocol HomeFeedTableViewCellDelegate: class{
     func upVoted(from tablVieCell: HomeFeedTableViewCell)
     func downVoted(from tablVieCell: HomeFeedTableViewCell)
+    func userNameSelected(from tablViewCell: HomeFeedTableViewCell)
 }
 
 //MARK: called "Feed Cell"
-class HomeFeedTableViewCell: UITableViewCell {
+class HomeFeedTableViewCell: UITableViewCell{
     var currentIndexPath: IndexPath?
     weak var delegate: HomeFeedTableViewCellDelegate?
     
@@ -42,6 +43,10 @@ class HomeFeedTableViewCell: UITableViewCell {
         label.text = "Username"
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor.lightGray
+        let tap = UITapGestureRecognizer(target: self, action: #selector(userNameSelectedAction))
+        tap.delegate = self
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(tap)
         return label
     }()
     
@@ -221,6 +226,9 @@ class HomeFeedTableViewCell: UITableViewCell {
     @objc private func downVoteAction() {
         self.delegate?.downVoted(from: self)
         // TODO set delegate
+    }
+    @objc private func userNameSelectedAction(){
+        self.delegate?.userNameSelected(from: self)
     }
     
     

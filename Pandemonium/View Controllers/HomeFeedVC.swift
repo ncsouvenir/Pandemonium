@@ -7,7 +7,6 @@
 
 import UIKit
 class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
-    
     var posts = [Post](){
         didSet{
             self.homeFeedView.tableView.reloadData()
@@ -35,7 +34,6 @@ class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
     func configNavBar(){
         let listNavBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "list"), style: .plain, target: self, action: #selector(listNavBarButtonAction))
         let addPostNavBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus-symbol"), style: .plain, target: self, action: #selector(addPostNavBarButtonAction))
-        //        let logoIconButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "compass_background"), style: .done, target: self, action: #selector(logoIconButtonItemAction))
         let logo = #imageLiteral(resourceName: "parrot")
         let imageView = UIImageView(image:logo)
         imageView.contentMode = .scaleAspectFit
@@ -45,7 +43,6 @@ class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(tap)
         self.navigationItem.titleView = imageView
-        //        navigationItem.leftBarButtonItem = logoIconButtonItem
         navigationItem.rightBarButtonItems = [listNavBarButtonItem, addPostNavBarButtonItem]
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = Settings.manager.textColor
@@ -53,14 +50,11 @@ class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
         navigationItem.title = "Pandemonium"
         navigationController?.navigationBar.backgroundColor = Settings.manager.backgroundColor
     }
+    //Load the list
     @objc func listNavBarButtonAction(){
-        //TODO Load the list
-        //Mark: Test ProfileViewController
         let menueViewController = MenuVC(safeArea: self.homeFeedView.safeAreaLayoutGuide)
         menueViewController.modalPresentationStyle = .overCurrentContext
         present(menueViewController, animated: true, completion: nil)
-        //        let profileViewController = ProfileViewController()
-        //        navigationController?.pushViewController(profileViewController, animated: true)
     }
     @objc func addPostNavBarButtonAction(){
         if FirebaseUserManager.shared.getCurrentUser() == nil {
@@ -84,7 +78,6 @@ class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
         self.viewDidLoad()
         self.viewWillAppear(true)
         self.homeFeedView.tableView.reloadData()
-        print("Dev: Logo has been pressed")
     }
     
     func setupHomeFeedView(){
@@ -130,7 +123,6 @@ extension HomeFeedVC:UITableViewDataSource{
 
 // MARK: - tabelView Delegates
 extension HomeFeedVC: UITableViewDelegate, HomeFeedTableViewCellDelegate{
-    
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .destructive, title: "delete") { (action, indexPath) in
             // delete item at indexPath
@@ -149,7 +141,6 @@ extension HomeFeedVC: UITableViewDelegate, HomeFeedTableViewCellDelegate{
             let postSetup = posts[indexPath.row-1]
             FirebasePostManager.manager.updatePostUpVote(for: postSetup)
         }
-        print("delegate fired")
     }
     func downVoted(from tablVieCell: HomeFeedTableViewCell) {
         //TODO update the downVote for a post
@@ -157,9 +148,44 @@ extension HomeFeedVC: UITableViewDelegate, HomeFeedTableViewCellDelegate{
             let postSetup = posts[indexPath.row-1]
             FirebasePostManager.manager.updatePostDownVote(for: postSetup)
         }
-        print("delegate fired")
+        
     }
-    
+    //This function will handle the action sheet for a specific user and give you the options to either report/viewProfile/Cancel
+    func userNameSelected(from tablViewCell: HomeFeedTableViewCell) {
+        if let indexPath = tablViewCell.currentIndexPath{
+            let postSetup = self.posts[indexPath.row - 1]
+            let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+            let reportAction = UIAlertAction(title: "Report", style: .default, handler: { (action) in
+                self.getReportAlert()
+            })
+            let userProfileAction = UIAlertAction(title: "View Profile", style: .default, handler: { (action) in
+                //TODO Inject the User to the profileViewController
+                let profileViewController = ProfileViewController()
+                self.navigationController?.pushViewController(profileViewController, animated: true)
+            })
+            actionSheet.addAction(reportAction)
+            actionSheet.addAction(userProfileAction)
+            actionSheet.addAction(cancelAction)
+            present(actionSheet, animated: true, completion: nil)
+            
+        }
+    }
+    //This function will give you alert with textField where user can enter more information about the report
+    func getReportAlert(){
+        let reportAlert = UIAlertController(title: "Report User", message: "Please enter more information", preferredStyle: .alert)
+        let reportOKAction = UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+            //TODO Send report to Houston
+            print(reportAlert.textFields?.first?.text)
+        })
+        let reportCancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        reportAlert.addTextField { (textField) in
+            textField.placeholder = "ex: Improper Content, Violence"
+        }
+        reportAlert.addAction(reportOKAction)
+        reportAlert.addAction(reportCancelAction)
+        self.present(reportAlert, animated: true, completion: nil)
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard indexPath.row != 0 else{
             return

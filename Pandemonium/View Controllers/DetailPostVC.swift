@@ -18,12 +18,19 @@ enum PostState {
 class DetailPostVC: UIViewController {
     
     var post: Post!
+    private var commentUIDs = [String]() {
+        didSet {
+            print(commentUIDs)
+            FirebaseCommentManager.manager.observeComments(commentUIDs: commentUIDs, completionHandler: { self.comments = $0 }, errorHandler: { print($0) })
+        }
+    }
     private var comments = [Comment]() {
         didSet {
-            print(comments)
+            // TODO: - Sort comments
             detailPostView.tableView.reloadData()
         }
     }
+    
     private var detailPostView: DetailPostView!
     private var postState: PostState!
     
@@ -82,12 +89,20 @@ class DetailPostVC: UIViewController {
                 }
             }
         }
-
+        
         detailPostView.tableView.dataSource = self
         detailPostView.tableView.delegate = self
         
-        observeComments()
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        FirebaseCommentManager.manager.loadCommentUIDs(postUID: post.postUID, completionHandler: { self.commentUIDs = $0 }, errorHandler: { print($0) } )
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
     }
     
     private func setupNavBar() {
@@ -113,7 +128,7 @@ class DetailPostVC: UIViewController {
     
     private func setupPostInfo() {
         // TODO: - Stuff in comments
-        getUsernameFromUID(uid: post.userUID, completionHandler: { self.detailPostView.usernameLabel.text = $0 }, errorHandler: { print($0) })
+        FirebaseUserManager.shared.getUsernameFromUID(uid: post.userUID, completionHandler: { self.detailPostView.usernameLabel.text = $0 }, errorHandler: { print($0) })
         detailPostView.karmaLabel.text = (post.upvotes - post.downvotes).description
         detailPostView.dateLabel.text = post.date
     }
@@ -121,58 +136,11 @@ class DetailPostVC: UIViewController {
     func getImageFromFirebaseStorage(imageUID: String) {
     }
     
-    // Get username from the userUID in injected Post
-    func getUsernameFromUID(uid: String,
-                            completionHandler: @escaping (String) -> Void,
-                            errorHandler: @escaping (Error) -> Void) {
-        Database.database().reference(withPath: "users").child(uid).observeSingleEvent(of: .value) { (snapshot) in
-            if let json = snapshot.value {
-                do {
-                    let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
-                    let user = try JSONDecoder().decode(Parrot.self, from: jsonData)
-                    completionHandler(user.appUserName)
-                } catch {
-                    print(error)
-                    errorHandler(error)
-                }
-            }
-        }
-    }
+
     
     // Gets Array of commentUIDs
     // Then asynchroniously get the values for the comments
-    func observeComments() {
-        Database.database().reference(withPath: "posts").child("postUID").child("comments").observe(.value) { (dataSnapshot) in
-            guard let commentsUIDSnapshot = dataSnapshot.children.allObjects as? [DataSnapshot] else { print("comments array in post is nil"); return }
-            
-            var commentUIDArray = [String]()
-            for snap in commentsUIDSnapshot {
-                guard let json = snap.value else { return }
-                do {
-                    let arrayJSONData = try JSONSerialization.data(withJSONObject: json, options: [])
-                    commentUIDArray = try JSONDecoder().decode([String].self, from: arrayJSONData)
-                } catch {
-                    print(error)
-                }
-            }
-            var firComments = [Comment]()
-            for uid in commentUIDArray {
-                
-                DispatchQueue.main.async {
-                    if let firCommentAsJSON = Database.database().reference(withPath: "comments").value(forKey: uid) {
-                        do {
-                            let firCommentJSONData = try JSONSerialization.data(withJSONObject: firCommentAsJSON, options: [])
-                            let firComment = try JSONDecoder().decode(Comment.self, from: firCommentJSONData)
-                            firComments.append(firComment)
-                        } catch {
-                            print(error)
-                        }
-                    }
-                }
-            }
-            self.comments = firComments
-        }
-    }
+    
     
 }
 
@@ -188,7 +156,9 @@ extension DetailPostVC: UITableViewDataSource {
         let comment = comments[indexPath.row]
         cell.commentLabel.text = comment.commentText
         cell.dateLabel.text = comment.date
-        getUsernameFromUID(uid: comment.userUID, completionHandler: { cell.usernameLabel.text =  $0 }, errorHandler: { print($0) })
+        FirebaseUserManager.shared.getUsernameFromUID(uid: comment.userUID, completionHandler: { cell.usernameLabel.text =  $0 }, errorHandler: { print($0) })
+        cell.setNeedsLayout()
+
         return cell
     }
 }

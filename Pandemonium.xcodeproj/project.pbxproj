@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		7A7B152AA9DC99C983621B62 /* Pods_Pandemonium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F0D7812268DEF37A090C2FA /* Pods_Pandemonium.framework */; };
-		810C8FC3202C022A0070C3A1 /* UserEditPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 810C8FC2202C022A0070C3A1 /* UserEditPost.storyboard */; };
 		810C8FC4202C03E50070C3A1 /* CreateAPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 811EEE61202A577900D8BC94 /* CreateAPost.storyboard */; };
 		81347F412027FAD50067931B /* ProfilePostCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81347F402027FAD50067931B /* ProfilePostCustomTableViewCell.swift */; };
 		81347F432027FB750067931B /* ProfileImageCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81347F422027FB750067931B /* ProfileImageCustomTableViewCell.swift */; };
 		8138C115202BB5B5004355DA /* FirebaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8138C114202BB5B5004355DA /* FirebaseStorageManager.swift */; };
+		81589F33202C0856008A3E52 /* UserEditPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81589F32202C0855008A3E52 /* UserEditPost.storyboard */; };
 		81590362202AC18500284A83 /* UserEditPostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590361202AC18500284A83 /* UserEditPostTableViewController.swift */; };
 		814E957B202CAF5C00CECFA4 /* DateFormatterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814E957A202CAF5C00CECFA4 /* DateFormatterManager.swift */; };
 		818555332021230E0089752E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818555322021230E0089752E /* AppDelegate.swift */; };
@@ -81,11 +81,11 @@
 		0F0D7812268DEF37A090C2FA /* Pods_Pandemonium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pandemonium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		33CFD054AE80991FD7066CD1 /* Pods-PandemoniumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PandemoniumUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PandemoniumUITests/Pods-PandemoniumUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5E6DB434F704BE94789B1E1D /* Pods-PandemoniumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PandemoniumTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PandemoniumTests/Pods-PandemoniumTests.release.xcconfig"; sourceTree = "<group>"; };
-		810C8FC2202C022A0070C3A1 /* UserEditPost.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserEditPost.storyboard; sourceTree = "<group>"; };
 		811EEE61202A577900D8BC94 /* CreateAPost.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateAPost.storyboard; sourceTree = "<group>"; };
 		81347F402027FAD50067931B /* ProfilePostCustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePostCustomTableViewCell.swift; sourceTree = "<group>"; };
 		81347F422027FB750067931B /* ProfileImageCustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImageCustomTableViewCell.swift; sourceTree = "<group>"; };
 		8138C114202BB5B5004355DA /* FirebaseStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageManager.swift; sourceTree = "<group>"; };
+		81589F32202C0855008A3E52 /* UserEditPost.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserEditPost.storyboard; sourceTree = "<group>"; };
 		81590361202AC18500284A83 /* UserEditPostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditPostTableViewController.swift; sourceTree = "<group>"; };
 		814E957A202CAF5C00CECFA4 /* DateFormatterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterManager.swift; sourceTree = "<group>"; };
 		8185552F2021230E0089752E /* Pandemonium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pandemonium.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,7 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				811EEE61202A577900D8BC94 /* CreateAPost.storyboard */,
-				810C8FC2202C022A0070C3A1 /* UserEditPost.storyboard */,
+				81589F32202C0855008A3E52 /* UserEditPost.storyboard */,
 			);
 			path = StoryBoard;
 			sourceTree = "<group>";
@@ -461,8 +461,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				818555402021230E0089752E /* LaunchScreen.storyboard in Resources */,
+				81589F33202C0856008A3E52 /* UserEditPost.storyboard in Resources */,
 				810C8FC4202C03E50070C3A1 /* CreateAPost.storyboard in Resources */,
-				810C8FC3202C022A0070C3A1 /* UserEditPost.storyboard in Resources */,
 				8185553D2021230E0089752E /* Assets.xcassets in Resources */,
 				81AB4DCE2022908E0034B761 /* GoogleService-Info.plist in Resources */,
 			);

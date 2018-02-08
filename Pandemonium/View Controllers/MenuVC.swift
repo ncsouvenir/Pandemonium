@@ -9,6 +9,8 @@
 import UIKit
 
 class MenuVC: UIViewController, UIGestureRecognizerDelegate {
+    
+    var user: Parrot!
 
     var safeArea: UILayoutGuide
      init(safeArea: UILayoutGuide) {
@@ -79,7 +81,15 @@ class MenuVC: UIViewController, UIGestureRecognizerDelegate {
         present(alertViewController, animated: true, completion: nil)
     }
     @objc func segueToProfile(){
-        //        TODO Check if ther is a current user or not
+        //        TODO Check if there is a current user or not
+        
+        //TODO: initialize the viewController with the user
+        let currentUserProfileVC = CurrentUserProfileVC(user: user)
+        currentUserProfileVC.modalPresentationStyle = .overCurrentContext
+        currentUserProfileVC.modalTransitionStyle = .crossDissolve
+        present(currentUserProfileVC, animated: true, completion: nil)
+        
+        
         let alertViewController = UIAlertController(title: "Your aren't signed in please sign in ", message: "", preferredStyle: UIAlertControllerStyle.alert)
         let alertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
         alertViewController.addAction(alertAction)

@@ -12,14 +12,32 @@ import AVFoundation
 class CurrentUserProfileVC: UIViewController {
     
     let profileView = ProfileView()
+    let currentUserCustomCell = CurrentUserProfileImageCustomTableViewCell()
     var imagePickerView = UIImagePickerController()
     var indexPathForImage = IndexPath()
+    var user : Parrot!
+    
+    //injecting the user into the VC
+    
+    init(user: Parrot){
+        super.init(nibName: nil, bundle: nil)
+        self.user = user
+        //TODO: call the configure function
+        currentUserCustomCell.configureProfileView(user: user)
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {//
+        super.init(nibName: nibNameOrNil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder){// required becuase subclassing
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureProfileView()
         view.backgroundColor = .cyan
-       // configureLongPressGesture()
     }
     
     

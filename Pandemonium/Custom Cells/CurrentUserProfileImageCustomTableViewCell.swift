@@ -215,6 +215,10 @@ class CurrentUserProfileImageCustomTableViewCell: UITableViewCell {
             constraint.height.equalTo(snp.width).multipliedBy(0.08)
         }
     }
+    
+    func configureProfileView(user: Parrot){
+        userNameLabel.text = user.appUserName
+    }
 }
 
 

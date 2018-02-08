@@ -56,7 +56,7 @@ class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
     @objc func listNavBarButtonAction(){
         //TODO Load the list
         //Mark: Test ProfileViewController
-        let menueViewController = MenuVC()
+        let menueViewController = MenuVC(safeArea: self.homeFeedView.safeAreaLayoutGuide)
         menueViewController.modalPresentationStyle = .overCurrentContext
         present(menueViewController, animated: true, completion: nil)
 //        let profileViewController = ProfileViewController()

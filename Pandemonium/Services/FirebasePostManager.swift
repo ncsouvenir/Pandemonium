@@ -51,6 +51,12 @@ class FirebasePostManager{
         child.setValue(post.postToJSON())
     }
     
+    //TODO: write function to update a post when edited
+    func updatePost(post: Post){
+        //get a reference to the post
+        //get a reference to that specific post
+        //update that post
+    }
     
     func updatePostUpVote(for post: Post){
         let dbReference = Database.database().reference().child("posts")

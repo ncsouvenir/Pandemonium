@@ -54,12 +54,12 @@ class MenuVC: UIViewController, UIGestureRecognizerDelegate {
             constraint.width.equalTo(view.safeAreaLayoutGuide.snp.width).multipliedBy(0.50)
             constraint.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
-        menuView.exitButton.addTarget(self, action: #selector(exit), for: .touchUpInside)
+//        menuView.exitButton.addTarget(self, action: #selector(exit), for: .touchUpInside)
         menuView.signInButton.addTarget(self, action: #selector(segueToSignIn), for: .touchUpInside)
         menuView.signOutButton.addTarget(self, action: #selector(signOutAction), for: .touchUpInside)
         menuView.profileButton.addTarget(self, action: #selector(segueToProfile), for: .touchUpInside)
         menuView.homeButton.addTarget(self, action: #selector(exit), for: .touchUpInside)
-        menuView.createNewAccount.addTarget(self, action: #selector(segueToCreateAccount), for: .touchUpInside)
+//        menuView.createNewAccount.addTarget(self, action: #selector(segueToCreateAccount), for: .touchUpInside)
     }
     //this method will exit the menue
     @objc func exit(){

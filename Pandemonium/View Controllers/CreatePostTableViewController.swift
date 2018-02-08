@@ -96,7 +96,7 @@ class CreateAPostTableViewController: UITableViewController {
     private func configureNavBar(){
         navigationItem.title = "Create A Post"
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Send", style: .plain, target: self, action: #selector(sendButtonPressed))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create", style: .plain, target: self, action: #selector(sendButtonPressed))
     }
     
     

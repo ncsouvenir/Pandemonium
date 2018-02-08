@@ -38,7 +38,7 @@ class CurrentUserTableViewCell: UITableViewCell {
     //User name label
     lazy var userNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "warMachines"
+        label.text = "Talking Parrot"
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.textColor = .white
         return label
@@ -58,9 +58,9 @@ class CurrentUserTableViewCell: UITableViewCell {
     //Name Edit Button
     lazy var userNameEditButton: UIButton = {
         let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "editPencil"), for: .normal)
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.white.cgColor
+        button.setImage(#imageLiteral(resourceName: "pencil"), for: .normal)
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.red.cgColor
         button.layer.backgroundColor = UIColor.white.cgColor
         button.addTarget(self, action: #selector(editUserNameButtonPressed), for: .touchUpInside)
         return button
@@ -70,9 +70,9 @@ class CurrentUserTableViewCell: UITableViewCell {
     //Edit Image Button
     lazy var imageEditButton: UIButton = {
         let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "editPencil"), for: .normal)
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.white.cgColor
+        button.setImage(#imageLiteral(resourceName: "pencil"), for: .normal)
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.red.cgColor
         button.layer.backgroundColor = UIColor.white.cgColor
         button.addTarget(self, action: #selector(editImageButtonPressed), for: .touchUpInside)
         return button
@@ -83,7 +83,7 @@ class CurrentUserTableViewCell: UITableViewCell {
         let imageView = roundedImageView()
         imageView.layer.borderWidth = 2
         imageView.clipsToBounds = true
-        imageView.image = #imageLiteral(resourceName: "warMachine")
+        imageView.image = #imageLiteral(resourceName: "emptyProfileImg")
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.contentMode = .scaleAspectFill
         return imageView
@@ -114,6 +114,7 @@ class CurrentUserTableViewCell: UITableViewCell {
         super.layoutSubviews()
         //make profile image a circle
         imageEditButton.layer.cornerRadius = imageEditButton.bounds.height / 2.0
+        
         imageEditButton.layer.masksToBounds = true
         userNameEditButton.layer.cornerRadius = userNameEditButton.bounds.height / 2.0
         userNameEditButton.layer.masksToBounds = true

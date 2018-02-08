@@ -29,6 +29,8 @@ class UserEditPostTableViewController: UITableViewController {
     var detailedImageView = CreatePostSelectedImageView()
     private let imagePickerView = UIImagePickerController()
     
+    //Inject Post
+    //var post : Post //initialize by injection
     
     override func viewDidLoad() {
         
@@ -126,7 +128,7 @@ class UserEditPostTableViewController: UITableViewController {
     private func configureNavBar(){
         navigationItem.title = "Edit A Post"
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Send", style: .plain, target: self, action: #selector(sendButtonPressed))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Update", style: .plain, target: self, action: #selector(sendButtonPressed))
     }
     
     

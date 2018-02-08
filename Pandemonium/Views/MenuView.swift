@@ -33,6 +33,12 @@ class MenuView: UIView {
         button.titleLabel?.textColor = .black
         return button
     }()
+    lazy var createNewAccount: UIButton = {
+        let button = UIButton(type: UIButtonType.system)
+        button.setTitle("Create New Account", for: .normal)
+        button.titleLabel?.textColor = .black
+        return button
+    }()
     lazy var homeButton: UIButton = {
         let button = UIButton(type: UIButtonType.system)
         button.setTitle("Home", for: .normal)
@@ -40,7 +46,7 @@ class MenuView: UIView {
         return button
     }()
     lazy var stackView: UIStackView = {
-        let sView = UIStackView(arrangedSubviews: [homeButton,signInButton, signOutButton, profileButton])
+        let sView = UIStackView(arrangedSubviews: [homeButton,signInButton, signOutButton, profileButton, createNewAccount])
         sView.axis = .vertical
         sView.distribution = .fillEqually
         sView.alignment = UIStackViewAlignment.leading

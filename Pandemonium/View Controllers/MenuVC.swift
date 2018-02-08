@@ -48,6 +48,7 @@ class MenuVC: UIViewController, UIGestureRecognizerDelegate {
         menuView.signOutButton.addTarget(self, action: #selector(signOutAction), for: .touchUpInside)
         menuView.profileButton.addTarget(self, action: #selector(segueToProfile), for: .touchUpInside)
         menuView.homeButton.addTarget(self, action: #selector(exit), for: .touchUpInside)
+        menuView.createNewAccount.addTarget(self, action: #selector(segueToCreateAccount), for: .touchUpInside)
     }
     //this method will exit the menue
     @objc func exit(){
@@ -73,6 +74,12 @@ class MenuVC: UIViewController, UIGestureRecognizerDelegate {
         alertViewController.addAction(alertAction)
         present(alertViewController, animated: true, completion: nil)
         
+    }
+    @objc func segueToCreateAccount(){
+        //TODO: segue to the create account
+        let createAccountViewController = CreateAccountVC()
+        let navigationController = UINavigationController(rootViewController: createAccountViewController)
+        present(navigationController, animated: true, completion: nil)
     }
     
     

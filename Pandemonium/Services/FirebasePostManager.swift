@@ -45,14 +45,13 @@ class FirebasePostManager{
     }
     
     //MARK: Adding posts FROM VC to Firebase
-    func addPosts() {
-        let comment1 = Comment(commentUID: "asd4149", userUID: "will&&", postUID: "somePostID", date: "01022018", commentText: "awesome cats")
-
-        let dbReference = Database.database().reference().child("posts")
-        let id = dbReference.childByAutoId()
-                let post2 = Post(postUID: id.key, userUID: "-L4laCvUNm9VvaiqnXxh", date: "010118", title: "Awesome Cats", upvotes: 1999, downvotes: 0, tags: [""], bodyText: "Cats are the best ever", url: nil, image: "sdfs", comments: [""])
-        id.setValue(post2.postToJSON())
+    func addPost(userUID: String, date: String, title: String, tags: [String], bodyText: String?, url: String?, image: UIImage?) {
+        let child = Database.database().reference(withPath: "posts").childByAutoId()
+        let post = Post(postUID: child.key, userUID: userUID, date: date, title: title, upvotes: 0, downvotes: 0, tags: tags, bodyText: bodyText, url: url, image: "imgURL", comments: nil)
+        child.setValue(post.postToJSON())
     }
+    
+    
     func updatePostUpVote(for post: Post){
         let dbReference = Database.database().reference().child("posts")
         let postReference = dbReference.child(post.postUID)

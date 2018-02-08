@@ -59,7 +59,7 @@ class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
     }
     @objc func addPostNavBarButtonAction(){
         //TODO Load the Add Post ViewController
-        FirebasePostManager.manager.addPosts()
+        //FirebasePostManager.manager.addPosts()
     }
     @objc func logoIconButtonItemAction(_ sender: UITapGestureRecognizer){
         //TODO Make the app switch to the night mode

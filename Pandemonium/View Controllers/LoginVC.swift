@@ -8,18 +8,18 @@
 import UIKit
 
 class LoginVC: UIViewController {
-
+    
     let loginView = LoginView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(loginView)
         setupButtonActions()
-        
-        
+        view.backgroundColor = .clear
+        loginView.backgroundColor = .clear
         //turnRedAndShakeAnimation(view: loginView.containerView)
     }
-
+    
 }
 
 // MARK: - Gestures
@@ -27,8 +27,7 @@ extension LoginVC {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
             if touch.view == loginView.blurView {
-                // TODO: - Dismiss login view controller and go back to previous vc
-                print("")
+                dismiss(animated: true, completion: nil)
             } else {
                 return
             }
@@ -50,7 +49,7 @@ extension LoginVC {
                 
                 view.frame.origin.x += 10
             }, completion: { (done) in
-
+                
             })
             //
             
@@ -110,7 +109,7 @@ extension LoginVC {
                 print(error)
             } else if let user = user {
                 print("\(user) has logged in")
-                self.tabBarController?.selectedIndex = 1
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }
@@ -142,16 +141,9 @@ extension LoginVC {
     }
     
     @objc private func createNewAccountButtonTapped() {
-        let post = Post(postUID: "a", userUID: "s", date: "s", title: "f", upvotes: 0, downvotes: 0, tags: ["j"], bodyText: nil, url: "f", image: nil, comments: [""])
-        
-        let vc = DetailPostVC(post: post)
-        
-        present(vc, animated: true, completion: nil)
-        
-        
-//        let createAccountVC = CreateAccountVC()
-//        createAccountVC.modalTransitionStyle = .crossDissolve
-//        createAccountVC.modalPresentationStyle = .overCurrentContext
-//        present(createAccountVC, animated: true, completion: nil)
+        let createAccountVC = CreateAccountVC()
+        createAccountVC.modalTransitionStyle = .crossDissolve
+        createAccountVC.modalPresentationStyle = .overCurrentContext
+        present(createAccountVC, animated: true, completion: nil)
     }
 }

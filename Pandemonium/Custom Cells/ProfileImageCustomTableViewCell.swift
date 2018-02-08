@@ -23,15 +23,15 @@ class ProfileImageCustomTableViewCell: UITableViewCell {
         return imageView
     }()
     lazy var userNameLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "warMachines"
         label.font = UIFont.boldSystemFont(ofSize: 15)
         label.textColor = .white
         return label
     }()
-
+    
     lazy var profileImage: UIImageView = {
-       let imageView = roundedImageView()
+        let imageView = roundedImageView()
         imageView.layer.borderWidth = 2
         imageView.clipsToBounds = true
         imageView.image = #imageLiteral(resourceName: "warMachine")
@@ -61,7 +61,7 @@ class ProfileImageCustomTableViewCell: UITableViewCell {
         setupUserNameLabel()
     }
     private func setupProfileBackGroundView(){
-     addSubview(profileBackGroundView)
+        addSubview(profileBackGroundView)
         profileBackGroundView.snp.makeConstraints { (constraint) in
             constraint.edges.equalTo(snp.edges)
         }
@@ -86,15 +86,15 @@ class ProfileImageCustomTableViewCell: UITableViewCell {
         self.profileImage.image = image
     }
     private func convertImageToBW(image:UIImage) -> UIImage {
-    let filter = CIFilter(name: "CIPhotoEffectMono")
-    // convert UIImage to CIImage and set as input
-    let ciInput = CIImage(image: image)
-    filter?.setValue(ciInput, forKey: "inputImage")
-    // get output CIImage, render as CGImage first to retain proper UIImage scale
-    let ciOutput = filter?.outputImage
-    let ciContext = CIContext()
-    let cgImage = ciContext.createCGImage(ciOutput!, from: (ciOutput?.extent)!)
-    return UIImage(cgImage: cgImage!)
+        let filter = CIFilter(name: "CIPhotoEffectMono")
+        // convert UIImage to CIImage and set as input
+        let ciInput = CIImage(image: image)
+        filter?.setValue(ciInput, forKey: "inputImage")
+        // get output CIImage, render as CGImage first to retain proper UIImage scale
+        let ciOutput = filter?.outputImage
+        let ciContext = CIContext()
+        let cgImage = ciContext.createCGImage(ciOutput!, from: (ciOutput?.extent)!)
+        return UIImage(cgImage: cgImage!)
     }
 }
 

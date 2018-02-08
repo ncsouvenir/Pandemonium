@@ -31,7 +31,7 @@ class FirebaseUserManager {
     func login(with email: String,
                and password: String,
                completionHandler: @escaping (User?, Error?) -> Void) {
-
+        
         let completion: (User?, Error?) -> Void = { (user, error) in
             if let error = error {
                 completionHandler(nil, error)
@@ -46,7 +46,7 @@ class FirebaseUserManager {
     
     func userNameCheck(username: String) {
         
-
+        
     }
     
     func createAccount(with email: String,
@@ -56,10 +56,10 @@ class FirebaseUserManager {
         let completion: (User?, Error?) -> Void = { (user, error) in
             if let error = error {
                 print(error.localizedDescription)
-            } else if let _ = user {
-            //TODO reference user
-                let child = self.usersReference.childByAutoId()
-            child.setValue(Parrot(userUID: child.key, appUserName: username, upvotes: 0, downvotes: 0, numberOfComments: 0, image: nil, posts: nil).toJSON())
+            } else if let user = user {
+                //TODO reference user
+                let child = self.usersReference.child(user.uid)
+                child.setValue(Parrot(userUID: user.uid, appUserName: username, upvotes: 0, downvotes: 0, numberOfComments: 0, image: nil, posts: nil).toJSON())
             }
         }
         Auth.auth().createUser(withEmail: email, password: password, completion: completion)

@@ -9,7 +9,7 @@
 import UIKit
 
 class CreatePostSelectedImageView: UIView {
-
+    
     lazy var dismissView: UIButton = {
         let button = UIButton(frame: UIScreen.main.bounds) //This tells the button to be the size of the screen
         button.backgroundColor = .clear

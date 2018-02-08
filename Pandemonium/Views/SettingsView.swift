@@ -13,7 +13,7 @@ class SettingsView: UIView {
     lazy var colorLabel: UILabel = {
         let label = UILabel()
         label.text = "Color Schemes:"
-//        label.font = Settings.manager.fontSize
+        //        label.font = Settings.manager.fontSize
         label.textColor = Settings.manager.textColor
         return label
     }()
@@ -31,7 +31,7 @@ class SettingsView: UIView {
         tv.isHidden = true
         return tv
     }()
-
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
@@ -60,11 +60,11 @@ class SettingsView: UIView {
         }
         colorTableView.snp.makeConstraints { (make) in
             make.width.equalTo(colorButton)
-//            make.height.equalTo(20)
+            //            make.height.equalTo(20)
             make.top.equalTo(colorButton.snp.bottom)
             
         }
         
     }
-
+    
 }

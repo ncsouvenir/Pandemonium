@@ -8,16 +8,16 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-//    let user: Parrot
-//    init(user: Parrot){
-//    self.user = user
-//        super.init(nibName: nil, bundle: nil)
-//    }
-
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//    
+    //    let user: Parrot
+    //    init(user: Parrot){
+    //    self.user = user
+    //        super.init(nibName: nil, bundle: nil)
+    //    }
+    
+    //    required init?(coder aDecoder: NSCoder) {
+    //        fatalError("init(coder:) has not been implemented")
+    //    }
+    //    
     let profileView = ProfileView()
     
     override func viewDidLoad() {
@@ -29,7 +29,7 @@ class ProfileViewController: UIViewController {
     }
     
     func setupNavigationBar(){
-//        navigationItem.title = "John Jack Jones"
+        //        navigationItem.title = "John Jack Jones"
         
     }
     func setupProfileView(){
@@ -40,13 +40,13 @@ class ProfileViewController: UIViewController {
         self.profileView.tableView.dataSource = self
         self.profileView.tableView.delegate = self
     }
-
+    
     
 }
 
 extension ProfileViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return (self.user?.posts.count + 1)
+        //        return (self.user?.posts.count + 1)
         return 10
     }
     
@@ -68,6 +68,13 @@ extension ProfileViewController: UITableViewDelegate{
         }else{
             return UIScreen.main.bounds.height*0.20
         }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard indexPath.row != 0 else{
+            return
+        }
+        let detailedPostViewController = DetailPostVC()
+        navigationController?.present(detailedPostViewController, animated: true, completion: nil)
     }
     
 }

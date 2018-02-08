@@ -10,8 +10,8 @@ import UIKit
 class ProfileView: UIView {
     
     lazy var tableView: UITableView = {
-
-       let tView = UITableView()
+        
+        let tView = UITableView()
         tView.register(UITableViewCell.self, forCellReuseIdentifier: "defaulCell")
         tView.register(ProfileImageCustomTableViewCell.self, forCellReuseIdentifier: "profileImageCell")
         tView.register(CurrentUserTableViewCell.self, forCellReuseIdentifier: "currentUserImageCell")

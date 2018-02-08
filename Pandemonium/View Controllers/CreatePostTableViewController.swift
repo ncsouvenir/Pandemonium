@@ -10,7 +10,7 @@ import Firebase
 import AVFoundation
 
 class CreateAPostTableViewController: UITableViewController {
-
+    
     @IBOutlet weak var ImageCell: UITableViewCell!
     @IBOutlet weak var linkCell: UITableViewCell!
     
@@ -67,7 +67,6 @@ class CreateAPostTableViewController: UITableViewController {
         let presentCreatePostSelectedImageVC = CreatePostSelectedImageVC(selectedImage: selectedImage)
         presentCreatePostSelectedImageVC.modalTransitionStyle = .crossDissolve
         presentCreatePostSelectedImageVC.modalPresentationStyle = .overCurrentContext
-        
         present(presentCreatePostSelectedImageVC, animated: true, completion: nil)
         print("image tapped")
     }
@@ -107,8 +106,9 @@ class CreateAPostTableViewController: UITableViewController {
     }
     
     @objc func sendButtonPressed(){
-        //TODO: call FirebasePostManager.manager.addPosts() to send to Firebase
-        FirebasePostManager.manager.addPosts()
+        //TODO: call FirebasePostManager.manager.addPosts() to populate the new post in the HomeFeed VC
+        let currentUser = FirebaseUserManager.shared.getCurrentUser()!
+        FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: Date().description, title: titleTextField.text!, tags: ["#BANANA", "#NATE SUX"], bodyText: bodytextView.text, url: urlTextField.text, image: imageView.image)
         //TODO: alert to notify user that the post was added
         let alertController = UIAlertController(title: "Success!",
                                                 message:"Post added to the feed",

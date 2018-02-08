@@ -11,7 +11,7 @@ import SnapKit
 class LoginView: UIView {
     
     var blurView: UIVisualEffectView = {
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.prominent)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         return blurEffectView
@@ -26,7 +26,7 @@ class LoginView: UIView {
         view.layer.shadowOffset = CGSize(width: 2, height: 2)
         return view
     }()
-
+    
     var userNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Email"
@@ -115,7 +115,7 @@ class LoginView: UIView {
         setupCreateNewAccountButton()
     }
     
-
+    
 }
 
 // MARK: - Setup Views

@@ -92,7 +92,7 @@ class CreateAccountView: UIView {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         return button
     }()
-
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
@@ -105,7 +105,7 @@ class CreateAccountView: UIView {
         backgroundColor = .clear
         setupViews()
     }
-
+    
     private func setupViews() {
         blurView.frame = bounds
         let viewObjects = [blurView, containerView, userNameLabel, userNameTextField, emailLabel, emailTextField, passwordLabel, passwordTextField, confirmPasswordLabel, confirmPasswordTextField, submitButton] as [UIView]
@@ -165,5 +165,5 @@ class CreateAccountView: UIView {
         }
         
     }
-
+    
 }

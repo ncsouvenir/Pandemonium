@@ -16,7 +16,7 @@ enum PostState {
 }
 
 class DetailPostVC: UIViewController {
-
+    
     var post: Post!
     private var comments = [Comment]() {
         didSet {
@@ -30,21 +30,17 @@ class DetailPostVC: UIViewController {
         self.init(nibName: nil, bundle: nil)
         self.post = post
 
-        if post.bodyText != nil {
-            postState = .text
-            detailPostView = DetailPostView(postState: postState)
-        }
-
-        if post.url != nil {
+        if post.url != nil && post.url != "" {
             postState = .url
             detailPostView = DetailPostView(postState: postState)
-        }
-
-        if post.image != nil {
+        } else if post.bodyText != nil {
+            postState = .text
+            detailPostView = DetailPostView(postState: postState)
+        } else if post.image != nil {
             postState = .image
             detailPostView = DetailPostView(postState: postState)
         }
-
+        
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -61,6 +57,8 @@ class DetailPostVC: UIViewController {
         
         view.addSubview(detailPostView)
         
+        navigationController?.navigationBar.prefersLargeTitles = false
+        setupNavBar()
         setupPostInfo()
         if let state = postState {
             switch state {
@@ -71,29 +69,45 @@ class DetailPostVC: UIViewController {
                 detailPostView.postImageView.image = UIImage(contentsOfFile: post.image!)
             case .url:
                 // TODO: - Handle optionals
-                //detailPostView.postWebKitView.uiDelegate = self
-                let google = URLRequest(url: URL(string: "http://www.reddit.com")!)
+                //                detailPostView.postWebKitView.uiDelegate = self
+                // detailPostView.postWebKitView.uiDelegate = self
                 
-                let url = URL(string: post.url!)
-                let request = URLRequest(url: url!)
-                detailPostView.postWebKitView.load(google)
-                detailPostView.postWebKitView.reload()
+                if let url = URL(string: post.url!) {
+                    let request = URLRequest(url: url)
+                        detailPostView.postWebKitView.load(request)
+                        detailPostView.postWebKitView.reload()
+                } else {
+                    detailPostView.postWebKitView.load(URLRequest(url: URL(string: "https://www.google.com/404")!))
+                }
             }
         }
 
-        
         detailPostView.tableView.dataSource = self
         detailPostView.tableView.delegate = self
-        
-        
         
         observeComments()
 
     }
     
+    private func setupNavBar() {
+        let menuButton = UIBarButtonItem(image: #imageLiteral(resourceName: "list"), style: .plain, target: self, action: #selector(menuButtonTapped))
+        let addCommentButton = UIBarButtonItem(image: #imageLiteral(resourceName: "plus-symbol"), style: .plain, target: self, action: #selector(addCommentButtonTapped))
+        navigationItem.rightBarButtonItems = [menuButton, addCommentButton]
+    }
+    
+    @objc private func menuButtonTapped() {
+        
+    }
+    
+    @objc private func addCommentButtonTapped() {
+        let addCommentVC = NewCommentViewController()
+        navigationController?.pushViewController(addCommentVC, animated: true)
+        //present(addCommentVC, animated: true, completion: nil)
+    }
+    
     private func setupPostInfo() {
         // TODO: - Stuff in comments
-        detailPostView.usernameLabel.text = post.postUID // get username from UIS
+        getUsernameFromUID(uid: post.userUID, completionHandler: { self.detailPostView.usernameLabel.text = $0 }, errorHandler: { print($0) })
         detailPostView.karmaLabel.text = (post.upvotes - post.downvotes).description
         detailPostView.dateLabel.text = post.date
     }
@@ -101,29 +115,58 @@ class DetailPostVC: UIViewController {
     func getImageFromFirebaseStorage(imageUID: String) {
     }
     
+    // Get username from the userUID in injected Post
+    func getUsernameFromUID(uid: String,
+                            completionHandler: @escaping (String) -> Void,
+                            errorHandler: @escaping (Error) -> Void) {
+        Database.database().reference(withPath: "users").child(uid).observeSingleEvent(of: .value) { (snapshot) in
+            if let json = snapshot.value {
+                do {
+                    let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
+                    let user = try JSONDecoder().decode(Parrot.self, from: jsonData)
+                    completionHandler(user.appUserName)
+                } catch {
+                    print(error)
+                    errorHandler(error)
+                }
+            }
+        }
+    }
+    
+    // Gets Array of commentUIDs
+    // Then asynchroniously get the values for the comments
     func observeComments() {
-        Database.database().reference(withPath: "posts").child("id").child("comments").observe(.value) { (dataSnapshot) in
-            let snapshots = dataSnapshot.children.allObjects as! [DataSnapshot]
-            var loadedComments = [Comment]()
-            DispatchQueue.main.async {
-                for snap in snapshots {
-                    if let json = snap.value {
+        Database.database().reference(withPath: "posts").child("postUID").child("comments").observe(.value) { (dataSnapshot) in
+            guard let commentsUIDSnapshot = dataSnapshot.children.allObjects as? [DataSnapshot] else { print("comments array in post is nil"); return }
+            
+            var commentUIDArray = [String]()
+            for snap in commentsUIDSnapshot {
+                guard let json = snap.value else { return }
+                do {
+                    let arrayJSONData = try JSONSerialization.data(withJSONObject: json, options: [])
+                    commentUIDArray = try JSONDecoder().decode([String].self, from: arrayJSONData)
+                } catch {
+                    print(error)
+                }
+            }
+            var firComments = [Comment]()
+            for uid in commentUIDArray {
+                
+                DispatchQueue.main.async {
+                    if let firCommentAsJSON = Database.database().reference(withPath: "comments").value(forKey: uid) {
                         do {
-                            let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
-                            let comment = try JSONDecoder().decode(Comment.self, from: jsonData)
-                            loadedComments.append(comment)
+                            let firCommentJSONData = try JSONSerialization.data(withJSONObject: firCommentAsJSON, options: [])
+                            let firComment = try JSONDecoder().decode(Comment.self, from: firCommentJSONData)
+                            firComments.append(firComment)
                         } catch {
                             print(error)
                         }
                     }
-                    
                 }
             }
-            self.comments = loadedComments
+            self.comments = firComments
         }
     }
-    
-    
     
 }
 
@@ -131,27 +174,15 @@ class DetailPostVC: UIViewController {
 
 extension DetailPostVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
         return comments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! UserCommentTableViewCell
-
-//        let comment = comments[indexPath.row]
-//        
-//        DispatchQueue.main.async {
-//            cell.commentLabel.text = comment.commentText
-//            cell.dateLabel.text = comment.date
-//
-//            let user = Database.database().reference(withPath: "users").value(forKey: comment.userUID) as! Parrot
-//            cell.usernameLabel.text = user.appUserName
-//            
-//            cell.setNeedsLayout()
-//        }
-        
-        
-
+        let comment = comments[indexPath.row]
+        cell.commentLabel.text = comment.commentText
+        cell.dateLabel.text = comment.date
+        getUsernameFromUID(uid: comment.userUID, completionHandler: { cell.usernameLabel.text =  $0 }, errorHandler: { print($0) })
         return cell
     }
 }

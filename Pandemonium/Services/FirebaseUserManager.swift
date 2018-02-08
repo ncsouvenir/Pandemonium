@@ -86,4 +86,22 @@ class FirebaseUserManager {
             }
         }
     }
+    
+    // Get username from the userUID
+    func getUsernameFromUID(uid: String,
+                            completionHandler: @escaping (String) -> Void,
+                            errorHandler: @escaping (Error) -> Void) {
+        Database.database().reference(withPath: "users").child(uid).observeSingleEvent(of: .value) { (snapshot) in
+            if let json = snapshot.value {
+                do {
+                    let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
+                    let user = try JSONDecoder().decode(Parrot.self, from: jsonData)
+                    completionHandler(user.appUserName)
+                } catch {
+                    print(error)
+                    errorHandler(error)
+                }
+            }
+        }
+    }
 }

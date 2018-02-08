@@ -54,8 +54,11 @@ class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
     @objc func listNavBarButtonAction(){
         //TODO Load the list
         //Mark: Test ProfileViewController
-        let profileViewController = ProfileViewController()
-        navigationController?.pushViewController(profileViewController, animated: true)
+        let menueViewController = MenuVC()
+        menueViewController.modalPresentationStyle = .overCurrentContext
+        present(menueViewController, animated: true, completion: nil)
+//        let profileViewController = ProfileViewController()
+//        navigationController?.pushViewController(profileViewController, animated: true)
     }
     @objc func addPostNavBarButtonAction(){
         let createAPostVC = CreateAPostTableViewController.storyBoardInstance()
@@ -140,8 +143,8 @@ extension HomeFeedVC: UITableViewDelegate, HomeFeedTableViewCellDelegate{
         guard indexPath.row != 0 else{
             return
         }
-        let detailedPostViewController = DetailPostVC()
-        navigationController?.present(detailedPostViewController, animated: true, completion: nil)
+        let detailedPostViewController = DetailPostVC(post: posts[indexPath.row - 1])
+        navigationController?.pushViewController(detailedPostViewController, animated: true)
     }
 }
 

@@ -99,25 +99,7 @@ class FirebaseStorageManager {
     func retrieveImage(imgURL: String,
                        completionHandler: @escaping (UIImage) -> Void,
                        errorHandler: @escaping (Error) -> Void) {
-        
-        
         ImageHelper.manager.getImage(from: imgURL, completionHandler: { completionHandler($0) }, errorHandler: { errorHandler($0) })
-        
-        
-//        let ref = storageRef.child(img)
-//        ref.getData(maxSize: 1 * 1024 * 1024) { (data, error) in
-//            if let error = error {
-//                print()
-//                print("ERROR GETTING IMAGE DATA")
-//                print()
-//                errorHandler(error)
-//            } else if let data = data {
-//                if let image = UIImage(data: data) {
-//                    completionHandler(image)
-//                }
-//            }
-//        }
-
     }
     
     

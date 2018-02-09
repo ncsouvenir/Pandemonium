@@ -69,6 +69,8 @@ class UserEditPostTableViewController: UITableViewController {
         segmentedControl.addUnderlineForSelectedSegment()
         configureImageGesture()
         
+        populateFields()
+        
         //        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
         //            cameraButtonItem.isEnabled = false
         //        }
@@ -127,6 +129,22 @@ class UserEditPostTableViewController: UITableViewController {
         
         present(presentCreatePostSelectedImageVC, animated: true, completion: nil)
         print("image tapped")
+    }
+    private func populateFields() {
+        if let post = post {
+            FirebaseUserManager.shared.getUsernameFromUID(uid: post.userUID, completionHandler: {
+                self.userNameTextField.text = $0
+            }, errorHandler: { print($0) })
+            titleTextField.text = post.title
+            tagsTextField.text = post.tags.joined(separator: " ")
+            urlTextField.text = post.url ?? ""
+            bodytextView.text = post.bodyText ?? ""
+            if let postImage = post.image {
+                FirebaseStorageManager.shared.retrieveImage(imgURL: postImage, completionHandler: {
+                    self.imageView.image = $0
+                }, errorHandler: { print($0) })
+            }
+        }
     }
     
     private func configureTextFieldDelegates() {

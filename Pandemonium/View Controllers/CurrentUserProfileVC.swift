@@ -154,7 +154,7 @@ class CurrentUserProfileVC: UIViewController {
     }
     
     //MARK ACTIONSHEET : long press gesture on post cell
-    private func configureEditPostActionSheet(){
+    private func configureEditPostActionSheet(tableViewCell: CurrentUserProfilePostCustomCustomTableViewCell){
         // 1
         let addMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         // 2
@@ -162,9 +162,10 @@ class CurrentUserProfileVC: UIViewController {
             (alert: UIAlertAction!) -> Void in
             print("Edit button pressed")
             //TODO: segue to Edit Post VC: how to get index path...how to initialize vc with info
-            var indexPath = self.indexPathForPost
+            var indexPath = tableViewCell.indexPath
             //let postToSegue = self.posts[indexPath.row - 1]
             let editPostVC = UserEditPostTableViewController.storyBoardInstance()//segue users post from that cell to ppulate edit post vc
+            editPostVC.post = self.posts[indexPath.row]
             let navController = UINavigationController(rootViewController: editPostVC)
             self.present(navController, animated: true, completion: nil)
             print("cell long pressed")
@@ -258,7 +259,7 @@ extension CurrentUserProfileVC: CurrentUserProfileImageTableViewCellDelegate{
 extension CurrentUserProfileVC: CurrentUserProfilePostCustomCustomTableViewCellDelegate{
     
     func didUseLongPressGesture(_ tableViewCell: CurrentUserProfilePostCustomCustomTableViewCell) {
-        configureEditPostActionSheet()
+        configureEditPostActionSheet(tableViewCell: tableViewCell)
     }
 }
 

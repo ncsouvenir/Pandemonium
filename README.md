@@ -6,7 +6,7 @@ This app lets you make posts on a prestine thread, dedicated to
 ## Gifs
 |User Allowing Location Access|User Denying Location Access|
 |:-------------:|:------------:|
-|<img src="https://github.com/NateMRosario/Unit5GroupProjectOne/blob/prod/Images/allow-location-access.gif" width="358" height="626">|<img src="https://github.com/NateMRosario/Unit5GroupProjectOne/blob/prod/Images/search-location.gif" width="358" height="626">|
+|<img src="https://github.com/NateMRosario/Unit5GroupProjectOne/blob/prod/Images/allow-location-access.gif" width="358" height="626">|
 
 ## Features
 -
@@ -24,9 +24,11 @@ CocoaPods is a dependency manager for Cocoa projects. You can install it with th
 `$ sudo gem install cocoapods`
 
 ### Pods
+- [Firebase](https://firebase.google.com)
 - [SnapKit](http://snapkit.io/docs/)
+- [Toucan](https://cocoapods.org/pods/Toucan)
 - [KingFisher](https://github.com/onevcat/Kingfisher)
--
+
 
 ### How to Install Pods
 To integrate these pods into your Xcode project using CocoaPods, specify it in your Podfile:
@@ -37,8 +39,13 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
+    pod 'Firebase/Core'
+    pod 'Firebase/Auth’
+    pod 'Firebase/Database’
+    pod 'Firebase/Storage'
     pod 'SnapKit'
-    pod 'KingFisher'
+    pod 'Toucan'
+    pod 'Kingfisher'
 end
 ```
 
@@ -48,7 +55,7 @@ Then, run the following command in Terminal:
 
 
 ## Credits 
-- **Project Manager**: Reiaz Gafar
-- **Tech Lead**: Nicole 
+- **Project Manager**: Reiaz Gafar - [GitHub](https://github.com/reiaz-gafar)
+- **Tech Lead**: Nicole Souvenir - [GitHub](https://github.com/ncsouvenir)
 - **UI/UX**: Nathan Rosario - [GitHub](https://github.com/NateMRosario)
-- **QA**: Yaseen
+- **QA**: Yaseen Aldellesh - [GitHub](https://github.com/Yaseen-al)

@@ -23,11 +23,11 @@ class CurrentUserProfileVC: UIViewController {
         }
     }
     
-        var posts = [Post](){
-            didSet{
-                profileView.tableView.reloadData()
-            }
+    var posts = [Post](){
+        didSet{
+            profileView.tableView.reloadData()
         }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,25 +35,31 @@ class CurrentUserProfileVC: UIViewController {
         configureNavBar()
         FirebaseUserManager.shared.getParrotFrom(uid: (FirebaseUserManager.shared.getCurrentUser()!.uid),
                                                  completionHandler: {self.user = $0},
-                                                 errorHandler: {print("Dev:",$0)})}
+                                                 errorHandler: {print("Dev:",$0)})
+        
+    }
+    override func viewWillLayoutSubviews() {
+        navigationController?.navigationBar.isHidden = false
+    }
     
-        func loadUserPosts(){
-            guard let user = user else {
-                return
-            }
-            FirebasePostManager.manager.loadUserPosts(user: user,
-                                                      completionHandler: {self.posts = $0},
-                                                      errorHandler: {print($0)})}
+    func loadUserPosts(){
+        guard let user = user else {
+            return
+        }
+        FirebasePostManager.manager.loadUserPosts(user: user,
+                                                  completionHandler: {self.posts = $0},
+                                                  errorHandler: {print($0)})}
     
     private func configureNavBar() {
-        let leftNavBarButtonItem = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(dismissCurrentUserProfileVC))
-        navigationItem.leftBarButtonItem = leftNavBarButtonItem
-        navigationItem.title = "Profile"
+        navigationController?.navigationBar.isHidden = false
+        //        let leftNavBarButtonItem = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(dismissCurrentUserProfileVC))
+        //        navigationItem.leftBarButtonItem = leftNavBarButtonItem
+        //        navigationItem.title = "Profile"
     }
     
     @objc private func dismissCurrentUserProfileVC() {
         //dismiss(animated: true, completion: nil)
-     self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
         //homeFeedVC.dismiss(animated: true, completion: nil)
     }
     
@@ -78,14 +84,14 @@ class CurrentUserProfileVC: UIViewController {
             //TODO: action to access phone camera
             self.showCamera()
         })
-
+        
         let accessPhotoLibraryAction = UIAlertAction(title: "Photo Library", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             print("user pressed photo library")
             //TODO: action to access photo library
             self.showPhotoLibrary()
         })
-
+        
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
             (alert: UIAlertAction!) -> Void in
         })
@@ -96,17 +102,17 @@ class CurrentUserProfileVC: UIViewController {
         // 4
         self.present(addImageMenu, animated: true, completion: nil)
     }
-
+    
     private func showPhotoLibrary() {
         imagePickerView.sourceType = .photoLibrary
         checkAVAuthorization()
     }
-
+    
     private func showCamera() {
         imagePickerView.sourceType = .camera
         checkAVAuthorization()
     }
-
+    
     private func checkAVAuthorization() {
         let status = AVCaptureDevice.authorizationStatus(for: .video)
         switch status {
@@ -128,11 +134,11 @@ class CurrentUserProfileVC: UIViewController {
             print("restricted")
         }
     }
-
+    
     private func showImagePicker() {
         present(imagePickerView, animated: true, completion: nil)
     }
-
+    
     //MARK ACTIONSHEET : long press gesture on post cell
     private func configureEditPostActionSheet(){
         // 1
@@ -200,6 +206,9 @@ extension CurrentUserProfileVC: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //TODO: segue to detail post VC
+        guard indexPath.row != 0 else {
+            return
+        }
         let detailPostSetup = posts[indexPath.row - 1] //gets post at that index path
         
         let detailPostVC = DetailPostVC(post: detailPostSetup)

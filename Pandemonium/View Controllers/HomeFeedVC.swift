@@ -57,9 +57,9 @@ class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
     //Load the list
     @objc func listNavBarButtonAction(){
         let menueViewController = MenuVC(safeArea: self.homeFeedView.safeAreaLayoutGuide)
-        menueViewController.modalPresentationStyle = .overCurrentContext
-
-        present(menueViewController, animated: true, completion: nil)
+        let navigationController = UINavigationController(rootViewController: menueViewController)
+        navigationController.modalPresentationStyle = .overCurrentContext
+        present(navigationController, animated: true, completion: nil)
     }
     @objc func addPostNavBarButtonAction(){
         if FirebaseUserManager.shared.getCurrentUser() == nil {

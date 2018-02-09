@@ -50,7 +50,11 @@ class CurrentUserProfileVC: UIViewController {
                                                  errorHandler: {print("Dev:",$0)})
         
     }
-    
+
+    override func viewWillLayoutSubviews() {
+        navigationController?.navigationBar.isHidden = false
+    }
+
     func loadUserPosts(){
         guard let user = user else {
             return
@@ -60,17 +64,16 @@ class CurrentUserProfileVC: UIViewController {
                                                   errorHandler: {print($0)})
         
     }
+
     
     private func configureNavBar() {
         let leftNavBarButtonItem = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(dismissCurrentUserProfileVC))
         navigationItem.leftBarButtonItem = leftNavBarButtonItem
         navigationItem.title = "Profile"
         Settings.manager.navBarNightMode(navbar: navigationController!.navigationBar)
-        
     }
     
     @objc private func dismissCurrentUserProfileVC() {
-
         dismiss(animated: false, completion: nil)
     }
     
@@ -224,8 +227,10 @@ extension CurrentUserProfileVC: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //TODO: segue to detail post VC
+        guard indexPath.row != 0 else {
+            return
+        }
                 let detailPostSetup = posts[indexPath.row - 1] //gets post at that index path
-        
                 let detailPostVC = DetailPostVC(post: detailPostSetup)
                 detailPostVC.modalTransitionStyle = .crossDissolve
                 detailPostVC.modalPresentationStyle = .overCurrentContext

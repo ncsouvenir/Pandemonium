@@ -119,14 +119,14 @@ class CreateAPostTableViewController: UITableViewController {
         let currentUser = FirebaseUserManager.shared.getCurrentUser()!
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: Date().description, title: titleTextField.text!, tags: ["#EMPIREDIDNOTHINGWRONG", "#KHALEESI"], bodyText: bodytextView.text, url: urlTextField.text, image: nil, errorHandler: {print($0)})
+            FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: DateFormatterManager.formatDate(Date()), title: titleTextField.text!, tags: ["#EMPIREDIDNOTHINGWRONG", "#KHALEESI"], bodyText: bodytextView.text, url: urlTextField.text, image: nil, errorHandler: {print($0)})
         case 1:
-            FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: Date().description, title: titleTextField.text!, tags: ["#THOTS", "#21"], bodyText: bodytextView.text, url: nil, image: nil, errorHandler: {print($0)})
+            FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: DateFormatterManager.formatDate(Date()), title: titleTextField.text!, tags: ["#THOTS", "#21"], bodyText: bodytextView.text, url: nil, image: nil, errorHandler: {print($0)})
         case 2:
             if let image = imageView.image {
                 let sizeOfImage: CGSize = CGSize(width: 200, height: 200)
                 let toucanImage = Toucan.Resize.resizeImage(image, size: sizeOfImage)
-                FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: Date().description, title: titleTextField.text!, tags: ["#DOYOU", "#KNOW", "#DAWAE"], bodyText: bodytextView.text, url: nil, image: toucanImage, errorHandler: {print($0)})
+                FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: DateFormatterManager.formatDate(Date()), title: titleTextField.text!, tags: ["#DOYOU", "#KNOW", "#DAWAE"], bodyText: bodytextView.text, url: nil, image: toucanImage, errorHandler: {print($0)})
             }
         default:
             print("error choosing type of post")
@@ -138,13 +138,14 @@ class CreateAPostTableViewController: UITableViewController {
                                                 message:"Post added to the feed",
                                                 preferredStyle: UIAlertControllerStyle.alert)
         
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (alert) in
+                self.dismiss(animated: true, completion: nil)
+        }
         //for other actions add in actions incompletion{}
         alertController.addAction(okAction)
         //present alert controller
         self.present(alertController, animated: true, completion: nil)
         
-        dismiss(animated: true, completion: nil)
         resignFirstResponder()
     }
     

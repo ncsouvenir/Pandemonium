@@ -10,13 +10,12 @@ import UIKit
 
 class MenuVC: UIViewController, UIGestureRecognizerDelegate {
     
+
     var user: Parrot! 
-        
     
     var currentUserCustomCell = CurrentUserProfileImageCustomTableViewCell()
-
     var safeArea: UILayoutGuide
-     init(safeArea: UILayoutGuide) {
+    init(safeArea: UILayoutGuide) {
         self.safeArea = safeArea
         super.init(nibName: nil, bundle: nil)
     }
@@ -27,11 +26,13 @@ class MenuVC: UIViewController, UIGestureRecognizerDelegate {
     let menuView = MenuView()
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isHidden = true
         // Do any additional setup after loading the view.
     }
     override func viewWillLayoutSubviews() {
         seutupBackgroundView()
         setupMenuView()
+        navigationController?.navigationBar.isHidden = true
     }
     func seutupBackgroundView(){
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.extraLight)
@@ -77,7 +78,7 @@ class MenuVC: UIViewController, UIGestureRecognizerDelegate {
     @objc func signOutAction(){
         FirebaseUserManager.shared.logOut()
         let alertViewController = UIAlertController(title: "Thank You, come again!", message: "", preferredStyle: UIAlertControllerStyle.alert)
-
+        
         let alertAction = UIAlertAction(title: "OK", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             //dismiss menuVC and take back to HomeFeed
@@ -91,11 +92,9 @@ class MenuVC: UIViewController, UIGestureRecognizerDelegate {
         if FirebaseUserManager.shared.getCurrentUser() == nil {
             present(LoginVC(), animated: true, completion: nil)
         }else{
+            navigationController?.navigationBar.isHidden = false
             let currentUserProfileVC = CurrentUserProfileVC()
-            let navController = UINavigationController(rootViewController: currentUserProfileVC)
-            present(navController, animated: true, completion: {
-            })
-            print(user)
+            navigationController?.pushViewController(currentUserProfileVC, animated: true)
         }
     }
     

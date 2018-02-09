@@ -25,14 +25,15 @@ class CurrentUserProfileImageCustomTableViewCell: UITableViewCell {
     
     lazy var profileBackGroundView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = convertImageToBW(image: #imageLiteral(resourceName: "warMachine"))
-        imageView.contentMode = .scaleAspectFill
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = imageView.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        blurEffectView.alpha = 0.75
-        imageView.addSubview(blurEffectView)
+//        imageView.image = convertImageToBW(image: #imageLiteral(resourceName: "warMachine"))
+//        imageView.contentMode = .scaleAspectFill
+//        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//        blurEffectView.frame = imageView.bounds
+//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//        blurEffectView.alpha = 0.75
+//        imageView.addSubview(blurEffectView)
+        imageView.backgroundColor = .red
         return imageView
     }()
     
@@ -84,8 +85,9 @@ class CurrentUserProfileImageCustomTableViewCell: UITableViewCell {
         let imageView = roundedImageView()
         imageView.layer.borderWidth = 2
         imageView.clipsToBounds = true
-        imageView.image = #imageLiteral(resourceName: "emptyProfileImg")
+        //imageView.image = #imageLiteral(resourceName: "emptyProfileImg")
         imageView.contentMode = .scaleAspectFill
+        imageView.image = #imageLiteral(resourceName: "emptyProfileImg")
         return imageView
     }()
     

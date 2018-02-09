@@ -18,7 +18,7 @@ class LoginVC: UIViewController {
         view.backgroundColor = .clear
         loginView.backgroundColor = .clear
         //turnRedAndShakeAnimation(view: loginView.containerView)
-        loginView.userNameTextField.delegate = self
+        loginView.emailTextField.delegate = self
         loginView.passwordTextField.delegate = self
     }
     
@@ -32,7 +32,7 @@ extension LoginVC {
                 dismiss(animated: true, completion: nil)
             } else if touch.view == loginView.containerView {
                 loginView.passwordTextField.resignFirstResponder()
-                loginView.userNameTextField.resignFirstResponder()
+                loginView.emailTextField.resignFirstResponder()
             } else {
                 return
             }
@@ -105,8 +105,8 @@ extension LoginVC {
         // if successful log in, present success message and dismiss vc
         // else shake view and make red and prompt to verify info
         loginView.passwordTextField.resignFirstResponder()
-        loginView.userNameTextField.resignFirstResponder()
-        guard let usernameText = loginView.userNameTextField.text else { self.warningVibration(); return }
+        loginView.emailTextField.resignFirstResponder()
+        guard let usernameText = loginView.emailTextField.text else { self.warningVibration(); return }
         guard let passwordText = loginView.passwordTextField.text else { self.warningVibration(); return }
         guard !usernameText.isEmpty else { self.warningVibration(); return }
         guard !passwordText.isEmpty else { self.warningVibration(); return }
@@ -126,7 +126,7 @@ extension LoginVC {
     @objc private func forgotPasswordButtonTapped() {
         // show alert controller and do firebase stuff
         loginView.passwordTextField.resignFirstResponder()
-        loginView.userNameTextField.resignFirstResponder()
+        loginView.emailTextField.resignFirstResponder()
         let alertController = UIAlertController(title: "Alert", message: "Please enter your email address", preferredStyle: .alert)
         alertController.addTextField { (textField) in
             textField.autocorrectionType = .no
@@ -153,7 +153,7 @@ extension LoginVC {
     
     @objc private func createNewAccountButtonTapped() {
         loginView.passwordTextField.resignFirstResponder()
-        loginView.userNameTextField.resignFirstResponder()
+        loginView.emailTextField.resignFirstResponder()
         let createAccountVC = CreateAccountVC()
         createAccountVC.modalTransitionStyle = .crossDissolve
         createAccountVC.modalPresentationStyle = .overCurrentContext

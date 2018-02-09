@@ -20,7 +20,7 @@ class HomeFeedTableViewCell: UITableViewCell{
     
     lazy var numberOfComments: UILabel = {
         let label = UILabel()
-        label.text = "256"
+        label.text = "0"
         label.font = UIFont.systemFont(ofSize: 10)
         return label
     }()
@@ -41,8 +41,8 @@ class HomeFeedTableViewCell: UITableViewCell{
     lazy var userName: UILabel = {
         let label = UILabel()
         label.text = "Username"
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = UIColor.lightGray
+        label.font = Settings.manager.fontSize
+        label.textColor = UIColor.blue
         let tap = UITapGestureRecognizer(target: self, action: #selector(userNameSelectedAction))
         tap.delegate = self
         label.isUserInteractionEnabled = true
@@ -196,9 +196,10 @@ class HomeFeedTableViewCell: UITableViewCell{
     }
     
     func setupCell(with post: Post){
+        self.userName.text = ""
+        FirebaseUserManager.shared.getUsernameFromUID(uid: post.userUID, completionHandler: {self.userName.text = $0}, errorHandler: {print($0)})
         self.postTitle.text = post.title
         //TODO: this will be replaced with a function to get the user by the userID
-        self.userName.text = post.userUID
         self.tags.setTitle(post.tags.joined(separator: ","), for: .normal)
         if let comments = post.comments?.count {
         self.numberOfComments.text = "\(comments)"

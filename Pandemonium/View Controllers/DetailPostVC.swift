@@ -17,7 +17,10 @@ enum PostState {
 
 class DetailPostVC: UIViewController {
     
+    
     var post: Post!
+    var cell: HomeFeedTableViewCell?
+    
     private var commentUIDs = [String]() {
         didSet {
             print(commentUIDs)
@@ -33,7 +36,7 @@ class DetailPostVC: UIViewController {
     
     private var detailPostView: DetailPostView!
     private var postState: PostState!
-    
+
     convenience init(post: Post) {
         self.init(nibName: nil, bundle: nil)
         self.post = post
@@ -85,12 +88,20 @@ class DetailPostVC: UIViewController {
             }
         }
         
-        detailPostView.tableView.dataSource = self        
+        detailPostView.tableView.dataSource = self
+        setupButtons()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        FirebaseCommentManager.manager.loadCommentUIDs(postUID: post.postUID, completionHandler: { self.commentUIDs = $0 }, errorHandler: { print($0) } )
+        FirebaseCommentManager.manager.loadCommentUIDs(postUID: post.postUID, completionHandler: { self.commentUIDs = $0 }, errorHandler: { print($0); self.noCommentAlert() } )
+    }
+    
+    private func noCommentAlert() {
+        let alertController = UIAlertController(title: "No Comments", message: "There are no comments for this post yet.  Why dont you add one?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -99,13 +110,18 @@ class DetailPostVC: UIViewController {
     }
     
     private func setupNavBar() {
-        let menuButton = UIBarButtonItem(image: #imageLiteral(resourceName: "list"), style: .plain, target: self, action: #selector(menuButtonTapped))
-        let addCommentButton = UIBarButtonItem(image: #imageLiteral(resourceName: "plus-symbol"), style: .plain, target: self, action: #selector(addCommentButtonTapped))
-        navigationItem.rightBarButtonItems = [menuButton, addCommentButton]
+        //        let menuButton = UIBarButtonItem(image: #imageLiteral(resourceName: "list"), style: .plain, target: self, action: #selector(menuButtonTapped))
+        //        let addCommentButton = UIBarButtonItem(image: #imageLiteral(resourceName: "plus-symbol"), style: .plain, target: self, action: #selector(addCommentButtonTapped))
+        //        navigationItem.rightBarButtonItems = [menuButton, addCommentButton]
+        //        navigationItem.title = "Detail Post"
     }
     
     @objc private func menuButtonTapped() {
-        //TODO: set up
+        //TODO: menu crashes.. look into fixing the safe area guide constraint
+        //        let menuVC = MenuVC(safeArea: self.detailPostView.safeAreaLayoutGuide)
+        //        modalPresentationStyle = .overCurrentContext
+        //        modalTransitionStyle = .crossDissolve
+        //        present(menuVC, animated: true, completion: nil)
     }
     
     @objc private func addCommentButtonTapped() {
@@ -123,6 +139,19 @@ class DetailPostVC: UIViewController {
         FirebaseUserManager.shared.getUsernameFromUID(uid: post.userUID, completionHandler: { self.detailPostView.usernameLabel.text = $0 }, errorHandler: { print($0) })
         detailPostView.karmaLabel.text = (post.upvotes - post.downvotes).description
         detailPostView.dateLabel.text = post.date
+    }
+    
+    private func setupButtons() {
+        detailPostView.upvoteButton.addTarget(self, action: #selector(upvoteTapped), for: .touchUpInside)
+        detailPostView.downvoteButton.addTarget(self, action: #selector(downvoteTapped), for: .touchUpInside)
+    }
+    
+    @objc private func upvoteTapped() {
+        FirebasePostManager.manager.updatePostUpVote(for: post)
+    }
+    
+    @objc private func downvoteTapped() {
+        FirebasePostManager.manager.updatePostDownVote(for: post)
     }
     
 }

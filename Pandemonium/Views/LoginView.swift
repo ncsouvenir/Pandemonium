@@ -10,8 +10,20 @@ import SnapKit
 
 class LoginView: UIView {
     
+    lazy var gradientLayer: CAGradientLayer = {
+        let gradient = CAGradientLayer()
+        gradient.frame = frame
+        gradient.colors = [Settings.manager.customBlue.cgColor, Settings.manager.customGray.cgColor]
+        return gradient
+    }()
+    
     var blurView: UIVisualEffectView = {
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.extraLight)
+        var blurEffect = UIBlurEffect()
+        if Settings.manager.logoPressed == true {
+            blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        } else {
+            blurEffect = UIBlurEffect(style: UIBlurEffectStyle.extraLight)
+        }
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         return blurEffectView
@@ -27,14 +39,16 @@ class LoginView: UIView {
         return view
     }()
     
-    var userNameLabel: UILabel = {
+    var emailLabel: UILabel = {
         let label = UILabel()
         label.text = "Email"
+        label.isHidden = true
         return label
     }()
     
-    var userNameTextField: UITextField = {
+    var emailTextField: UITextField = {
         let textField = UITextField()
+        textField.placeholder = "Enter your Email"
         textField.borderStyle = .roundedRect
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
@@ -47,11 +61,13 @@ class LoginView: UIView {
     var passwordLabel: UILabel = {
         let label = UILabel()
         label.text = "Password"
+        label.isHidden = true
         return label
     }()
     
     var passwordTextField: UITextField = {
         let textField = UITextField()
+        textField.placeholder = "Enter your Password"
         textField.borderStyle = .roundedRect
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
@@ -69,7 +85,7 @@ class LoginView: UIView {
     
     var submitButton: UIButton = {
         let button = UIButton(type: .roundedRect)
-        button.setTitle("   Submit   ", for: .normal)
+        button.setTitle("   Login   ", for: .normal)
         button.backgroundColor = .white
         button.layer.cornerRadius = 10
         button.layer.borderWidth = 1
@@ -104,6 +120,7 @@ class LoginView: UIView {
     }
     
     private func setupViews() {
+        layer.addSublayer(gradientLayer)
         setupBlurView()
         setupContainerView()
         setupUserNameLabel()
@@ -135,8 +152,8 @@ extension LoginView {
     }
     
     private func setupUserNameLabel() {
-        containerView.addSubview(userNameLabel)
-        userNameLabel.snp.makeConstraints { (make) in
+        containerView.addSubview(emailLabel)
+        emailLabel.snp.makeConstraints { (make) in
             make.leading.equalTo(containerView.snp.leading).offset(16)
             make.top.equalTo(containerView.snp.top).offset(16)
             make.trailing.equalTo(containerView.snp.trailing).offset(-16)
@@ -144,20 +161,20 @@ extension LoginView {
     }
     
     private func setupUserNameTextField() {
-        containerView.addSubview(userNameTextField)
-        userNameTextField.snp.makeConstraints { (make) in
-            make.top.equalTo(userNameLabel.snp.bottom).offset(4)
-            make.leading.equalTo(userNameLabel.snp.leading)
-            make.width.equalTo(userNameLabel.snp.width)
+        containerView.addSubview(emailTextField)
+        emailTextField.snp.makeConstraints { (make) in
+            make.top.equalTo(emailLabel.snp.bottom).offset(4)
+            make.leading.equalTo(emailLabel.snp.leading)
+            make.width.equalTo(emailLabel.snp.width)
         }
     }
     
     private func setupPasswordLabel() {
         containerView.addSubview(passwordLabel)
         passwordLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(userNameTextField.snp.bottom).offset(8)
-            make.leading.equalTo(userNameLabel.snp.leading)
-            make.width.equalTo(userNameLabel.snp.width)
+            make.top.equalTo(emailTextField.snp.bottom).offset(8)
+            make.leading.equalTo(emailLabel.snp.leading)
+            make.width.equalTo(emailLabel.snp.width)
         }
     }
     
@@ -165,8 +182,8 @@ extension LoginView {
         containerView.addSubview(passwordTextField)
         passwordTextField.snp.makeConstraints { (make) in
             make.top.equalTo(passwordLabel.snp.bottom).offset(4)
-            make.leading.equalTo(userNameLabel.snp.leading)
-            make.width.equalTo(userNameLabel.snp.width)
+            make.leading.equalTo(emailLabel.snp.leading)
+            make.width.equalTo(emailLabel.snp.width)
         }
     }
     
@@ -174,7 +191,7 @@ extension LoginView {
         containerView.addSubview(forgotPasswordButton)
         forgotPasswordButton.snp.makeConstraints { (make) in
             make.top.equalTo(passwordTextField.snp.bottom).offset(2)
-            make.leading.equalTo(userNameLabel.snp.leading)
+            make.leading.equalTo(emailLabel.snp.leading)
         }
     }
     
@@ -189,7 +206,7 @@ extension LoginView {
     private func setupCreateNewAccountButton() {
         containerView.addSubview(createNewAccountButton)
         createNewAccountButton.snp.makeConstraints { (make) in
-            make.leading.equalTo(userNameLabel.snp.leading)
+            make.leading.equalTo(emailLabel.snp.leading)
             make.bottom.equalTo(containerView.snp.bottom).offset(-8)
         }
     }

@@ -184,5 +184,10 @@ class FirebasePostManager{
         }
     }
     
+    func updatePost(post: Post) {
+        let postsRef = Database.database().reference(withPath: "posts")
+        let ref = postsRef.child(post.postUID)
+        ref.setValue(post.postToJSON())
+    }
     
 }

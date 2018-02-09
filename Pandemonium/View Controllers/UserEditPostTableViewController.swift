@@ -27,34 +27,48 @@ class UserEditPostTableViewController: UITableViewController {
     @IBOutlet weak var deleteButton: UIButton!
     
     var detailedImageView = CreatePostSelectedImageView()
+    var createAPostVC = CreateAPostTableViewController()
     private let imagePickerView = UIImagePickerController()
     
     var post: Post!
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+    init(userPost: Post){
+        super.init(nibName: nil, bundle: nil)
+        self.post = userPost
+        createAPostVC.configureEditPostVC(with: userPost)
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {//
+        super.init(nibName: nibNameOrNil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder){// required becuase subclassing
+        super.init(coder: aDecoder)
+    }
+    
+    //    override func viewDidAppear(_ animated: Bool) {
+    //        super.viewDidAppear(true)
+    //        imagePickerView.delegate = self
+    //              configureTextFieldDelegates()
+    //        configureNavBar()
+    //        configureImageButton()
+    //        configureSegmentedControl()
+    //        //2
+    //        segmentedControl.addUnderlineForSelectedSegment()
+    //        configureImageGesture()
+    //    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         imagePickerView.delegate = self
-              configureTextFieldDelegates()
+        configureTextFieldDelegates()
         configureNavBar()
         configureImageButton()
         configureSegmentedControl()
         //2
         segmentedControl.addUnderlineForSelectedSegment()
         configureImageGesture()
-    }
-    
-    override func viewDidLoad() {
         
-        super.viewDidLoad()
-//        imagePickerView.delegate = self
-////        configureTextFieldDelegates()
-//        configureNavBar()
-//        configureImageButton()
-//        configureSegmentedControl()
-//        //2
-//        segmentedControl.addUnderlineForSelectedSegment()
-//        configureImageGesture()
-//
         //        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
         //            cameraButtonItem.isEnabled = false
         //        }
@@ -69,7 +83,7 @@ class UserEditPostTableViewController: UITableViewController {
         
         let deleteAction = UIAlertAction(title: "Delete Post", style: UIAlertActionStyle.default){(post) in
             //TODO: removes post from Firebase which should delete it everywhere else in the app
-                //FirebasePostManager.manager.deletePost()
+            //FirebasePostManager.manager.deletePost()
             //TODO: alert notifiying user of deletion
             let alertController = UIAlertController(title: "Gone!",
                                                     message:"Post was deleted",
@@ -268,7 +282,6 @@ class UserEditPostTableViewController: UITableViewController {
         } else if indexPath.row == 6 && segmentedControl.selectedSegmentIndex == 2{
             return view.bounds.height - 440
         }
-        
         return 60.0
     }
 }
@@ -296,6 +309,7 @@ extension UserEditPostTableViewController: UITextFieldDelegate {
         if textField == userNameTextField{
             if userName == "" {
                 textFieldEmptyAlert()
+                
             } else {
                 textField.resignFirstResponder()
             }
@@ -330,7 +344,6 @@ extension UserEditPostTableViewController: UITextFieldDelegate {
         return true
     }
     
-    
     //MARk: checking validity of urlStr
     func isValidUrl(url: String) -> Bool {
         let urlRegEx = "(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+"
@@ -345,9 +358,7 @@ extension UserEditPostTableViewController: UITextFieldDelegate {
                                                 preferredStyle: UIAlertControllerStyle.alert)
         
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
-        //for other actions add in actions incompletion{}
         alertController.addAction(okAction)
-        //present alert controller
         self.present(alertController, animated: true, completion: nil)
     }
 }

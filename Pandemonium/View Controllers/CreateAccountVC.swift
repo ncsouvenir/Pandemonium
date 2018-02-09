@@ -17,30 +17,13 @@ class CreateAccountVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        testColors()
-        setupView()
+        view.addSubview(createView)
         submitButton()
     }
     private func setupDelegate() {
         createView.userNameTextField.delegate = self
         createView.emailTextField.delegate = self
         createView.passwordTextField.delegate = self
-    }
-    
-    private func setupView() {
-        view.addSubview(createView)
-        
-        createView.snp.makeConstraints { (view) in
-            view.edges.equalTo(self.view.safeAreaLayoutGuide)
-        }
-    }
-    
-    func testColors() {
-        let gradient = CAGradientLayer()
-        gradient.frame = view.bounds
-        gradient.colors = [Settings.manager.customBlue.cgColor, Settings.manager.customGray.cgColor]
-        view.layer.addSublayer(gradient)
-        
     }
     
     private func submitButton() {
@@ -85,15 +68,14 @@ class CreateAccountVC: UIViewController {
         createView.invalidConfirmLabel.isHidden = true
         }
         //TODO: Check for unique users
+        if !passwordText.isEmpty && !createView.confirmPasswordTextField.text!.isEmpty {
         if passwordText == createView.confirmPasswordTextField.text {
             FirebaseUserManager.shared.createAccount(with: emailText, and: passwordText, username: userText) { (user, error) in
                 if let error = error {
                     print(error.localizedDescription)
-                } else if let user = user {
-                    self.dismiss(animated: true, completion: nil)
                 }
             }
-            
+            showAlert(title: "Account Created", message: "An email has been sent for authorization")
         } else {
             createView.invalidPasswordLabel.text = "Password's don't match"
             createView.invalidConfirmLabel.text = "Password's don't match"
@@ -101,7 +83,17 @@ class CreateAccountVC: UIViewController {
             createView.invalidConfirmLabel.isHidden = false
             print("Passwords don't match!")
         }
+      }
+    }
+    
+    func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default) { (alert) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alertController.addAction(okAction)
         
+        present(alertController, animated: true, completion: nil )
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {

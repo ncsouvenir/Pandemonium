@@ -56,14 +56,6 @@ class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
         let menueViewController = MenuVC(safeArea: self.homeFeedView.safeAreaLayoutGuide)
         menueViewController.modalPresentationStyle = .overCurrentContext
         present(menueViewController, animated: true, completion: nil)
-        //mark test function
-        if let user = FirebaseUserManager.shared.getCurrentUser(){
-            //TODO test the usersLoadPosts
-            FirebasePostManager.manager.addPost(userUID: user.uid, date: "3516-35-23", title: "newOnew", tags: ["#kromp"], bodyText: nil, url: nil, image: nil, errorHandler: {print($0)})
-//            FirebaseUserManager.shared.getParrotFrom(uid: user.uid, completionHandler: { (parrot) in
-//                FirebasePostManager.manager.loadUserPosts(user: parrot, completionHandler: {print($0.first?.title)}, errorHandler: {print($0)})
-//            }, errorHandler: {print($0)})
-        }
     }
     @objc func addPostNavBarButtonAction(){
         if FirebaseUserManager.shared.getCurrentUser() == nil {
@@ -119,12 +111,20 @@ extension HomeFeedVC:UITableViewDataSource{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "customTableViewCell") as? HomeFeedTableViewCell else{
                 return UITableViewCell()
             }
+            let postSetup = posts[indexPath.row-1]
             cell.delegate = self
             cell.currentIndexPath = indexPath
-            let postSetup = posts[indexPath.row-1]
             cell.setupCell(with: postSetup)
             cell.tintColor = Settings.manager.textColor
             cell.backgroundColor = Settings.manager.backgroundColor
+            
+            if let imageURL = postSetup.image{
+                FirebaseStorageManager.shared.retrieveImage(imgURL: imageURL, completionHandler: { (image) in
+                    print(image)
+                    cell.postImage.image = image
+                    cell.setNeedsLayout()
+                }, errorHandler: {print("dev:", $0)})
+            }
             return cell
         }
     }

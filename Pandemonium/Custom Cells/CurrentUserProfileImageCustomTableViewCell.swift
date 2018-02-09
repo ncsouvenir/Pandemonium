@@ -226,8 +226,9 @@ extension CurrentUserProfileImageCustomTableViewCell: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        //guard let text = textField.text else {return false}
+        guard let text = textField.text else {return false}
         self.userNameLabel.text = textField.text!
+        FirebaseUserManager.shared.changeUsernameFrom(userUID: FirebaseUserManager.shared.getCurrentUser()!.uid, newUsername: text)
         self.userNameLabel.isHidden = false
         self.userNameTextField.isHidden = true
         textField.resignFirstResponder()

@@ -107,7 +107,7 @@ extension HomeFeedVC:UITableViewDataSource{
             let instructionCell = UITableViewCell()
             instructionCell.backgroundColor = Settings.manager.backgroundColor
             instructionCell.textLabel?.numberOfLines = 0
-            instructionCell.textLabel?.text = "Here are some rules for to help navigate through our app"
+            instructionCell.textLabel?.text = "Swipe left to upvote and right to downvote"
             instructionCell.textLabel?.font = Settings.manager.titleSize
             instructionCell.textLabel?.textColor = Settings.manager.textColor
             return instructionCell

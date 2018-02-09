@@ -73,9 +73,7 @@ class DetailPostVC: UIViewController {
             case .text:
                 detailPostView.postTextView.text = post.bodyText
             case .image:
-                FirebaseStorageManager.shared.retrieveImage(img: post.image!, completionHandler: {
-                    ImageHelper.manager.getImage(from: $0.absoluteString, completionHandler: { self.detailPostView.postImageView.image = $0 }, errorHandler: { print($0) })
-                }, errorHandler: { print($0) })
+                FirebaseStorageManager.shared.retrieveImage(imgURL: post.image!, completionHandler: { self.detailPostView.postImageView.image = $0 }, errorHandler: { print($0) })
                 
                 
             case .url:

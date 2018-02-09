@@ -109,11 +109,11 @@ class CreateAPostTableViewController: UITableViewController {
         let currentUser = FirebaseUserManager.shared.getCurrentUser()!
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: Date().description, title: titleTextField.text!, tags: ["#EMPIREDIDNOTHINGWRONG", "#KHALEESI"], bodyText: bodytextView.text, url: urlTextField.text, image: nil)
+            FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: Date().description, title: titleTextField.text!, tags: ["#EMPIREDIDNOTHINGWRONG", "#KHALEESI"], bodyText: bodytextView.text, url: urlTextField.text, image: nil, errorHandler: {print($0)})
         case 1:
-            FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: Date().description, title: titleTextField.text!, tags: ["#THOTS", "#21"], bodyText: bodytextView.text, url: nil, image: nil)
+            FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: Date().description, title: titleTextField.text!, tags: ["#THOTS", "#21"], bodyText: bodytextView.text, url: nil, image: nil, errorHandler: {print($0)})
         case 2:
-            FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: Date().description, title: titleTextField.text!, tags: ["#DOYOU", "#KNOW", "#DAWAE"], bodyText: bodytextView.text, url: nil, image: imageView.image)
+            FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: Date().description, title: titleTextField.text!, tags: ["#DOYOU", "#KNOW", "#DAWAE"], bodyText: bodytextView.text, url: nil, image: imageView.image, errorHandler: {print($0)})
         default:
             print("error choosing type of post")
             return

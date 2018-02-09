@@ -50,24 +50,31 @@ class FirebasePostManager{
     }
     
     //MARK: Adding posts FROM VC to Firebase
-    func addPost(userUID: String, date: String, title: String, tags: [String], bodyText: String?, url: String?, image: UIImage?) {
-        let child = Database.database().reference(withPath: "posts").childByAutoId()
-        let post = Post(postUID: child.key, userUID: userUID, date: date, title: title, upvotes: 0, downvotes: 0, tags: tags, bodyText: bodyText, url: url, image: nil, comments: nil)
-        child.setValue(post.postToJSON())
-        
-    }
-    func addPosting(post: Post)->FireBasePostManagerStatus{
-        guard let currentUser = FirebaseUserManager.shared.getCurrentUser() else{return FireBasePostManagerStatus.noCurrentUserSignedIn}
+//    func addPost(userUID: String, date: String, title: String, tags: [String], bodyText: String?, url: String?, image: UIImage?) {
+//        let child = Database.database().reference(withPath: "posts").childByAutoId()
+//        let post = Post(postUID: child.key, userUID: userUID, date: date, title: title, upvotes: 0, downvotes: 0, tags: tags, bodyText: bodyText, url: url, image: nil, comments: nil)
+//        child.setValue(post.postToJSON())
+//        
+//    }
+    func addPost(userUID: String, date: String, title: String, tags: [String], bodyText: String?, url: String?, image: UIImage?, errorHandler: @escaping((Error)->Void)){
+        guard let currentUser = FirebaseUserManager.shared.getCurrentUser() else{
+            errorHandler(FireBasePostManagerStatus.noCurrentUserSignedIn)
+            return
+        }
         let child = Database.database().reference(withPath: "posts").childByAutoId()
         let childKey = child.key
+        let post = Post(postUID: child.key, userUID: userUID, date: date, title: title, upvotes: 0, downvotes: 0, tags: tags, bodyText: bodyText, url: url, image: nil, comments: nil)
         child.setValue(post.postToJSON())
         //get the user by looking in the dataBase for the UID and add the childKey to the user postUIDS
         let userChild = Database.database().reference(withPath: "users").child(currentUser.uid)
-        
-        
-        
-        
-        return FireBasePostManagerStatus.postAddedSuccessfully
+        loadUserPostsUIDs(userUID: currentUser.uid, completionHandler: { (UIDArrays) in
+            var myUIDS = UIDArrays
+            myUIDS.append(childKey)
+            userChild.child("posts").setValue(myUIDS)
+        }) { (error) in
+            errorHandler(FireBasePostManagerStatus.userHaveNoPost)
+            userChild.child("posts").setValue([childKey])
+        }
     }
     //this function will load the post of a user
     func loadUserPosts(user: Parrot, completionHandler: @escaping ([Post]) -> Void, errorHandler: @escaping (Error) -> Void) {
@@ -99,6 +106,19 @@ class FirebasePostManager{
                 errorHandler(error)
             }
         }
+        
+    }
+    // this funciton will load the user's posts UIDS
+    func loadUserPostsUIDs(userUID: String,
+                           completionHandler: @escaping ([String]) -> Void,
+                           errorHandler: @escaping (Error) -> Void) {
+        Database.database().reference(withPath: "users").child(userUID).child("posts").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let uids = snapshot.value as? [String] {
+                completionHandler(uids)
+            } else {
+                errorHandler(CommentError.emptyCommentArrayInPost)
+            }
+        })
         
     }
     func updatePostUpVote(for post: Post){

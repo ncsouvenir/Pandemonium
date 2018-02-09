@@ -63,14 +63,14 @@ class FirebaseUserManager {
                 let child = self.usersReference.child(user.uid)
                 child.setValue(Parrot(userUID: user.uid, appUserName: username, upvotes: 0, downvotes: 0, numberOfComments: 0, image: nil, posts: nil).toJSON())
                 
-                // Send verification email
-//                user.sendEmailVerification(completion: { (error) in
-//                    if let error = error {
-//                        print(error)
-//                    } else {
-//                        print("verification email sent")
-//                    }
-//                })
+                 //Send verification email
+                user.sendEmailVerification(completion: { (error) in
+                    if let error = error {
+                        print(error)
+                    } else {
+                        print("verification email sent")
+                    }
+                })
             }
         }
         Auth.auth().createUser(withEmail: email, password: password, completion: completion)

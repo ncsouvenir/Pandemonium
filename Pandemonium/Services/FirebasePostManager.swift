@@ -50,12 +50,6 @@ class FirebasePostManager{
     }
     
     //MARK: Adding posts FROM VC to Firebase
-//    func addPost(userUID: String, date: String, title: String, tags: [String], bodyText: String?, url: String?, image: UIImage?) {
-//        let child = Database.database().reference(withPath: "posts").childByAutoId()
-//        let post = Post(postUID: child.key, userUID: userUID, date: date, title: title, upvotes: 0, downvotes: 0, tags: tags, bodyText: bodyText, url: url, image: nil, comments: nil)
-//        child.setValue(post.postToJSON())
-//        
-//    }
     func addPost(userUID: String, date: String, title: String, tags: [String], bodyText: String?, url: String?, image: UIImage?, errorHandler: @escaping((Error)->Void)){
         guard let currentUser = FirebaseUserManager.shared.getCurrentUser() else{
             errorHandler(FireBasePostManagerStatus.noCurrentUserSignedIn)

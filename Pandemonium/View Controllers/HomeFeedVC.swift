@@ -107,7 +107,7 @@ extension HomeFeedVC:UITableViewDataSource{
             let instructionCell = UITableViewCell()
             instructionCell.backgroundColor = Settings.manager.backgroundColor
             instructionCell.textLabel?.numberOfLines = 0
-            instructionCell.textLabel?.text = "Here are some rules for to help navigate through our app"
+            instructionCell.textLabel?.text = "Swipe left to upvote and right to downvote"
             instructionCell.textLabel?.font = Settings.manager.titleSize
             instructionCell.textLabel?.textColor = Settings.manager.textColor
             return instructionCell
@@ -158,11 +158,15 @@ extension HomeFeedVC: UITableViewDelegate, HomeFeedTableViewCellDelegate{
     }
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let dislikeAction = UIContextualAction(style: .normal, title: "Dislike") { (action, view, handler) in
-            handler(true)
             if FirebaseUserManager.shared.getCurrentUser() == nil {
                 self.present(LoginVC(), animated: true, completion: nil)
             }
-            print("Dislike Action Tapped")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                
+                let postSetup = self.posts[indexPath.row-1]
+                FirebasePostManager.manager.updatePostDownVote(for: postSetup)
+                handler(true)
+            }
         }
         dislikeAction.backgroundColor = .red
         let configuration = UISwipeActionsConfiguration(actions: [dislikeAction])
@@ -240,8 +244,13 @@ extension HomeFeedVC: UITableViewDelegate, HomeFeedTableViewCellDelegate{
         guard indexPath.row != 0 else{
             return
         }
-        let detailedPostViewController = DetailPostVC(post: posts[indexPath.row - 1])
-        navigationController?.pushViewController(detailedPostViewController, animated: true)
+        let cell = tableView.cellForRow(at: indexPath)
+        UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 5, options: [], animations: {
+            cell?.transform = CGAffineTransform(scaleX: 0.9, y: 0.9) }, completion: { finished in
+                UIView.animate(withDuration: 0.06, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 5, options: .curveEaseIn, animations: { cell?.transform = CGAffineTransform(scaleX: 1, y: 1) }, completion: {(_) in
+                    let detailedPostViewController = DetailPostVC(post: self.posts[indexPath.row - 1])
+                    self.navigationController?.pushViewController(detailedPostViewController, animated: true)
+                } )})
     }
 }
 

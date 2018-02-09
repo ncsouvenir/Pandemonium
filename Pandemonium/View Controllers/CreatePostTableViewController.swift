@@ -116,17 +116,48 @@ class CreateAPostTableViewController: UITableViewController {
     
     @objc func createButtonPressed(){
         //TODO: call FirebasePostManager.manager.addPosts() to populate the new post in the HomeFeed VC
+        
+        if titleTextField.text == "" || titleTextField == nil {
+            let alertController = UIAlertController(title: "Error",
+                                                    message:"Please enter a title.",
+                                                    preferredStyle: UIAlertControllerStyle.alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+            return
+        }
+        
+        if bodytextView.text == "" || bodytextView.text == nil {
+            let alertController = UIAlertController(title: "Error",
+                                                    message:"Please populate at least one post field.",
+                                                    preferredStyle: UIAlertControllerStyle.alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+            return
+        }
+        
+        
+        var tags: [String]
+        if tagsTextField.text == "" || tagsTextField.text == nil {
+            tags = [""]
+        } else {
+            tags = tagsTextField.text!.components(separatedBy: " ")
+        }
+        
         let currentUser = FirebaseUserManager.shared.getCurrentUser()!
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: DateFormatterManager.formatDate(Date()), title: titleTextField.text!, tags: ["#EMPIREDIDNOTHINGWRONG", "#KHALEESI"], bodyText: bodytextView.text, url: urlTextField.text, image: nil, errorHandler: {print($0)})
+            FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: DateFormatterManager.formatDate(Date()), title: titleTextField.text!, tags: tags, bodyText: bodytextView.text, url: urlTextField.text, image: nil, errorHandler: {print($0)})
         case 1:
-            FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: DateFormatterManager.formatDate(Date()), title: titleTextField.text!, tags: ["#THOTS", "#21"], bodyText: bodytextView.text, url: nil, image: nil, errorHandler: {print($0)})
+            FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: DateFormatterManager.formatDate(Date()), title: titleTextField.text!, tags: tags, bodyText: bodytextView.text, url: nil, image: nil, errorHandler: {print($0)})
         case 2:
             if let image = imageView.image {
                 let sizeOfImage: CGSize = CGSize(width: 200, height: 200)
                 let toucanImage = Toucan.Resize.resizeImage(image, size: sizeOfImage)
-                FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: DateFormatterManager.formatDate(Date()), title: titleTextField.text!, tags: ["#DOYOU", "#KNOW", "#DAWAE"], bodyText: bodytextView.text, url: nil, image: toucanImage, errorHandler: {print($0)})
+                FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: DateFormatterManager.formatDate(Date()), title: titleTextField.text!, tags: tags, bodyText: bodytextView.text, url: nil, image: toucanImage, errorHandler: {print($0)})
             }
         default:
             print("error choosing type of post")

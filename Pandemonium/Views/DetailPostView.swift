@@ -34,11 +34,13 @@ class DetailPostView: UIView {
     
     lazy var usernameLabel: UILabel = {
         let label = UILabel()
+        label.textColor = Settings.manager.textColor
         return label
     }()
     
     lazy var karmaLabel: UILabel = {
         let label = UILabel()
+        label.textColor = Settings.manager.textColor
         return label
     }()
     
@@ -56,6 +58,7 @@ class DetailPostView: UIView {
     
     lazy var dateLabel: UILabel = {
         let label = UILabel()
+        label.textColor = Settings.manager.textColor
         return label
     }()
     
@@ -67,6 +70,7 @@ class DetailPostView: UIView {
     
     lazy var postImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = Settings.manager.backgroundColor
         return imageView
     }()
@@ -84,6 +88,7 @@ class DetailPostView: UIView {
         textView.backgroundColor = Settings.manager.backgroundColor
         textView.isEditable = false
         textView.font = UIFont.systemFont(ofSize: 20)
+        textView.textColor = Settings.manager.textColor
         return textView
     }()
     

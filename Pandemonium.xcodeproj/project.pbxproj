@@ -12,7 +12,11 @@
 		81347F412027FAD50067931B /* ProfilePostCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81347F402027FAD50067931B /* ProfilePostCustomTableViewCell.swift */; };
 		81347F432027FB750067931B /* ProfileImageCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81347F422027FB750067931B /* ProfileImageCustomTableViewCell.swift */; };
 		8138C115202BB5B5004355DA /* FirebaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8138C114202BB5B5004355DA /* FirebaseStorageManager.swift */; };
+<<<<<<< HEAD
 		81589F33202C0856008A3E52 /* UserEditPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81589F32202C0855008A3E52 /* UserEditPost.storyboard */; };
+=======
+		813DD572202CE5FE00A24735 /* CurrentUserProfilePostCustomCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813DD571202CE5FE00A24735 /* CurrentUserProfilePostCustomCustomTableViewCell.swift */; };
+>>>>>>> dev-Nicole
 		81590362202AC18500284A83 /* UserEditPostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590361202AC18500284A83 /* UserEditPostTableViewController.swift */; };
 		814E957B202CAF5C00CECFA4 /* DateFormatterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814E957A202CAF5C00CECFA4 /* DateFormatterManager.swift */; };
 		818555332021230E0089752E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818555322021230E0089752E /* AppDelegate.swift */; };
@@ -26,6 +30,7 @@
 		8185556C202125230089752E /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8185556B202125230089752E /* CreateAccountVC.swift */; };
 		8185557A202126F40089752E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81855579202126F40089752E /* ProfileView.swift */; };
 		81855582202127360089752E /* UserEditPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81855581202127360089752E /* UserEditPostView.swift */; };
+		8187A463202CF7B800CA9DB3 /* UserEditPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 810C8FC2202C022A0070C3A1 /* UserEditPost.storyboard */; };
 		818B08312028FE84005B130F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818B08302028FE84005B130F /* Settings.swift */; };
 		81AB4DCC20223DC50034B761 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AB4DCB20223DC50034B761 /* CreateAccountView.swift */; };
 		81AB4DCE2022908E0034B761 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81AB4DCD2022908E0034B761 /* GoogleService-Info.plist */; };
@@ -37,7 +42,7 @@
 		81CF09D1202127B300ECACE5 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF09D0202127B300ECACE5 /* MenuView.swift */; };
 		81CF09D3202127C300ECACE5 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF09D2202127C300ECACE5 /* MenuVC.swift */; };
 		81CF09E8202128B100ECACE5 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF09E7202128B100ECACE5 /* UserDefaults.swift */; };
-		81CF09FA20212B5D00ECACE5 /* CurrentUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF09F920212B5D00ECACE5 /* CurrentUserTableViewCell.swift */; };
+		81CF09FA20212B5D00ECACE5 /* CurrentUserProfileImageCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF09F920212B5D00ECACE5 /* CurrentUserProfileImageCustomTableViewCell.swift */; };
 		81CF09FC20212B6800ECACE5 /* UserCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF09FB20212B6800ECACE5 /* UserCommentTableViewCell.swift */; };
 		81CF0A0020212B8500ECACE5 /* DetailPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF09FF20212B8500ECACE5 /* DetailPostTableViewCell.swift */; };
 		81CF0A0220212B8F00ECACE5 /* AppInstructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF0A0120212B8F00ECACE5 /* AppInstructionsTableViewCell.swift */; };
@@ -85,7 +90,11 @@
 		81347F402027FAD50067931B /* ProfilePostCustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePostCustomTableViewCell.swift; sourceTree = "<group>"; };
 		81347F422027FB750067931B /* ProfileImageCustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImageCustomTableViewCell.swift; sourceTree = "<group>"; };
 		8138C114202BB5B5004355DA /* FirebaseStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageManager.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		81589F32202C0855008A3E52 /* UserEditPost.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserEditPost.storyboard; sourceTree = "<group>"; };
+=======
+		813DD571202CE5FE00A24735 /* CurrentUserProfilePostCustomCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserProfilePostCustomCustomTableViewCell.swift; sourceTree = "<group>"; };
+>>>>>>> dev-Nicole
 		81590361202AC18500284A83 /* UserEditPostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditPostTableViewController.swift; sourceTree = "<group>"; };
 		814E957A202CAF5C00CECFA4 /* DateFormatterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterManager.swift; sourceTree = "<group>"; };
 		8185552F2021230E0089752E /* Pandemonium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pandemonium.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,7 +125,7 @@
 		81CF09D0202127B300ECACE5 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		81CF09D2202127C300ECACE5 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		81CF09E7202128B100ECACE5 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
-		81CF09F920212B5D00ECACE5 /* CurrentUserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserTableViewCell.swift; sourceTree = "<group>"; };
+		81CF09F920212B5D00ECACE5 /* CurrentUserProfileImageCustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserProfileImageCustomTableViewCell.swift; sourceTree = "<group>"; };
 		81CF09FB20212B6800ECACE5 /* UserCommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCommentTableViewCell.swift; sourceTree = "<group>"; };
 		81CF09FF20212B8500ECACE5 /* DetailPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPostTableViewCell.swift; sourceTree = "<group>"; };
 		81CF0A0120212B8F00ECACE5 /* AppInstructionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppInstructionsTableViewCell.swift; sourceTree = "<group>"; };
@@ -300,7 +309,7 @@
 		81CF09F820212B3200ECACE5 /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
-				81CF09F920212B5D00ECACE5 /* CurrentUserTableViewCell.swift */,
+				81CF09F920212B5D00ECACE5 /* CurrentUserProfileImageCustomTableViewCell.swift */,
 				81CF09FB20212B6800ECACE5 /* UserCommentTableViewCell.swift */,
 				81CF0A172021342700ECACE5 /* MenuTableViewCell.swift */,
 				81CF09FF20212B8500ECACE5 /* DetailPostTableViewCell.swift */,
@@ -308,6 +317,7 @@
 				81CF0A0320212B9900ECACE5 /* HomeFeedTableViewCell.swift */,
 				81347F422027FB750067931B /* ProfileImageCustomTableViewCell.swift */,
 				81347F402027FAD50067931B /* ProfilePostCustomTableViewCell.swift */,
+				813DD571202CE5FE00A24735 /* CurrentUserProfilePostCustomCustomTableViewCell.swift */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -461,7 +471,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				818555402021230E0089752E /* LaunchScreen.storyboard in Resources */,
+<<<<<<< HEAD
 				81589F33202C0856008A3E52 /* UserEditPost.storyboard in Resources */,
+=======
+				8187A463202CF7B800CA9DB3 /* UserEditPost.storyboard in Resources */,
+>>>>>>> dev-Nicole
 				810C8FC4202C03E50070C3A1 /* CreateAPost.storyboard in Resources */,
 				8185553D2021230E0089752E /* Assets.xcassets in Resources */,
 				81AB4DCE2022908E0034B761 /* GoogleService-Info.plist in Resources */,
@@ -672,7 +686,11 @@
 				8185553B2021230E0089752E /* Pandemonium.xcdatamodeld in Sources */,
 				81CF0A0020212B8500ECACE5 /* DetailPostTableViewCell.swift in Sources */,
 				81CF0A1C2021351500ECACE5 /* UserEditPostVC.swift in Sources */,
+<<<<<<< HEAD
 				814E957B202CAF5C00CECFA4 /* DateFormatterManager.swift in Sources */,
+=======
+				813DD572202CE5FE00A24735 /* CurrentUserProfilePostCustomCustomTableViewCell.swift in Sources */,
+>>>>>>> dev-Nicole
 				818B08312028FE84005B130F /* Settings.swift in Sources */,
 				81347F412027FAD50067931B /* ProfilePostCustomTableViewCell.swift in Sources */,
 				8185556A202124D30089752E /* HomeFeedVC.swift in Sources */,
@@ -683,7 +701,7 @@
 				81CF0A0C2021338800ECACE5 /* LoginVC.swift in Sources */,
 				8185556C202125230089752E /* CreateAccountVC.swift in Sources */,
 				8185557A202126F40089752E /* ProfileView.swift in Sources */,
-				81CF09FA20212B5D00ECACE5 /* CurrentUserTableViewCell.swift in Sources */,
+				81CF09FA20212B5D00ECACE5 /* CurrentUserProfileImageCustomTableViewCell.swift in Sources */,
 				818555332021230E0089752E /* AppDelegate.swift in Sources */,
 				81CF0A1E2021352000ECACE5 /* LoginView.swift in Sources */,
 				81CF0A082021336D00ECACE5 /* DetailPostVC.swift in Sources */,

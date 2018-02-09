@@ -45,7 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         editNavController.tabBarItem = UITabBarItem(title: "Edit Post", image: nil, tag: 3)
     
         
-  
         let login = LoginVC()
         login.tabBarItem = UITabBarItem(title: "Login", image: nil, tag: 4)
       

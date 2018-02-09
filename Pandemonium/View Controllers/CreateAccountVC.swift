@@ -38,8 +38,9 @@ class CreateAccountVC: UIViewController {
     func testColors() {
         let gradient = CAGradientLayer()
         gradient.frame = view.bounds
-        gradient.colors = [UIColor.cyan.cgColor, UIColor.purple.cgColor]
+        gradient.colors = [Settings.manager.customBlue.cgColor, Settings.manager.customGray.cgColor]
         view.layer.addSublayer(gradient)
+        
     }
     
     private func submitButton() {
@@ -47,14 +48,42 @@ class CreateAccountVC: UIViewController {
     }
     
     @objc private func submitTapped() {
-        guard let userText = createView.userNameTextField.text else {print("username is nil"); return}
-        guard !userText.isEmpty else {print("user is empty"); return}
+        guard let userText = createView.userNameTextField.text else {return}
+        if userText.isEmpty {
+            createView.UserErrorLabel.text = "Pick a Username"
+            createView.UserErrorLabel.isHidden = false
+        } else {
+        createView.UserErrorLabel.isHidden = true
+        }
         
-        guard let emailText = createView.emailTextField.text else {print("email is nil"); return}
-        guard !emailText.isEmpty else {print("email is empty"); return}
+        guard let emailText = createView.emailTextField.text else {return}
+        if emailText.isEmpty {
+            createView.emailErrorLabel.text = "Email is empty"
+            createView.emailErrorLabel.isHidden = false
+        } else if !(emailText.contains("@") && emailText.contains(".")) {
+            createView.emailErrorLabel.text = "Invalid email"
+            createView.emailErrorLabel.isHidden = false
+        } else {
+            createView.emailErrorLabel.isHidden = true
+        }
         
-        guard let passwordText = createView.passwordTextField.text else {print("password is nil"); return}
-        guard !passwordText.isEmpty else {print("password is empty"); return}
+        guard let passwordText = createView.passwordTextField.text else {return}
+        if passwordText.isEmpty {
+            createView.invalidPasswordLabel.text = "No Password entered"
+            createView.invalidPasswordLabel.isHidden = false
+        } else if passwordText.count < 6 {
+            createView.invalidPasswordLabel.text = "Password requires more than six characters"
+        } else {
+        createView.invalidPasswordLabel.isHidden = true
+        }
+        
+        guard let confirmPassword = createView.passwordTextField.text else {return}
+        if confirmPassword.isEmpty {
+            createView.invalidConfirmLabel.text = "No Password entered"
+            createView.invalidConfirmLabel.isHidden = false
+        } else {
+        createView.invalidConfirmLabel.isHidden = true
+        }
         //TODO: Check for unique users
         if passwordText == createView.confirmPasswordTextField.text {
             FirebaseUserManager.shared.createAccount(with: emailText, and: passwordText, username: userText) { (user, error) in
@@ -66,6 +95,10 @@ class CreateAccountVC: UIViewController {
             }
             
         } else {
+            createView.invalidPasswordLabel.text = "Password's don't match"
+            createView.invalidConfirmLabel.text = "Password's don't match"
+            createView.invalidPasswordLabel.isHidden = false
+            createView.invalidConfirmLabel.isHidden = false
             print("Passwords don't match!")
         }
         

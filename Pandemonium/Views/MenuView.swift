@@ -9,44 +9,53 @@
 import UIKit
 
 class MenuView: UIView {
-    lazy var exitButton: UIButton = {
-        let button = UIButton(type: UIButtonType.system)
-        button.setTitle("Back", for: .normal)
-        button.titleLabel?.textColor = .black
-        return button
-    }()
+//    lazy var exitButton: UIButton = {
+//        let button = UIButton(type: UIButtonType.system)
+////        button.setTitle("Back", for: .normal)
+////        button.tintColor = UIColor.black
+////        button.setTitleColor(.black, for: .normal)
+//        return button
+//    }()
     lazy var signInButton: UIButton = {
         let button = UIButton(type: UIButtonType.system)
-        button.setTitle("Sign in", for: .normal)
-        button.titleLabel?.textColor = .black
+        button.setTitle("   Sign in", for: .normal)
+        button.tintColor = UIColor.black
+        button.setImage(  #imageLiteral(resourceName: "signin-1"), for: .normal)
+        button.setTitleColor(.black, for: .normal)
         return button
     }()
     lazy var signOutButton: UIButton = {
         let button = UIButton(type: UIButtonType.system)
-        button.setTitle("Sign out", for: .normal)
-        button.titleLabel?.textColor = .black
+        button.setTitle("   Sign out", for: .normal)
+        button.tintColor = UIColor.black
+        button.setImage(  #imageLiteral(resourceName: "signout"), for: .normal)
+        button.setTitleColor(.black, for: .normal)
         return button
     }()
     lazy var profileButton: UIButton = {
         let button = UIButton(type: UIButtonType.system)
-        button.setTitle("Profile", for: .normal)
-        button.titleLabel?.textColor = .black
+        button.setTitle("   Profile", for: .normal)
+        button.setImage(  #imageLiteral(resourceName: "signIn"), for: .normal)
+        button.tintColor = UIColor.red
+        button.setTitleColor(.black, for: .normal)
         return button
     }()
-    lazy var createNewAccount: UIButton = {
-        let button = UIButton(type: UIButtonType.system)
-        button.setTitle("Create New Account", for: .normal)
-        button.titleLabel?.textColor = .black
-        return button
-    }()
+    //    lazy var createNewAccount: UIButton = {
+    //        let button = UIButton(type: UIButtonType.system)
+    //        button.setTitle("Create New Account", for: .normal)
+    //        button.titleLabel?.textColor = .black
+    //        return button
+    //    }()
     lazy var homeButton: UIButton = {
         let button = UIButton(type: UIButtonType.system)
-        button.setTitle("Home", for: .normal)
-        button.titleLabel?.textColor = .black
+        button.setTitle("   Home", for: .normal)
+        button.setImage( #imageLiteral(resourceName: "home"), for: .normal)
+        button.tintColor = UIColor.black
+        button.setTitleColor(.black, for: .normal)
         return button
     }()
     lazy var stackView: UIStackView = {
-        let sView = UIStackView(arrangedSubviews: [homeButton,signInButton, signOutButton, profileButton, createNewAccount])
+        let sView = UIStackView(arrangedSubviews: [homeButton,signInButton, signOutButton, profileButton])
         sView.axis = .vertical
         sView.distribution = .fillEqually
         sView.alignment = UIStackViewAlignment.leading
@@ -72,21 +81,21 @@ class MenuView: UIView {
     }
     
     private func setupViews(){
-        setupExitButton()
+        //setupExitButton()
         setupStackView()
         //        setupTableView()
     }
-    func setupExitButton(){
-        addSubview(exitButton)
-        exitButton.snp.makeConstraints { (constraint) in
-            constraint.top.equalTo(snp.top).offset(5)
-            constraint.right.equalTo(snp.right).offset(-10)
-        }
-    }
+//    func setupExitButton(){
+//        addSubview(exitButton)
+//        exitButton.snp.makeConstraints { (constraint) in
+//            constraint.top.equalTo(snp.top).offset(5)
+//            constraint.right.equalTo(snp.right).offset(-10)
+//        }
+//    }
     func setupTableView(){
         addSubview(tableView)
         tableView.snp.makeConstraints { (constraint) in
-            constraint.top.equalTo(exitButton.snp.bottom).offset(5)
+            constraint.top.equalTo(snp.top).offset(5)
             constraint.left.equalTo(snp.left)
             constraint.right.equalTo(snp.right)
             constraint.bottom.equalTo(snp.bottom)
@@ -96,7 +105,7 @@ class MenuView: UIView {
     func setupStackView(){
         addSubview(stackView)
         stackView.snp.makeConstraints { (constraint) in
-            constraint.top.equalTo(exitButton.snp.bottom).offset(10)
+            constraint.top.equalTo(snp.top).offset(10)
             constraint.right.equalTo(snp.right)
             constraint.left.equalTo(snp.left)
             constraint.height.equalTo(snp.height).multipliedBy(0.45)

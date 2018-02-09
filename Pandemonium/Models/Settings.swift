@@ -16,6 +16,9 @@ class Settings {
     var backgroundColor = UIColor.white
     var textColor = UIColor.black
     
+    let customBlue = UIColor(displayP3Red: 105/255, green: 200/255, blue: 252/255, alpha: 1)
+    let customGray = UIColor(displayP3Red: 125/255, green: 120/255, blue: 120/255, alpha: 1)
+    
     var logoPressed = false
     
     public func nightModeSwitch() {

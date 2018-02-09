@@ -26,24 +26,32 @@ class CreateAccountView: UIView {
     }()
     
     ///Labels
-    lazy var userNameLabel: UILabel = {
+    lazy var UserErrorLabel: UILabel = {
         let label = UILabel()
-        label.text = "Username"
+        label.textColor = .red
+        label.text = "  "
+        label.isHidden = true
         return label
     }()
-    lazy var emailLabel: UILabel = {
+    lazy var emailErrorLabel: UILabel = {
         let label = UILabel()
-        label.text = "Email"
+        label.textColor = .red
+        label.text = "  "
+        label.isHidden = true
         return label
     }()
-    lazy var passwordLabel: UILabel = {
+    lazy var invalidPasswordLabel: UILabel = {
         let label = UILabel()
-        label.text = "Password"
+        label.textColor = .red
+        label.text = "  "
+        label.isHidden = true
         return label
     }()
-    lazy var confirmPasswordLabel: UILabel = {
+    lazy var invalidConfirmLabel: UILabel = {
         let label = UILabel()
-        label.text = "Confirm Password"
+        label.textColor = .red
+        label.text = "  "
+        label.isHidden = true
         return label
     }()
     
@@ -51,6 +59,7 @@ class CreateAccountView: UIView {
     lazy var userNameTextField: UITextField = {
         let tf = UITextField()
         tf.borderStyle = .roundedRect
+        tf.placeholder = "Username"
         tf.layer.shadowOpacity = 0.8
         tf.layer.shadowOffset = CGSize(width: 2, height: 2)
         return tf
@@ -58,6 +67,7 @@ class CreateAccountView: UIView {
     lazy var emailTextField: UITextField = {
         let tf = UITextField()
         tf.borderStyle = .roundedRect
+        tf.placeholder = "Email"
         tf.layer.shadowOpacity = 0.8
         tf.layer.shadowOffset = CGSize(width: 2, height: 2)
         tf.keyboardType = .emailAddress
@@ -66,6 +76,7 @@ class CreateAccountView: UIView {
     lazy var passwordTextField: UITextField = {
         let tf = UITextField()
         tf.borderStyle = .roundedRect
+        tf.placeholder = "Password"
         tf.layer.shadowOpacity = 0.8
         tf.layer.shadowOffset = CGSize(width: 2, height: 2)
         tf.isSecureTextEntry = true
@@ -74,6 +85,7 @@ class CreateAccountView: UIView {
     lazy var confirmPasswordTextField: UITextField = {
         let tf = UITextField()
         tf.borderStyle = .roundedRect
+        tf.placeholder = "Confirm Password"
         tf.layer.shadowOpacity = 0.8
         tf.layer.shadowOffset = CGSize(width: 2, height: 2)
         tf.isSecureTextEntry = true
@@ -84,7 +96,6 @@ class CreateAccountView: UIView {
         let button = UIButton(type: .roundedRect)
         button.setTitle("   Submit   ", for: .normal)
         button.backgroundColor = .white
-        button.tintColor = .purple
         button.layer.cornerRadius = 10
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.black.cgColor
@@ -109,7 +120,7 @@ class CreateAccountView: UIView {
     
     private func setupViews() {
         blurView.frame = bounds
-        let viewObjects = [blurView, containerView, userNameLabel, userNameTextField, emailLabel, emailTextField, passwordLabel, passwordTextField, confirmPasswordLabel, confirmPasswordTextField, submitButton] as [UIView]
+        let viewObjects = [blurView, containerView, invalidConfirmLabel, userNameTextField, UserErrorLabel, emailTextField, emailErrorLabel, passwordTextField, invalidPasswordLabel, confirmPasswordTextField, submitButton] as [UIView]
         viewObjects.forEach{addSubview($0)}
         let padding = 20
         
@@ -120,49 +131,49 @@ class CreateAccountView: UIView {
             view.height.equalTo(self).multipliedBy(0.8)
         }
         
-        userNameLabel.snp.makeConstraints { (label) in
-            label.top.leading.equalTo(containerView).offset(padding)
-        }
         userNameTextField.snp.makeConstraints { (field) in
-            field.top.equalTo(userNameLabel.snp.bottom).offset(padding - 10)
-            field.leading.equalTo(containerView).offset(padding)
+            field.top.equalTo(containerView).offset(padding + 10)
+            field.centerX.equalTo(containerView)
             field.width.equalTo(containerView).multipliedBy(0.8)
         }
         
-        emailLabel.snp.makeConstraints { (label) in
+        UserErrorLabel.snp.makeConstraints { (label) in
             label.top.equalTo(userNameTextField.snp.bottom).offset(padding)
-            label.leading.equalTo(containerView).offset(padding)
+            label.centerX.equalTo(containerView)
         }
         emailTextField.snp.makeConstraints { (field) in
-            field.top.equalTo(emailLabel.snp.bottom).offset(padding - 10)
-            field.leading.equalTo(containerView).offset(padding)
+            field.top.equalTo(UserErrorLabel.snp.bottom).offset(padding - 10)
+            field.centerX.equalTo(containerView)
             field.width.equalTo(userNameTextField)
         }
         
-        passwordLabel.snp.makeConstraints { (label) in
+        emailErrorLabel.snp.makeConstraints { (label) in
             label.top.equalTo(emailTextField.snp.bottom).offset(padding)
-            label.leading.equalTo(containerView).offset(padding)
+            label.centerX.equalTo(containerView)
         }
         passwordTextField.snp.makeConstraints { (field) in
-            field.top.equalTo(passwordLabel.snp.bottom).offset(padding - 10)
-            field.leading.equalTo(containerView).offset(padding)
+            field.top.equalTo(emailErrorLabel.snp.bottom).offset(padding - 10)
+            field.centerX.equalTo(containerView)
             field.width.equalTo(emailTextField)
         }
         
-        confirmPasswordLabel.snp.makeConstraints { (label) in
+        invalidPasswordLabel.snp.makeConstraints { (label) in
             label.top.equalTo(passwordTextField.snp.bottom).offset(padding)
-            label.leading.equalTo(containerView).offset(padding)
+            label.centerX.equalTo(containerView)
         }
         
         confirmPasswordTextField.snp.makeConstraints { (field) in
-            field.top.equalTo(confirmPasswordLabel.snp.bottom).offset(padding - 10)
-            field.leading.equalTo(containerView).offset(padding)
+            field.top.equalTo(invalidPasswordLabel.snp.bottom).offset(padding - 10)
+            field.centerX.equalTo(containerView)
             field.width.equalTo(emailTextField)
         }
-        
+        invalidConfirmLabel.snp.makeConstraints { (label) in
+            label.top.equalTo(confirmPasswordTextField.snp.bottom).offset(padding - 10)
+            label.centerX.equalTo(containerView)
+        }
         submitButton.snp.makeConstraints { (button) in
             button.centerX.equalTo(containerView)
-            button.top.equalTo(confirmPasswordTextField.snp.bottom).offset(padding + 30)
+            button.top.equalTo(invalidConfirmLabel.snp.bottom).offset(padding + 20)
         }
         
     }

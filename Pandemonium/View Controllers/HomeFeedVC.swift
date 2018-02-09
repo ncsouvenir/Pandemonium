@@ -135,6 +135,9 @@ extension HomeFeedVC: UITableViewDelegate, HomeFeedTableViewCellDelegate{
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
        
         let likeAction = UIContextualAction(style: .normal, title: "Like") { (action, view, handler) in
+            if FirebaseUserManager.shared.getCurrentUser() == nil {
+                self.present(LoginVC(), animated: true, completion: nil)
+            }
             handler(true)
             print("Like Action Tapped")
         }
@@ -146,6 +149,9 @@ extension HomeFeedVC: UITableViewDelegate, HomeFeedTableViewCellDelegate{
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let dislikeAction = UIContextualAction(style: .normal, title: "Dislike") { (action, view, handler) in
             handler(true)
+            if FirebaseUserManager.shared.getCurrentUser() == nil {
+                self.present(LoginVC(), animated: true, completion: nil)
+            }
             print("Dislike Action Tapped")
         }
         dislikeAction.backgroundColor = .red

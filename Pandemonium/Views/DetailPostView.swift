@@ -70,6 +70,7 @@ class DetailPostView: UIView {
     
     lazy var postImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = Settings.manager.backgroundColor
         return imageView
     }()

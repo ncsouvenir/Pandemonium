@@ -12,9 +12,7 @@
 		81347F412027FAD50067931B /* ProfilePostCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81347F402027FAD50067931B /* ProfilePostCustomTableViewCell.swift */; };
 		81347F432027FB750067931B /* ProfileImageCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81347F422027FB750067931B /* ProfileImageCustomTableViewCell.swift */; };
 		8138C115202BB5B5004355DA /* FirebaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8138C114202BB5B5004355DA /* FirebaseStorageManager.swift */; };
-		81589F33202C0856008A3E52 /* UserEditPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81589F32202C0855008A3E52 /* UserEditPost.storyboard */; };
 		813DD572202CE5FE00A24735 /* CurrentUserProfilePostCustomCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813DD571202CE5FE00A24735 /* CurrentUserProfilePostCustomCustomTableViewCell.swift */; };
-		81590362202AC18500284A83 /* UserEditPostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590361202AC18500284A83 /* UserEditPostTableViewController.swift */; };
 		814E957B202CAF5C00CECFA4 /* DateFormatterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814E957A202CAF5C00CECFA4 /* DateFormatterManager.swift */; };
 		814E957D202D1C8E00CECFA4 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814E957C202D1C8E00CECFA4 /* ImageHelper.swift */; };
 		814E957F202D1CDA00CECFA4 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814E957E202D1CDA00CECFA4 /* NetworkHelper.swift */; };
@@ -90,9 +88,7 @@
 		81347F402027FAD50067931B /* ProfilePostCustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePostCustomTableViewCell.swift; sourceTree = "<group>"; };
 		81347F422027FB750067931B /* ProfileImageCustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImageCustomTableViewCell.swift; sourceTree = "<group>"; };
 		8138C114202BB5B5004355DA /* FirebaseStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageManager.swift; sourceTree = "<group>"; };
-		81589F32202C0855008A3E52 /* UserEditPost.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserEditPost.storyboard; sourceTree = "<group>"; };
 		813DD571202CE5FE00A24735 /* CurrentUserProfilePostCustomCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserProfilePostCustomCustomTableViewCell.swift; sourceTree = "<group>"; };
-		81590361202AC18500284A83 /* UserEditPostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditPostTableViewController.swift; sourceTree = "<group>"; };
 		814E957A202CAF5C00CECFA4 /* DateFormatterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterManager.swift; sourceTree = "<group>"; };
 		814E957C202D1C8E00CECFA4 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		814E957E202D1CDA00CECFA4 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
@@ -867,6 +863,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3V32EPY5YP;
 				INFOPLIST_FILE = Pandemonium/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -883,6 +880,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3V32EPY5YP;
 				INFOPLIST_FILE = Pandemonium/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

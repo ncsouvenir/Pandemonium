@@ -116,6 +116,30 @@ class CreateAPostTableViewController: UITableViewController {
     
     @objc func createButtonPressed(){
         //TODO: call FirebasePostManager.manager.addPosts() to populate the new post in the HomeFeed VC
+        
+        if titleTextField.text == "" || titleTextField == nil {
+            let alertController = UIAlertController(title: "Error",
+                                                    message:"Please enter a title.",
+                                                    preferredStyle: UIAlertControllerStyle.alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+            return
+        }
+        
+        if bodytextView.text == "" || bodytextView.text == nil {
+            let alertController = UIAlertController(title: "Error",
+                                                    message:"Please populate at least one post field.",
+                                                    preferredStyle: UIAlertControllerStyle.alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+            return
+        }
+        
+        
         let currentUser = FirebaseUserManager.shared.getCurrentUser()!
         switch segmentedControl.selectedSegmentIndex {
         case 0:

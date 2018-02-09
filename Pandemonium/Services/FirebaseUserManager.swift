@@ -125,4 +125,8 @@ class FirebaseUserManager {
             }
         }
     }
+    
+    func changeUsernameFrom(userUID: String, newUsername: String) {
+        Database.database().reference(withPath: "users").child(userUID).child("appUserName").setValue(newUsername)
+    }
 }

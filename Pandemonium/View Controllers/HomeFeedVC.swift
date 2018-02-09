@@ -201,9 +201,10 @@ extension HomeFeedVC: UITableViewDelegate, HomeFeedTableViewCellDelegate{
             })
             let userProfileAction = UIAlertAction(title: "View Profile", style: .default, handler: { (action) in
                 //TODO Inject the User to the profileViewController
-                
-                let profileViewController = ProfileViewController()
-                self.navigationController?.pushViewController(profileViewController, animated: true)
+                FirebaseUserManager.shared.getParrotFrom(uid: postSetup.userUID, completionHandler: { (userParrot) in
+                    let profileViewController = ProfileViewController(user: userParrot)
+                    self.navigationController?.pushViewController(profileViewController, animated: true)
+                }, errorHandler: {print($0)})
                 
                 
             })

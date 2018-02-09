@@ -56,12 +56,10 @@ class MenuVC: UIViewController, UIGestureRecognizerDelegate {
             constraint.width.equalTo(view.safeAreaLayoutGuide.snp.width).multipliedBy(0.50)
             constraint.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
-//        menuView.exitButton.addTarget(self, action: #selector(exit), for: .touchUpInside)
         menuView.signInButton.addTarget(self, action: #selector(segueToSignIn), for: .touchUpInside)
         menuView.signOutButton.addTarget(self, action: #selector(signOutAction), for: .touchUpInside)
         menuView.profileButton.addTarget(self, action: #selector(segueToProfile), for: .touchUpInside)
         menuView.homeButton.addTarget(self, action: #selector(exit), for: .touchUpInside)
-//        menuView.createNewAccount.addTarget(self, action: #selector(segueToCreateAccount), for: .touchUpInside)
     }
     //this method will exit the menue
     @objc func exit(){
@@ -75,40 +73,30 @@ class MenuVC: UIViewController, UIGestureRecognizerDelegate {
     //this function will sign you out
     @objc func signOutAction(){
         FirebaseUserManager.shared.logOut()
-        let alertViewController = UIAlertController(title: "You are sign out", message: "", preferredStyle: UIAlertControllerStyle.alert)
-        let alertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        let alertViewController = UIAlertController(title: "Thank You, come again!", message: "", preferredStyle: UIAlertControllerStyle.alert)
+
+        let alertAction = UIAlertAction(title: "OK", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            //dismiss menuVC and take back to HomeFeed
+            self.dismiss(animated: true, completion: nil)
+        })
         alertViewController.addAction(alertAction)
         present(alertViewController, animated: true, completion: nil)
     }
+    
     @objc func segueToProfile(){
         if FirebaseUserManager.shared.getCurrentUser() == nil {
             present(LoginVC(), animated: true, completion: nil)
+        }else{
+            let currentUserProfileVC = CurrentUserProfileVC()
+            let navController = UINavigationController(rootViewController: currentUserProfileVC)
+            present(navController, animated: true, completion: nil)
         }
-        self.present(CurrentUserProfileVC(), animated: true, completion: nil)
-        //TODO: initialize the viewController with the user
-        let currentUserProfileVC = CurrentUserProfileVC(user: user)
-        currentUserProfileVC.modalPresentationStyle = .overCurrentContext
-        currentUserProfileVC.modalTransitionStyle = .crossDissolve
-        present(currentUserProfileVC, animated: true, completion: nil)
-        
-        
-        let alertViewController = UIAlertController(title: "Your aren't signed in please sign in ", message: "", preferredStyle: UIAlertControllerStyle.alert)
-        let alertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-        alertViewController.addAction(alertAction)
-        present(alertViewController, animated: true, completion: nil)
-        
     }
+    
     @objc func segueToCreateAccount(){
         //TODO: segue to the create account
         let createAccountViewController = CreateAccountVC()
         present(createAccountViewController, animated: true, completion: nil)
     }
-    
-    
-    
-    
-    
-    
-    
-    
 }

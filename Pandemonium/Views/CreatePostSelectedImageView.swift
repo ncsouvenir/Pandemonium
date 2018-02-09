@@ -36,17 +36,7 @@ class CreatePostSelectedImageView: UIView {
         super.init(coder: aDecoder)
         //setUpGUI()
     }
-    
-    override func layoutSubviews() {
-        // here you get the actual frame size of the elements before getting
-        // laid out on screen
-        super.layoutSubviews()
-        // To add round edges
-        //textField.layer.cornerRadius = textField.bounds.width / 1.0
-        //textField.layer.masksToBounds = true
-        
-    }
-    
+
     private func setUpGUI() {
         backgroundColor = .white
         setupAndConstrainObjects()
@@ -56,11 +46,7 @@ class CreatePostSelectedImageView: UIView {
     private func setupDismissView() {
         addSubview(dismissView)
     }
-    
-//    func changeImage(to newImage: UIImage) {
-//        largeImageView.image = newImage
-//    }
-    
+
     ///////Constraints
     private func setupAndConstrainObjects() {
         /*
@@ -73,18 +59,16 @@ class CreatePostSelectedImageView: UIView {
         largeImageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            
             //Large image
             largeImageView.topAnchor.constraint(equalTo: topAnchor, constant: 30),
             largeImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -30),
             largeImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
             largeImageView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20)
             ])
-
     }
     
     //Configuring cell function for injection
     public func configureImage(to selectedImage: UIImage) {
-        largeImageView.image = selectedImage //optional<UIImage> after debugging
+        largeImageView.image = selectedImage
     }
 }

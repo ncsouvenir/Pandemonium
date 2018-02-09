@@ -8,17 +8,20 @@
 
 import Foundation
 import Firebase
+
 enum FireBasePostManagerStatus: Error {
     case postAddedSuccessfully
     case noCurrentUserSignedIn
     case userHaveNoPost
 }
 
+enum PostManagerError: Error {
+    case deletePostFromUserError
+}
+
 class FirebasePostManager{
-    
     private init(){}
     static let manager = FirebasePostManager()
-    
     //MARK: Loading Posts FROM FireBase
     func loadPosts(completionHandler: @escaping ([Post]?, Error?) -> Void){
         // getting the reference for the node that is Posts
@@ -57,9 +60,7 @@ class FirebasePostManager{
         }
         let child = Database.database().reference(withPath: "posts").childByAutoId()
         let childKey = child.key
-        
         var post: Post
-        
         if let image = image {
             FirebaseStorageManager.shared.storeImage(type: .post, uid: child.key, image: image)
             post = Post(postUID: child.key, userUID: userUID, date: date, title: title, upvotes: 0, downvotes: 0, tags: tags, bodyText: bodyText, url: nil, image: "images/\(child.key).png", comments: nil)
@@ -85,44 +86,51 @@ class FirebasePostManager{
     }
     
     
-    //this function will load the post of a user
+    //this function will load the posts of a user
     func loadUserPosts(user: Parrot, completionHandler: @escaping ([Post]) -> Void, errorHandler: @escaping (Error) -> Void) {
         //here I need to loop through the userPost's array and get the posts
         guard let postUIDS = user.posts else {
             errorHandler(FireBasePostManagerStatus.userHaveNoPost)
             return
         }
-        var posts = [Post]()
-        for postUID in postUIDS{
-            getPost(from: postUID, completion: {posts.append($0)}, errorHandler: {print($0)})
+        var posts = [Post](){
+            didSet{
+                completionHandler(posts)
+            }
         }
-        completionHandler(posts)
+        for postUID in postUIDS{
+            DispatchQueue.main.async {
+                self.getPost(from: postUID, completion: {posts.append($0)
+                }, errorHandler: {print($0)})
+            }
+        }
+        
     }
     
     
     
     // this function will get a post from posUID
     func getPost(from postUID: String, completion: @escaping (Post)->Void, errorHandler: @escaping (Error)->Void){
+        
         let postReference = Database.database().reference(withPath: "posts").child(postUID)
-        postReference.observe(.value) { (snapshot) in
-            guard let rawJSON = snapshot.value else{
-                return
-            }
-            do{
-                let jsonData = try JSONSerialization.data(withJSONObject: rawJSON, options: [])
-                let post = try JSONDecoder().decode(Post.self, from: jsonData)
-                completion(post)
-            }
-            catch let error{
-                errorHandler(error)
+        postReference.observeSingleEvent(of: .value) { (snapshot) in
+            if let json = snapshot.value {
+                do {
+                    let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
+                    
+                    let post = try JSONDecoder().decode(Post.self, from: jsonData)
+                    
+                    completion(post)
+                } catch {
+                    errorHandler(error)
+                }
             }
         }
-        
     }
     // this funciton will load the user's posts UIDS
-    func loadUserPostsUIDs(userUID: String,
-                           completionHandler: @escaping ([String]) -> Void,
-                           errorHandler: @escaping (Error) -> Void) {
+    private func loadUserPostsUIDs(userUID: String,
+                                   completionHandler: @escaping ([String]) -> Void,
+                                   errorHandler: @escaping (Error) -> Void) {
         Database.database().reference(withPath: "users").child(userUID).child("posts").observeSingleEvent(of: .value, with: { (snapshot) in
             if let uids = snapshot.value as? [String] {
                 completionHandler(uids)
@@ -149,5 +157,32 @@ class FirebasePostManager{
     func loadPostsFromUser(_ uid: String) {
         
     }
+    
+    func deletePost(post: Post) {
+        let postRef = Database.database().reference(withPath: "posts")
+        deletePostFromUser(userUID: post.userUID, postUIDToDelete: post.postUID) { (error) in
+            print(error)
+        }
+        postRef.child(post.postUID).removeValue()
+    }
+    
+    private func deletePostFromUser(userUID: String,
+                                    postUIDToDelete: String,
+                                    errorHandler: @escaping (Error) -> Void) {
+        let usersRef = Database.database().reference(withPath: "users")
+        usersRef.child(userUID).child(userUID).child("posts").observeSingleEvent(of: .value) { (snapshot) in
+            if let uids = snapshot.value as? [String] {
+                if uids.count <= 1 {
+                    usersRef.child(userUID).child("posts").removeValue()
+                } else {
+                    let newUIDs = uids.filter(){ $0 != postUIDToDelete}
+                    usersRef.child(userUID).child("posts").setValue(newUIDs)
+                }
+            } else {
+                errorHandler(PostManagerError.deletePostFromUserError)
+            }
+        }
+    }
+    
     
 }

@@ -15,20 +15,13 @@ class CreatePostSelectedImageVC: UIViewController {
     private var selectedImage: UIImage!
     
     //Injecting the larger detailed image into this View Controller
-    
     init(selectedImage: UIImage){
         super.init(nibName: nil, bundle: nil)
         self.selectedImage = selectedImage
         detailSelectedmageView.configureImage(to: selectedImage)
         
     }
-//    init(largeImageView: UIImage){ //initializing what was sent over fom createPostVC
-//        super.init(nibName: nil, bundle: nil)
-//        self.selectedImage = largeImageView
-//        detailLargeImageView.configureImage(to: largeImageView)
-//        print("New image set")
-//    }
-    
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {//
         super.init(nibName: nibNameOrNil, bundle: nil)
     }
@@ -42,9 +35,6 @@ class CreatePostSelectedImageVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addSubview(detailSelectedmageView)
-        //setup buttons
-        //        self.detailLargeImageView.largeImageView.image = #imageLiteral(resourceName: "panda")
-        //        self.detailLargeImageView.largeImageView.setNeedsLayout()
         detailSelectedmageView.dismissView.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
     }
     
@@ -53,5 +43,4 @@ class CreatePostSelectedImageVC: UIViewController {
     @objc func dismissView() {
         dismiss(animated: true, completion: nil)
     }
-    
 }

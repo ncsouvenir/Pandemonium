@@ -29,8 +29,7 @@ class UserEditPostTableViewController: UITableViewController {
     var detailedImageView = CreatePostSelectedImageView()
     private let imagePickerView = UIImagePickerController()
     
-    //Inject Post
-    //var post : Post //initialize by injection
+    var post: Post!
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
@@ -63,6 +62,7 @@ class UserEditPostTableViewController: UITableViewController {
     
     @IBAction func deleteButtonPressed(_ sender: UIButton) {
         //TODO: add alert Controller
+        FirebasePostManager.manager.deletePost(post: post)
         let alertController = UIAlertController(title: "Absolutely Sure?",
                                                 message:"Final call before post is deleted",
                                                 preferredStyle: UIAlertControllerStyle.alert)
@@ -261,9 +261,14 @@ class UserEditPostTableViewController: UITableViewController {
         }
         
         //set bodyView to fill space between other textfields and delete button
-        if indexPath.row == 6 {
+        if indexPath.row == 6 && segmentedControl.selectedSegmentIndex == 0 {
             return view.bounds.height - 420
+        } else if indexPath.row == 6 && segmentedControl.selectedSegmentIndex == 1{
+            return view.bounds.height - 365
+        } else if indexPath.row == 6 && segmentedControl.selectedSegmentIndex == 2{
+            return view.bounds.height - 440
         }
+        
         return 60.0
     }
 }

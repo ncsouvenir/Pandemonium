@@ -100,8 +100,7 @@ class CurrentUserProfileImageCustomTableViewCell: UITableViewCell {
         //3: call delegate
         self.delegate?.didEditProfileImage(self)
     }
-    
-    
+ 
     ////////////////  Initializtion
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -215,13 +214,7 @@ class CurrentUserProfileImageCustomTableViewCell: UITableViewCell {
             constraint.height.equalTo(snp.width).multipliedBy(0.08)
         }
     }
-    
-    func configureProfileView(user: Parrot){
-        userNameLabel.text = user.appUserName
-    }
 }
-
-
 
 //MARK: TextField Delegate
 extension CurrentUserProfileImageCustomTableViewCell: UITextFieldDelegate {

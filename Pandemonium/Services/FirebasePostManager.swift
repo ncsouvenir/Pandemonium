@@ -8,10 +8,15 @@
 
 import Foundation
 import Firebase
+
 enum FireBasePostManagerStatus: Error {
     case postAddedSuccessfully
     case noCurrentUserSignedIn
     case userHaveNoPost
+}
+
+enum PostManagerError: Error {
+    case deletePostFromUserError
 }
 
 class FirebasePostManager{
@@ -149,5 +154,32 @@ class FirebasePostManager{
     func loadPostsFromUser(_ uid: String) {
         
     }
+    
+    func deletePost(post: Post) {
+        let postRef = Database.database().reference(withPath: "posts")
+        deletePostFromUser(userUID: post.userUID, postUIDToDelete: post.postUID) { (error) in
+            print(error)
+        }
+        postRef.child(post.postUID).removeValue()
+    }
+    
+    private func deletePostFromUser(userUID: String,
+                         postUIDToDelete: String,
+                         errorHandler: @escaping (Error) -> Void) {
+        let usersRef = Database.database().reference(withPath: "users")
+        usersRef.child(userUID).child(userUID).child("posts").observeSingleEvent(of: .value) { (snapshot) in
+            if let uids = snapshot.value as? [String] {
+                if uids.count <= 1 {
+                    usersRef.child(userUID).child("posts").removeValue()
+                } else {
+                    let newUIDs = uids.filter(){ $0 != userUID}
+                    usersRef.child(userUID).child("posts").setValue(newUIDs)
+                }
+            } else {
+                errorHandler(PostManagerError.deletePostFromUserError)
+            }
+        }
+    }
+    
     
 }

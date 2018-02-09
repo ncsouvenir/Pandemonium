@@ -15,31 +15,38 @@ class CurrentUserProfileVC: UIViewController {
     let currentUserCustomCell = CurrentUserProfileImageCustomTableViewCell()
     var imagePickerView = UIImagePickerController()
     var indexPathForImage = IndexPath()
-    var user : Parrot!
-    
-    //injecting the user into the VC
-    
-    init(user: Parrot){
-        super.init(nibName: nil, bundle: nil)
-        self.user = user
-        //TODO: call the configure function
-        currentUserCustomCell.configureProfileView(user: user)
+    var user: Parrot?{
+        didSet{
+            loadUserPosts()
+            profileView.tableView.reloadData()
+        }
     }
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {//
-        super.init(nibName: nibNameOrNil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder){// required becuase subclassing
-        super.init(coder: aDecoder)
+
+    var posts = [Post](){
+        didSet{
+            profileView.tableView.reloadData()
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureProfileView()
         view.backgroundColor = .cyan
+                FirebaseUserManager.shared.getParrotFrom(uid: (FirebaseUserManager.shared.getCurrentUser()!.uid),
+                                                         completionHandler: {self.user = $0},
+                                                         errorHandler: {print("Dev:",$0)})
+
     }
     
+    func loadUserPosts(){
+        guard let user = user else {
+            return
+        }
+        FirebasePostManager.manager.loadUserPosts(user: user,
+                                                  completionHandler: {self.posts = $0},
+                                                  errorHandler: {print($0)})
+        
+    }
     
     func configureProfileView(){
         self.view.addSubview(profileView)
@@ -117,13 +124,13 @@ class CurrentUserProfileVC: UIViewController {
         present(imagePickerView, animated: true, completion: nil)
     }
     
-//        private func configureLongPressGesture(){
-//            let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(postCellLongPressed))
-//            cell.isUserInteractionEnabled = true
-//            cell.addGestureRecognizer(longPressGestureRecognizer)
-//    }
-//
-
+    //        private func configureLongPressGesture(){
+    //            let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(postCellLongPressed))
+    //            cell.isUserInteractionEnabled = true
+    //            cell.addGestureRecognizer(longPressGestureRecognizer)
+    //    }
+    //
+    
     
     //MARK ACTIONSHEET : long press gesture on post cell
     private func configureEditPostActionSheet(){
@@ -156,25 +163,28 @@ class CurrentUserProfileVC: UIViewController {
 //MARK: TableView Datasource
 extension CurrentUserProfileVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-        //return user.count
+        return (1 + posts.count)
+        //        return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if indexPath.row == 0 {
             //dequee currentUserCell
             let profileCell = tableView.dequeueReusableCell(withIdentifier: "currentUserImageCell") as! CurrentUserProfileImageCustomTableViewCell
             //4 setting the delegate
+            profileCell.userNameLabel.text = user?.appUserName
             profileCell.delegate = self
             profileCell.indexPath = indexPath
             profileCell.userNameTextField.backgroundColor = .black
             return profileCell
         }
-        
+        let post = posts[indexPath.row]
         let profilePostCell = tableView.dequeueReusableCell(withIdentifier: "currentUserProfilePostCell") as! CurrentUserProfilePostCustomCustomTableViewCell
         //4 setting the delegate
         profilePostCell.delegate = self
         profilePostCell.indexPath = indexPath
+        profilePostCell.configureUserPostCell(from: post)
         return profilePostCell
     }
 }

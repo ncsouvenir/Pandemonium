@@ -79,8 +79,12 @@ class FirebasePostManager{
         }
         var posts = [Post]()
         for postUID in postUIDS{
-            getPost(from: postUID, completion: {posts.append($0)}, errorHandler: {print($0)})
+            
+            getPost(from: postUID, completion: {posts.append($0)
+                
+            }, errorHandler: {print($0)})
         }
+        
         completionHandler(posts)
     }
     

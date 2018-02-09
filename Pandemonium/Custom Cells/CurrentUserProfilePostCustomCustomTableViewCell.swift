@@ -36,7 +36,6 @@ class CurrentUserProfilePostCustomCustomTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "256"
         label.font = UIFont.systemFont(ofSize: 10)
-        
         return label
     }()
     lazy var upVotesAndDownVotesImageView: UIImageView = {
@@ -103,6 +102,21 @@ class CurrentUserProfilePostCustomCustomTableViewCell: UITableViewCell {
         addGestureRecognizer(longPressGestureRecognizer)
     }
     
+    func configureUserPostCell(from post: Post){
+        self.postTitle.text = post.title
+        //TODO: this will be replaced with a function to get the user by the userID
+        self.userName.text = post.userUID
+        self.tags.setTitle(post.tags.joined(separator: ","), for: .normal)
+        self.numberOfComments.text = "\(post.comments?.count)"
+        let postUpDownValue = post.upvotes - post.downvotes
+        if postUpDownValue > 1000{
+            self.numberOfUpDown.text = "\(Double(postUpDownValue/1000))k"
+            
+        }else{
+            self.numberOfUpDown.text = "\(postUpDownValue)"
+        }
+    }
+
     private func setupViews(){
         setupPostTitle()
         setupTags()
@@ -173,21 +187,6 @@ class CurrentUserProfilePostCustomCustomTableViewCell: UITableViewCell {
         userName.snp.makeConstraints { (constraint) in
             constraint.top.equalTo(postTitle.snp.bottom).offset(2)
             constraint.left.equalTo(snp.left).offset(5)
-        }
-    }
-    
-    func setupCell(from post: Post){
-        self.postTitle.text = post.title
-        //TODO: this will be replaced with a function to get the user by the userID
-        self.userName.text = post.userUID
-        self.tags.setTitle(post.tags.joined(separator: ","), for: .normal)
-        self.numberOfComments.text = "\(post.comments?.count)"
-        let postUpDownValue = post.upvotes - post.downvotes
-        if postUpDownValue > 1000{
-            self.numberOfUpDown.text = "\(Double(postUpDownValue/1000))k"
-            
-        }else{
-            self.numberOfUpDown.text = "\(postUpDownValue)"
         }
     }
 }

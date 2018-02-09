@@ -38,6 +38,8 @@ class CreateAPostTableViewController: UITableViewController {
         //2
         segmentedControl.addUnderlineForSelectedSegment()
         configureImageGesture()
+        FirebaseUserManager.shared.getUsernameFromUID(uid: FirebaseUserManager.shared.getCurrentUser()!.uid,
+                                                      completionHandler: {self.userNameTextField.text = $0}, errorHandler: {print($0)})
         
         //        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
         //            cameraButtonItem.isEnabled = false

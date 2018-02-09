@@ -1,7 +1,7 @@
 # Pandemonium
 
 ## Overview
-This app lets you make posts on a prestine thread, dedicated to keeping you up to date with recent events.
+This app lets you make posts on a user thread, dedicated to keeping you up to date with recent events.
 
 ## Features
 - User Authentication

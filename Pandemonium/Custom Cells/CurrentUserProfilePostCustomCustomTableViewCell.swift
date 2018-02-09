@@ -52,7 +52,7 @@ class CurrentUserProfilePostCustomCustomTableViewCell: UITableViewCell {
     lazy var postImage: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 5
-        imageView.image = #imageLiteral(resourceName: "warMachine")
+        imageView.image = nil
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         imageView.backgroundColor = .yellow

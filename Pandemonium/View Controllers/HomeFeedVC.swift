@@ -230,7 +230,6 @@ extension HomeFeedVC: UITableViewDelegate, HomeFeedTableViewCellDelegate{
         let reportAlert = UIAlertController(title: "Report User", message: "Please enter more information", preferredStyle: .alert)
         let reportOKAction = UIAlertAction(title: "Ok", style: .default, handler: { (action) in
             //TODO Send report to Houston
-            print(reportAlert.textFields?.first?.text)
         })
         let reportCancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         reportAlert.addTextField { (textField) in

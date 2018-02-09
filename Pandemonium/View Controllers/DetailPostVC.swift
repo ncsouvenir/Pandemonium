@@ -74,13 +74,7 @@ class DetailPostVC: UIViewController {
                 detailPostView.postTextView.text = post.bodyText
             case .image:
                 FirebaseStorageManager.shared.retrieveImage(imgURL: post.image!, completionHandler: { self.detailPostView.postImageView.image = $0 }, errorHandler: { print($0) })
-                
-                
             case .url:
-                // TODO: - Handle optionals
-                //                detailPostView.postWebKitView.uiDelegate = self
-                // detailPostView.postWebKitView.uiDelegate = self
-                
                 if let url = URL(string: post.url!) {
                     let request = URLRequest(url: url)
                     detailPostView.postWebKitView.load(request)
@@ -91,9 +85,7 @@ class DetailPostVC: UIViewController {
             }
         }
         
-        detailPostView.tableView.dataSource = self
-        detailPostView.tableView.delegate = self
-        
+        detailPostView.tableView.dataSource = self        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -128,23 +120,12 @@ class DetailPostVC: UIViewController {
     }
     
     private func setupPostInfo() {
-        // TODO: - Stuff in comments
         FirebaseUserManager.shared.getUsernameFromUID(uid: post.userUID, completionHandler: { self.detailPostView.usernameLabel.text = $0 }, errorHandler: { print($0) })
         detailPostView.karmaLabel.text = (post.upvotes - post.downvotes).description
         detailPostView.dateLabel.text = post.date
     }
     
-    func getImageFromFirebaseStorage(imageUID: String) {
-    }
-    
-    
-    
-    // Gets Array of commentUIDs
-    // Then asynchroniously get the values for the comments
-    
-    
 }
-
 
 
 extension DetailPostVC: UITableViewDataSource {
@@ -163,11 +144,4 @@ extension DetailPostVC: UITableViewDataSource {
         
         return cell
     }
-}
-
-extension DetailPostVC: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
-    
 }

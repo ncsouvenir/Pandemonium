@@ -15,10 +15,8 @@ enum FireBasePostManagerStatus: Error {
 }
 
 class FirebasePostManager{
-    
     private init(){}
     static let manager = FirebasePostManager()
-    
     //MARK: Loading Posts FROM FireBase
     func loadPosts(completionHandler: @escaping ([Post]?, Error?) -> Void){
         // getting the reference for the node that is Posts
@@ -57,9 +55,7 @@ class FirebasePostManager{
         }
         let child = Database.database().reference(withPath: "posts").childByAutoId()
         let childKey = child.key
-        
         var post: Post
-        
         if let image = image {
             FirebaseStorageManager.shared.storeImage(type: .post, uid: child.key, image: image)
             post = Post(postUID: child.key, userUID: userUID, date: date, title: title, upvotes: 0, downvotes: 0, tags: tags, bodyText: bodyText, url: nil, image: "images/\(child.key).png", comments: nil)
@@ -120,9 +116,9 @@ class FirebasePostManager{
         
     }
     // this funciton will load the user's posts UIDS
-    func loadUserPostsUIDs(userUID: String,
-                           completionHandler: @escaping ([String]) -> Void,
-                           errorHandler: @escaping (Error) -> Void) {
+    private func loadUserPostsUIDs(userUID: String,
+                                   completionHandler: @escaping ([String]) -> Void,
+                                   errorHandler: @escaping (Error) -> Void) {
         Database.database().reference(withPath: "users").child(userUID).child("posts").observeSingleEvent(of: .value, with: { (snapshot) in
             if let uids = snapshot.value as? [String] {
                 completionHandler(uids)

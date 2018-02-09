@@ -7,6 +7,8 @@
 
 import UIKit
 class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
+    
+    var user: Parrot!
     var posts = [Post](){
         didSet{
             self.homeFeedView.tableView.reloadData()
@@ -32,6 +34,7 @@ class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
             }
         }
     }
+    
     func configNavBar(){
         let listNavBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "list"), style: .plain, target: self, action: #selector(listNavBarButtonAction))
         let addPostNavBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus-symbol"), style: .plain, target: self, action: #selector(addPostNavBarButtonAction))
@@ -55,6 +58,7 @@ class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
     @objc func listNavBarButtonAction(){
         let menueViewController = MenuVC(safeArea: self.homeFeedView.safeAreaLayoutGuide)
         menueViewController.modalPresentationStyle = .overCurrentContext
+
         present(menueViewController, animated: true, completion: nil)
     }
     @objc func addPostNavBarButtonAction(){
@@ -197,8 +201,11 @@ extension HomeFeedVC: UITableViewDelegate, HomeFeedTableViewCellDelegate{
             })
             let userProfileAction = UIAlertAction(title: "View Profile", style: .default, handler: { (action) in
                 //TODO Inject the User to the profileViewController
+                
                 let profileViewController = ProfileViewController()
                 self.navigationController?.pushViewController(profileViewController, animated: true)
+                
+                
             })
             actionSheet.addAction(reportAction)
             actionSheet.addAction(userProfileAction)

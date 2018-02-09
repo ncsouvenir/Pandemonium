@@ -80,22 +80,25 @@ class MenuVC: UIViewController, UIGestureRecognizerDelegate {
         alertViewController.addAction(alertAction)
         present(alertViewController, animated: true, completion: nil)
     }
+    
     @objc func segueToProfile(){
         if FirebaseUserManager.shared.getCurrentUser() == nil {
             present(LoginVC(), animated: true, completion: nil)
+        }else{
+            let currentUserProfileVC = CurrentUserProfileVC()
+                    currentUserProfileVC.modalPresentationStyle = .overCurrentContext
+                    currentUserProfileVC.modalTransitionStyle = .crossDissolve
+            present(currentUserProfileVC, animated: true, completion: nil)
         }
-        self.present(CurrentUserProfileVC(), animated: true, completion: nil)
-        //TODO: initialize the viewController with the user
-        let currentUserProfileVC = CurrentUserProfileVC(user: user)
-        currentUserProfileVC.modalPresentationStyle = .overCurrentContext
-        currentUserProfileVC.modalTransitionStyle = .crossDissolve
-        present(currentUserProfileVC, animated: true, completion: nil)
-        
-        
-        let alertViewController = UIAlertController(title: "Your aren't signed in please sign in ", message: "", preferredStyle: UIAlertControllerStyle.alert)
-        let alertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-        alertViewController.addAction(alertAction)
-        present(alertViewController, animated: true, completion: nil)
+        //self.present(CurrentUserProfileVC(), animated: true, completion: nil)
+    
+
+//
+//
+//        let alertViewController = UIAlertController(title: "Your aren't signed in please sign in ", message: "", preferredStyle: UIAlertControllerStyle.alert)
+//        let alertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+//        alertViewController.addAction(alertAction)
+//        present(alertViewController, animated: true, completion: nil)
         
     }
     @objc func segueToCreateAccount(){
@@ -103,12 +106,4 @@ class MenuVC: UIViewController, UIGestureRecognizerDelegate {
         let createAccountViewController = CreateAccountVC()
         present(createAccountViewController, animated: true, completion: nil)
     }
-    
-    
-    
-    
-    
-    
-    
-    
 }

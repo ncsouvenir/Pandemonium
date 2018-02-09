@@ -95,8 +95,12 @@ class FirebasePostManager{
         }
         var posts = [Post]()
         for postUID in postUIDS{
-            getPost(from: postUID, completion: {posts.append($0)}, errorHandler: {print($0)})
+            
+            getPost(from: postUID, completion: {posts.append($0)
+                
+            }, errorHandler: {print($0)})
         }
+        
         completionHandler(posts)
     }
     
@@ -168,7 +172,7 @@ class FirebasePostManager{
                 if uids.count <= 1 {
                     usersRef.child(userUID).child("posts").removeValue()
                 } else {
-                    let newUIDs = uids.filter(){ $0 != userUID}
+                    let newUIDs = uids.filter(){ $0 != postUIDToDelete}
                     usersRef.child(userUID).child("posts").setValue(newUIDs)
                 }
             } else {

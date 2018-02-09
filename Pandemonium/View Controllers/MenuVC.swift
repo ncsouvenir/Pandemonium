@@ -10,7 +10,10 @@ import UIKit
 
 class MenuVC: UIViewController, UIGestureRecognizerDelegate {
     
-    var user: Parrot!
+    var user: Parrot! 
+        
+    
+    var currentUserCustomCell = CurrentUserProfileImageCustomTableViewCell()
 
     var safeArea: UILayoutGuide
      init(safeArea: UILayoutGuide) {
@@ -84,13 +87,15 @@ class MenuVC: UIViewController, UIGestureRecognizerDelegate {
         present(alertViewController, animated: true, completion: nil)
     }
     
-    @objc func segueToProfile(){
+    @objc func segueToProfile() {
         if FirebaseUserManager.shared.getCurrentUser() == nil {
             present(LoginVC(), animated: true, completion: nil)
         }else{
             let currentUserProfileVC = CurrentUserProfileVC()
             let navController = UINavigationController(rootViewController: currentUserProfileVC)
-            present(navController, animated: true, completion: nil)
+            present(navController, animated: true, completion: {
+            })
+            print(user)
         }
     }
     

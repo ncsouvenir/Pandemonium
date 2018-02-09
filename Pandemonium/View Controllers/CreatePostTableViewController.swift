@@ -25,11 +25,11 @@ class CreateAPostTableViewController: UITableViewController {
     @IBOutlet weak var addImageButton: UIButton!
     
     
+    var post: Post!
     var detailedImageView = CreatePostSelectedImageView()
     private let imagePickerView = UIImagePickerController()
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         imagePickerView.delegate = self
         configureTextFieldDelegates()
@@ -69,6 +69,17 @@ class CreateAPostTableViewController: UITableViewController {
         print("image tapped")
     }
     
+    //used to configure what the editPost VC will look like
+    func configureEditPostVC(with userCreatedPost: Post){
+        titleTextField.text = "\(userCreatedPost.title)"
+        tagsTextField.text = "\(userCreatedPost.tags)"
+        bodytextView.text = "\(String(describing: userCreatedPost.bodyText))"
+        urlTextField.text = "\(String(describing: userCreatedPost.url))"
+        //imageView.image = "\(userCreatedPost.image)"
+        
+    }
+    
+    
     private func configureTextFieldDelegates() {
         userNameTextField.delegate = self
         titleTextField.delegate = self
@@ -94,7 +105,7 @@ class CreateAPostTableViewController: UITableViewController {
     private func configureNavBar(){
         navigationItem.title = "Create A Post"
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create", style: .plain, target: self, action: #selector(sendButtonPressed))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create", style: .plain, target: self, action: #selector(createButtonPressed))
     }
     
     
@@ -103,7 +114,7 @@ class CreateAPostTableViewController: UITableViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @objc func sendButtonPressed(){
+    @objc func createButtonPressed(){
         //TODO: call FirebasePostManager.manager.addPosts() to populate the new post in the HomeFeed VC
         let currentUser = FirebaseUserManager.shared.getCurrentUser()!
         switch segmentedControl.selectedSegmentIndex {

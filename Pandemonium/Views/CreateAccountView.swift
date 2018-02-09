@@ -8,9 +8,20 @@
 import UIKit
 
 class CreateAccountView: UIView {
+    lazy var gradientLayer: CAGradientLayer = {
+        let gradient = CAGradientLayer()
+        gradient.frame = frame
+        gradient.colors = [Settings.manager.customBlue.cgColor, Settings.manager.customGray.cgColor]
+        return gradient
+    }()
     
     var blurView: UIVisualEffectView = {
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        var blurEffect = UIBlurEffect()
+        if Settings.manager.logoPressed == true {
+            blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        } else {
+            blurEffect = UIBlurEffect(style: UIBlurEffectStyle.extraLight)
+        }
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         return blurEffectView
@@ -120,6 +131,7 @@ class CreateAccountView: UIView {
     
     private func setupViews() {
         blurView.frame = bounds
+        layer.addSublayer(gradientLayer)
         let viewObjects = [blurView, containerView, invalidConfirmLabel, userNameTextField, UserErrorLabel, emailTextField, emailErrorLabel, passwordTextField, invalidPasswordLabel, confirmPasswordTextField, submitButton] as [UIView]
         viewObjects.forEach{addSubview($0)}
         let padding = 20

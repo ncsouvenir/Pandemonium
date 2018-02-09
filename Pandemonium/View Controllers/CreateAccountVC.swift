@@ -17,30 +17,13 @@ class CreateAccountVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        testColors()
-        setupView()
+        view.addSubview(createView)
         submitButton()
     }
     private func setupDelegate() {
         createView.userNameTextField.delegate = self
         createView.emailTextField.delegate = self
         createView.passwordTextField.delegate = self
-    }
-    
-    private func setupView() {
-        view.addSubview(createView)
-        
-        createView.snp.makeConstraints { (view) in
-            view.edges.equalTo(self.view.safeAreaLayoutGuide)
-        }
-    }
-    
-    func testColors() {
-        let gradient = CAGradientLayer()
-        gradient.frame = view.bounds
-        gradient.colors = [Settings.manager.customBlue.cgColor, Settings.manager.customGray.cgColor]
-        view.layer.addSublayer(gradient)
-        
     }
     
     private func submitButton() {

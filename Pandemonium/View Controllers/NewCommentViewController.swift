@@ -45,7 +45,8 @@ class NewCommentViewController: UIViewController {
         navigationItem.title = "New Comment"
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(submitPost))
-        navigationController?.navigationBar.backgroundColor = Settings.manager.backgroundColor
+        Settings.manager.navBarNightMode(navbar: navigationController!.navigationBar)
+//        navigationController?.navigationBar.backgroundColor = Settings.manager.backgroundColor
         
     }
     @objc private func dismissView() {

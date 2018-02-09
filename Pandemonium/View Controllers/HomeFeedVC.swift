@@ -46,10 +46,12 @@ class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
         self.navigationItem.titleView = imageView
         navigationItem.rightBarButtonItems = [listNavBarButtonItem, addPostNavBarButtonItem]
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.tintColor = Settings.manager.textColor
         self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: Settings.manager.textColor]
         navigationItem.title = "Pandemonium"
-        navigationController?.navigationBar.backgroundColor = Settings.manager.backgroundColor
+        navigationController?.navigationBar.barStyle = .black
+        Settings.manager.navBarNightMode(navbar: navigationController!.navigationBar)
+//        navigationController?.navigationBar.tintColor = Settings.manager.textColor
+//        navigationController?.navigationBar.backgroundColor = Settings.manager.customBlue
     }
     //Load the list
     @objc func listNavBarButtonAction(){

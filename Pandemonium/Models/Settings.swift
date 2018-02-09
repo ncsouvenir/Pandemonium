@@ -19,11 +19,23 @@ class Settings {
     let customBlue = UIColor(displayP3Red: 105/255, green: 200/255, blue: 252/255, alpha: 1)
     let customGray = UIColor(displayP3Red: 125/255, green: 120/255, blue: 120/255, alpha: 1)
     
+    
     var logoPressed = false
     
+    public func navBarNightMode(navbar: UINavigationBar) {
+        if logoPressed == true {
+            navbar.barStyle = .black
+            navbar.backgroundColor = customBlue
+            navbar.tintColor = UIColor.white
+        } else {
+            navbar.barStyle = .default
+            navbar.backgroundColor = customBlue
+            navbar.tintColor = customGray
+        }
+    }
     public func nightModeSwitch() {
         if logoPressed == true {
-            backgroundColor = UIColor.black
+            backgroundColor = UIColor(displayP3Red: 48/255, green: 85/255, blue: 90/255, alpha: 0.8)
             textColor = UIColor.white
         } else {
             backgroundColor = UIColor.white

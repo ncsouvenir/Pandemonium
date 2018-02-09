@@ -85,7 +85,7 @@ class FirebasePostManager{
     }
     
     
-    //this function will load the post of a user
+    //this function will load the posts of a user
     func loadUserPosts(user: Parrot, completionHandler: @escaping ([Post]) -> Void, errorHandler: @escaping (Error) -> Void) {
         //here I need to loop through the userPost's array and get the posts
         guard let postUIDS = user.posts else {

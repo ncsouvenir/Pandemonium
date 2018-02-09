@@ -54,11 +54,7 @@ class CreateAPostTableViewController: UITableViewController {
     }
     
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer){
-        //TODO: use dependency injection to pass Image Object to PresentLargeVC
-        //-> passing anything that the destination VC needs
-        //setting up what the modal presentation will look like
-        
-        //connecting the imageView to the image selected from photo library
+        //Dependency Injection: connecting the imageView to the image selected from photo library
         var selectedImage = UIImage()
         if let image = imageView.image {
             selectedImage = image //image is nil here
@@ -369,9 +365,6 @@ extension CreateAPostTableViewController: UIImagePickerControllerDelegate, UINav
         dismiss(animated: true, completion: nil)
     }
 }
-
-
-
 
 /////////////////////////////////////MARK: this will remove the the border from the segmented control and add an underline for the selected segment
 //inspiration: https://stackoverflow.com/questions/42755590/how-to-display-only-bottom-border-for-selected-item-in-uisegmentedcontrol

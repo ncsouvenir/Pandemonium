@@ -21,39 +21,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         //Make tab bars for testing now
-        let tbc = UITabBarController()
+        //let tbc = UITabBarController()
         
   
         let homeFeedVC = HomeFeedVC()
         let homeNavController = UINavigationController(rootViewController: homeFeedVC)
-        homeNavController.tabBarItem = UITabBarItem(title: "Home", image: nil, tag: 0)
+        //homeNavController.tabBarItem = UITabBarItem(title: "Home", image: nil, tag: 0)
         
-       
-        let currentUserProfileVC = CurrentUserProfileVC()
-        let currentUserProfileNavController = UINavigationController(rootViewController: currentUserProfileVC)
-        currentUserProfileNavController.tabBarItem = UITabBarItem(title: "User Profile", image: nil, tag: 1)
-        
-        
-   
-        let createAPost = CreateAPostTableViewController.storyBoardInstance()
-        let createNavController = UINavigationController(rootViewController: createAPost)
-        createNavController.tabBarItem = UITabBarItem(title: "Create Post", image: nil, tag: 2)
-        
-      
-        let editAPost = UserEditPostTableViewController.storyBoardInstance()
-        let editNavController = UINavigationController(rootViewController: editAPost)
-        editNavController.tabBarItem = UITabBarItem(title: "Edit Post", image: nil, tag: 3)
-    
-        
-        let login = LoginVC()
-        login.tabBarItem = UITabBarItem(title: "Login", image: nil, tag: 4)
-      
-        
-        //embedding all VC's into Tab bar
-        tbc.viewControllers = [login, homeNavController, createNavController, currentUserProfileNavController, editNavController]
-        
+//
+//        let currentUserProfileVC = CurrentUserProfileVC()
+//        let currentUserProfileNavController = UINavigationController(rootViewController: currentUserProfileVC)
+//        currentUserProfileNavController.tabBarItem = UITabBarItem(title: "User Profile", image: nil, tag: 1)
+//
+//
+//
+//        let createAPost = CreateAPostTableViewController.storyBoardInstance()
+//        let createNavController = UINavigationController(rootViewController: createAPost)
+//        createNavController.tabBarItem = UITabBarItem(title: "Create Post", image: nil, tag: 2)
+//
+//
+//        let editAPost = UserEditPostTableViewController.storyBoardInstance()
+//        let editNavController = UINavigationController(rootViewController: editAPost)
+//        editNavController.tabBarItem = UITabBarItem(title: "Edit Post", image: nil, tag: 3)
+//
+//
+//        let login = LoginVC()
+//        login.tabBarItem = UITabBarItem(title: "Login", image: nil, tag: 4)
+//
+//
+//        //embedding all VC's into Tab bar
+//        tbc.viewControllers = [login, homeNavController, createNavController, currentUserProfileNavController, editNavController]
+//
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = tbc
+        window?.rootViewController = homeNavController
         window?.makeKeyAndVisible()
         
         //Configures Firebase on launch

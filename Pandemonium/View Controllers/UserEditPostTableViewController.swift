@@ -30,33 +30,21 @@ class UserEditPostTableViewController: UITableViewController {
     var createAPostVC = CreateAPostTableViewController()
     private let imagePickerView = UIImagePickerController()
     
-    var post: Post!
+    var post: Post?
     
-    init(userPost: Post){
-        super.init(nibName: nil, bundle: nil)
-        self.post = userPost
-        createAPostVC.configureEditPostVC(with: userPost)
-    }
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {//
-        super.init(nibName: nibNameOrNil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder){// required becuase subclassing
-        super.init(coder: aDecoder)
-    }
-    
-    //    override func viewDidAppear(_ animated: Bool) {
-    //        super.viewDidAppear(true)
-    //        imagePickerView.delegate = self
-    //              configureTextFieldDelegates()
-    //        configureNavBar()
-    //        configureImageButton()
-    //        configureSegmentedControl()
-    //        //2
-    //        segmentedControl.addUnderlineForSelectedSegment()
-    //        configureImageGesture()
-    //    }
+//    init(userPost: Post){
+//        super.init(nibName: nil, bundle: nil)
+//        self.post = userPost
+//        createAPostVC.configureEditPostVC(with: userPost)
+//    }
+//    
+//    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {//
+//        super.init(nibName: nibNameOrNil, bundle: nil)
+//    }
+//    
+//    required init?(coder aDecoder: NSCoder){// required becuase subclassing
+//        super.init(coder: aDecoder)
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,10 +55,8 @@ class UserEditPostTableViewController: UITableViewController {
         configureSegmentedControl()
         //2
         segmentedControl.addUnderlineForSelectedSegment()
-        configureImageGesture()
-        
+        configureImageGesture()        
         populateFields()
-        
         //        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
         //            cameraButtonItem.isEnabled = false
         //        }
@@ -78,7 +64,7 @@ class UserEditPostTableViewController: UITableViewController {
     
     @IBAction func deleteButtonPressed(_ sender: UIButton) {
         //TODO: add alert Controller
-        FirebasePostManager.manager.deletePost(post: post)
+        FirebasePostManager.manager.deletePost(post: post!)
         let alertController = UIAlertController(title: "Absolutely Sure?",
                                                 message:"Final call before post is deleted",
                                                 preferredStyle: UIAlertControllerStyle.alert)
@@ -272,7 +258,7 @@ class UserEditPostTableViewController: UITableViewController {
     //MARK: Making a storyBoard instance to call in the AppDelegate
     public static func storyBoardInstance() -> UserEditPostTableViewController {
         let storyboard = UIStoryboard(name: "UserEditPost", bundle: nil)//storyBoard File Name
-        let editAPostVC = storyboard.instantiateViewController(withIdentifier: "UserEditPostTableViewController") as! UserEditPostTableViewController //name of ViewController File
+        let editAPostVC = storyboard.instantiateViewController(withIdentifier: "UserEditPostTableViewController") as! UserEditPostTableViewController
         return editAPostVC
     }
     

@@ -4,7 +4,7 @@
 This app lets you make posts on a prestine thread, dedicated to keeping you up to date with recent events.
 
 ## Gifs
-|User Allowing Location Access|
+|User Allowing Location Access||
 |:-------------:|:------------:|
 |<img src="https://github.com/NateMRosario/Unit5GroupProjectOne/blob/prod/Images/allow-location-access.gif" width="358" height="626">|
 

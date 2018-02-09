@@ -216,8 +216,6 @@ class CurrentUserProfileImageCustomTableViewCell: UITableViewCell {
     }
 }
 
-
-
 //MARK: TextField Delegate
 extension CurrentUserProfileImageCustomTableViewCell: UITextFieldDelegate {
     

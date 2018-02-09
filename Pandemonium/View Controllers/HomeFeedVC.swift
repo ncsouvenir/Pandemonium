@@ -144,8 +144,12 @@ extension HomeFeedVC: UITableViewDelegate, HomeFeedTableViewCellDelegate{
             if FirebaseUserManager.shared.getCurrentUser() == nil {
                 self.present(LoginVC(), animated: true, completion: nil)
             }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            
+            let postSetup = self.posts[indexPath.row-1]
+            FirebasePostManager.manager.updatePostUpVote(for: postSetup)
             handler(true)
-            print("Like Action Tapped")
+            }
         }
         likeAction.backgroundColor = .green
         let configuration = UISwipeActionsConfiguration(actions: [likeAction])

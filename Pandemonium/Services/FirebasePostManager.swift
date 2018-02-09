@@ -69,8 +69,8 @@ class FirebasePostManager{
             child.setValue(post.postToJSON())
         } else {
             post = Post(postUID: child.key, userUID: userUID, date: date, title: title, upvotes: 0, downvotes: 0, tags: tags, bodyText: bodyText, url: nil, image: nil, comments: nil)
-            child.setValue(post.postToJSON())
-            
+            child.setValue(post.postToJSON())}
+        
         child.setValue(post.postToJSON())
         //get the user by looking in the dataBase for the UID and add the childKey to the user postUIDS
         let userChild = Database.database().reference(withPath: "users").child(currentUser.uid)
@@ -83,6 +83,8 @@ class FirebasePostManager{
             userChild.child("posts").setValue([childKey])
         }
     }
+    
+    
     //this function will load the post of a user
     func loadUserPosts(user: Parrot, completionHandler: @escaping ([Post]) -> Void, errorHandler: @escaping (Error) -> Void) {
         //here I need to loop through the userPost's array and get the posts
@@ -95,9 +97,9 @@ class FirebasePostManager{
             getPost(from: postUID, completion: {posts.append($0)}, errorHandler: {print($0)})
         }
         completionHandler(posts)
-        }
-        
     }
+    
+    
     
     // this function will get a post from posUID
     func getPost(from postUID: String, completion: @escaping (Post)->Void, errorHandler: @escaping (Error)->Void){
@@ -147,5 +149,5 @@ class FirebasePostManager{
     func loadPostsFromUser(_ uid: String) {
         
     }
-
+    
 }

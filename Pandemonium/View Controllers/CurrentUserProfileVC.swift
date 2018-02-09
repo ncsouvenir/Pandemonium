@@ -7,6 +7,7 @@
 
 import UIKit
 import AVFoundation
+import Toucan
 
 
 class CurrentUserProfileVC: UIViewController {
@@ -16,18 +17,29 @@ class CurrentUserProfileVC: UIViewController {
     let currentUserCustomCell = CurrentUserProfileImageCustomTableViewCell()
     var imagePickerView = UIImagePickerController()
     var indexPathForImage = IndexPath()
+    var indexPathForPost = IndexPath()
+    var currentImage: UIImage!
+    
     var user: Parrot?{
         didSet{
+            if user?.image != nil{
+                FirebaseStorageManager.shared.retrieveImage(imgURL: (user?.image!)!,
+                                                            completionHandler:
+                    {print((self.self.user?.image!)!)
+                        self.currentImage = $0
+                        self.profileView.tableView.reloadData()
+                },errorHandler:{print($0)})
+            }
             loadUserPosts()
             profileView.tableView.reloadData()
         }
     }
-    
-        var posts = [Post](){
-            didSet{
-                profileView.tableView.reloadData()
-            }
+
+    var posts = [Post](){
+        didSet{
+            profileView.tableView.reloadData()
         }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,15 +47,19 @@ class CurrentUserProfileVC: UIViewController {
         configureNavBar()
         FirebaseUserManager.shared.getParrotFrom(uid: (FirebaseUserManager.shared.getCurrentUser()!.uid),
                                                  completionHandler: {self.user = $0},
-                                                 errorHandler: {print("Dev:",$0)})}
+                                                 errorHandler: {print("Dev:",$0)})
+        
+    }
     
-        func loadUserPosts(){
-            guard let user = user else {
-                return
-            }
-            FirebasePostManager.manager.loadUserPosts(user: user,
-                                                      completionHandler: {self.posts = $0},
-                                                      errorHandler: {print($0)})}
+    func loadUserPosts(){
+        guard let user = user else {
+            return
+        }
+        FirebasePostManager.manager.loadUserPosts(user: user,
+                                                  completionHandler: {self.posts = $0},
+                                                  errorHandler: {print($0)})
+        
+    }
     
     private func configureNavBar() {
         let leftNavBarButtonItem = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(dismissCurrentUserProfileVC))
@@ -52,9 +68,8 @@ class CurrentUserProfileVC: UIViewController {
     }
     
     @objc private func dismissCurrentUserProfileVC() {
-        //dismiss(animated: true, completion: nil)
-     self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
-        //homeFeedVC.dismiss(animated: true, completion: nil)
+
+        dismiss(animated: false, completion: nil)
     }
     
     func configureProfileView(){
@@ -78,14 +93,14 @@ class CurrentUserProfileVC: UIViewController {
             //TODO: action to access phone camera
             self.showCamera()
         })
-
+        
         let accessPhotoLibraryAction = UIAlertAction(title: "Photo Library", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             print("user pressed photo library")
             //TODO: action to access photo library
             self.showPhotoLibrary()
         })
-
+        
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
             (alert: UIAlertAction!) -> Void in
         })
@@ -96,17 +111,17 @@ class CurrentUserProfileVC: UIViewController {
         // 4
         self.present(addImageMenu, animated: true, completion: nil)
     }
-
+    
     private func showPhotoLibrary() {
         imagePickerView.sourceType = .photoLibrary
         checkAVAuthorization()
     }
-
+    
     private func showCamera() {
         imagePickerView.sourceType = .camera
         checkAVAuthorization()
     }
-
+    
     private func checkAVAuthorization() {
         let status = AVCaptureDevice.authorizationStatus(for: .video)
         switch status {
@@ -128,11 +143,11 @@ class CurrentUserProfileVC: UIViewController {
             print("restricted")
         }
     }
-
+    
     private func showImagePicker() {
         present(imagePickerView, animated: true, completion: nil)
     }
-
+    
     //MARK ACTIONSHEET : long press gesture on post cell
     private func configureEditPostActionSheet(){
         // 1
@@ -141,8 +156,10 @@ class CurrentUserProfileVC: UIViewController {
         let editPostAction = UIAlertAction(title: "Edit Post", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             print("Edit button pressed")
-            //TODO: segue to Edit Post VC
-            let editPostVC = UserEditPostTableViewController.storyBoardInstance()
+            //TODO: segue to Edit Post VC: how to get index path...how to initialize vc with info
+            var indexPath = self.indexPathForPost
+            //let postToSegue = self.posts[indexPath.row - 1]
+            let editPostVC = UserEditPostTableViewController.storyBoardInstance()//segue users post from that cell to ppulate edit post vc
             let navController = UINavigationController(rootViewController: editPostVC)
             self.present(navController, animated: true, completion: nil)
             print("cell long pressed")
@@ -173,10 +190,12 @@ extension CurrentUserProfileVC: UITableViewDataSource{
             //4 setting the delegate
             profileCell.userNameLabel.text = user?.appUserName
             profileCell.delegate = self
+            profileCell.profileImage.image = currentImage
             profileCell.indexPath = indexPath
             profileCell.userNameTextField.backgroundColor = .black
             return profileCell
         }
+        
         let post = posts[indexPath.row - 1]
         let profilePostCell = tableView.dequeueReusableCell(withIdentifier: "currentUserProfilePostCell") as! CurrentUserProfilePostCustomCustomTableViewCell
         //4 setting the delegate
@@ -200,13 +219,13 @@ extension CurrentUserProfileVC: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //TODO: segue to detail post VC
-        let detailPostSetup = posts[indexPath.row - 1] //gets post at that index path
+                let detailPostSetup = posts[indexPath.row - 1] //gets post at that index path
         
-        let detailPostVC = DetailPostVC(post: detailPostSetup)
-        let navController = UINavigationController(rootViewController: detailPostVC)
-        detailPostVC.modalTransitionStyle = .crossDissolve
-        detailPostVC.modalPresentationStyle = .overCurrentContext
-        self.present(navController, animated: true, completion: nil)
+                let detailPostVC = DetailPostVC(post: detailPostSetup)
+                let navController = UINavigationController(rootViewController: detailPostVC)
+                detailPostVC.modalTransitionStyle = .crossDissolve
+                detailPostVC.modalPresentationStyle = .overCurrentContext
+                self.present(navController, animated: true, completion: nil)
     }
 }
 
@@ -245,12 +264,11 @@ extension CurrentUserProfileVC: UIImagePickerControllerDelegate, UINavigationCon
         let cell = profileView.tableView.cellForRow(at: self.indexPathForImage) as! CurrentUserProfileImageCustomTableViewCell
         cell.profileImage.image = image
         
+        //resize the image
+        let sizeOfImage: CGSize = CGSize(width: 200, height: 200)
+        let toucanImage = Toucan.Resize.resizeImage(image, size: sizeOfImage)
         
-        // resize the image
-        //        let sizeOfImage: CGSize = CGSize(width: 200, height: 200)
-        //        let toucanImage = Toucan.Resize.resizeImage(image, size: sizeOfImage)
-        //
-        //currentSelectedImage = toucanImage
+        FirebaseStorageManager.shared.storeImage(type: .user, uid: (user?.userUID)!, image: toucanImage!)
         
         dismiss(animated: true, completion: nil)
     }

@@ -17,6 +17,7 @@ enum PostState {
 
 class DetailPostVC: UIViewController {
     
+    
     var post: Post!
     private var commentUIDs = [String]() {
         didSet {
@@ -99,13 +100,18 @@ class DetailPostVC: UIViewController {
     }
     
     private func setupNavBar() {
-        let menuButton = UIBarButtonItem(image: #imageLiteral(resourceName: "list"), style: .plain, target: self, action: #selector(menuButtonTapped))
-        let addCommentButton = UIBarButtonItem(image: #imageLiteral(resourceName: "plus-symbol"), style: .plain, target: self, action: #selector(addCommentButtonTapped))
-        navigationItem.rightBarButtonItems = [menuButton, addCommentButton]
+        //        let menuButton = UIBarButtonItem(image: #imageLiteral(resourceName: "list"), style: .plain, target: self, action: #selector(menuButtonTapped))
+        //        let addCommentButton = UIBarButtonItem(image: #imageLiteral(resourceName: "plus-symbol"), style: .plain, target: self, action: #selector(addCommentButtonTapped))
+        //        navigationItem.rightBarButtonItems = [menuButton, addCommentButton]
+        //        navigationItem.title = "Detail Post"
     }
     
     @objc private func menuButtonTapped() {
-        //TODO: set up
+        //TODO: menu crashes.. look into fixing the safe area guide constraint
+        //        let menuVC = MenuVC(safeArea: self.detailPostView.safeAreaLayoutGuide)
+        //        modalPresentationStyle = .overCurrentContext
+        //        modalTransitionStyle = .crossDissolve
+        //        present(menuVC, animated: true, completion: nil)
     }
     
     @objc private func addCommentButtonTapped() {

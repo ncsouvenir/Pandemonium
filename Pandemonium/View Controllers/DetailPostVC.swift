@@ -41,11 +41,11 @@ class DetailPostVC: UIViewController {
         if post.url != nil && post.url != "" {
             postState = .url
             detailPostView = DetailPostView(postState: postState)
-        } else if post.bodyText != nil {
-            postState = .text
-            detailPostView = DetailPostView(postState: postState)
         } else if post.image != nil {
             postState = .image
+            detailPostView = DetailPostView(postState: postState)
+        } else if post.bodyText != nil {
+            postState = .text
             detailPostView = DetailPostView(postState: postState)
         }
         
@@ -73,8 +73,9 @@ class DetailPostVC: UIViewController {
             case .text:
                 detailPostView.postTextView.text = post.bodyText
             case .image:
-                // TODO: - Get image
-                detailPostView.postImageView.image = UIImage(data: try! Data.init(contentsOf: URL(string: post.image!)!) )
+                FirebaseStorageManager.shared.retrieveImage(imgURL: post.image!, completionHandler: { self.detailPostView.postImageView.image = $0 }, errorHandler: { print($0) })
+                
+                
             case .url:
                 // TODO: - Handle optionals
                 //                detailPostView.postWebKitView.uiDelegate = self

@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import AVFoundation
+import Toucan
 
 class CreateAPostTableViewController: UITableViewController {
     
@@ -109,11 +110,15 @@ class CreateAPostTableViewController: UITableViewController {
         let currentUser = FirebaseUserManager.shared.getCurrentUser()!
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: Date().description, title: titleTextField.text!, tags: ["#EMPIREDIDNOTHINGWRONG", "#KHALEESI"], bodyText: bodytextView.text, url: urlTextField.text, image: nil)
+            FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: Date().description, title: titleTextField.text!, tags: ["#EMPIREDIDNOTHINGWRONG", "#KHALEESI"], bodyText: bodytextView.text, url: urlTextField.text, image: nil, errorHandler: {print($0)})
         case 1:
-            FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: Date().description, title: titleTextField.text!, tags: ["#THOTS", "#21"], bodyText: bodytextView.text, url: nil, image: nil)
+            FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: Date().description, title: titleTextField.text!, tags: ["#THOTS", "#21"], bodyText: bodytextView.text, url: nil, image: nil, errorHandler: {print($0)})
         case 2:
-            FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: Date().description, title: titleTextField.text!, tags: ["#DOYOU", "#KNOW", "#DAWAE"], bodyText: bodytextView.text, url: nil, image: imageView.image)
+            if let image = imageView.image {
+                let sizeOfImage: CGSize = CGSize(width: 200, height: 200)
+                let toucanImage = Toucan.Resize.resizeImage(image, size: sizeOfImage)
+                FirebasePostManager.manager.addPost(userUID: currentUser.uid, date: Date().description, title: titleTextField.text!, tags: ["#DOYOU", "#KNOW", "#DAWAE"], bodyText: bodytextView.text, url: nil, image: toucanImage, errorHandler: {print($0)})
+            }
         default:
             print("error choosing type of post")
             return

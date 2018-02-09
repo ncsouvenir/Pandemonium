@@ -16,6 +16,10 @@
 		813DD572202CE5FE00A24735 /* CurrentUserProfilePostCustomCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813DD571202CE5FE00A24735 /* CurrentUserProfilePostCustomCustomTableViewCell.swift */; };
 		81590362202AC18500284A83 /* UserEditPostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590361202AC18500284A83 /* UserEditPostTableViewController.swift */; };
 		814E957B202CAF5C00CECFA4 /* DateFormatterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814E957A202CAF5C00CECFA4 /* DateFormatterManager.swift */; };
+		814E957D202D1C8E00CECFA4 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814E957C202D1C8E00CECFA4 /* ImageHelper.swift */; };
+		814E957F202D1CDA00CECFA4 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814E957E202D1CDA00CECFA4 /* NetworkHelper.swift */; };
+		81589F33202C0856008A3E52 /* UserEditPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81589F32202C0855008A3E52 /* UserEditPost.storyboard */; };
+		81590362202AC18500284A83 /* UserEditPostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590361202AC18500284A83 /* UserEditPostTableViewController.swift */; };
 		818555332021230E0089752E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818555322021230E0089752E /* AppDelegate.swift */; };
 		8185553B2021230E0089752E /* Pandemonium.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 818555392021230E0089752E /* Pandemonium.xcdatamodeld */; };
 		8185553D2021230E0089752E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8185553C2021230E0089752E /* Assets.xcassets */; };
@@ -27,7 +31,6 @@
 		8185556C202125230089752E /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8185556B202125230089752E /* CreateAccountVC.swift */; };
 		8185557A202126F40089752E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81855579202126F40089752E /* ProfileView.swift */; };
 		81855582202127360089752E /* UserEditPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81855581202127360089752E /* UserEditPostView.swift */; };
-		8187A463202CF7B800CA9DB3 /* UserEditPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 810C8FC2202C022A0070C3A1 /* UserEditPost.storyboard */; };
 		818B08312028FE84005B130F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818B08302028FE84005B130F /* Settings.swift */; };
 		81AB4DCC20223DC50034B761 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AB4DCB20223DC50034B761 /* CreateAccountView.swift */; };
 		81AB4DCE2022908E0034B761 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81AB4DCD2022908E0034B761 /* GoogleService-Info.plist */; };
@@ -91,6 +94,10 @@
 		813DD571202CE5FE00A24735 /* CurrentUserProfilePostCustomCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserProfilePostCustomCustomTableViewCell.swift; sourceTree = "<group>"; };
 		81590361202AC18500284A83 /* UserEditPostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditPostTableViewController.swift; sourceTree = "<group>"; };
 		814E957A202CAF5C00CECFA4 /* DateFormatterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterManager.swift; sourceTree = "<group>"; };
+		814E957C202D1C8E00CECFA4 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
+		814E957E202D1CDA00CECFA4 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
+		81589F32202C0855008A3E52 /* UserEditPost.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserEditPost.storyboard; sourceTree = "<group>"; };
+		81590361202AC18500284A83 /* UserEditPostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditPostTableViewController.swift; sourceTree = "<group>"; };
 		8185552F2021230E0089752E /* Pandemonium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pandemonium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		818555322021230E0089752E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8185553A2021230E0089752E /* Pandemonium.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pandemonium.xcdatamodel; sourceTree = "<group>"; };
@@ -288,6 +295,8 @@
 				81CF0B1C2023B34B00ECACE5 /* FirebaseCommentManager.swift */,
 				81CF0B1E2023B36E00ECACE5 /* FirebasePostManager.swift */,
 				814E957A202CAF5C00CECFA4 /* DateFormatterManager.swift */,
+				814E957C202D1C8E00CECFA4 /* ImageHelper.swift */,
+				814E957E202D1CDA00CECFA4 /* NetworkHelper.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -627,7 +636,9 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Pandemonium/Pods-Pandemonium-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Toucan/Toucan.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -635,7 +646,9 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toucan.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -651,6 +664,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				814E957F202D1CDA00CECFA4 /* NetworkHelper.swift in Sources */,
 				81C9ED77202A4BE200446157 /* CreatePostSelectedImageVC.swift in Sources */,
 				81C9ED73202A4BA200446157 /* CreatePostSelectedImageView.swift in Sources */,
 				81CF0A0A2021337800ECACE5 /* CurrentUserProfileVC.swift in Sources */,
@@ -693,6 +707,7 @@
 				81CF0A1E2021352000ECACE5 /* LoginView.swift in Sources */,
 				81CF0A082021336D00ECACE5 /* DetailPostVC.swift in Sources */,
 				81CF0B1F2023B36E00ECACE5 /* FirebasePostManager.swift in Sources */,
+				814E957D202D1C8E00CECFA4 /* ImageHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

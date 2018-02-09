@@ -9,8 +9,10 @@ target 'Pandemonium' do
 pod 'Firebase/Core'
 pod 'Firebase/Auth’
 pod 'Firebase/Database’
-pod ’SnapKit’
+pod 'SnapKit'
 pod 'Firebase/Storage'
+pod 'Toucan'
+pod 'Kingfisher'
 
   target 'PandemoniumTests' do
     inherit! :search_paths

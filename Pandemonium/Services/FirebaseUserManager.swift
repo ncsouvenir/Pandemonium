@@ -26,8 +26,6 @@ class FirebaseUserManager {
     
     func getCurrentUser() -> User? {
         if Auth.auth().currentUser != nil {
-            // User is signed in.
-            // ...
             return Auth.auth().currentUser
         }
         return nil
@@ -69,6 +67,8 @@ class FirebaseUserManager {
                 user.sendEmailVerification(completion: { (error) in
                     if let error = error {
                         print(error)
+                    } else {
+                        print("verification email sent")
                     }
                 })
             }
@@ -104,7 +104,6 @@ class FirebaseUserManager {
                     let user = try JSONDecoder().decode(Parrot.self, from: jsonData)
                     completionHandler(user.appUserName)
                 } catch {
-                    print(error)
                     errorHandler(error)
                 }
             }
@@ -121,7 +120,6 @@ class FirebaseUserManager {
                     let user = try JSONDecoder().decode(Parrot.self, from: jsonData)
                     completionHandler(user)
                 } catch {
-                    print(error)
                     errorHandler(error)
                 }
             }

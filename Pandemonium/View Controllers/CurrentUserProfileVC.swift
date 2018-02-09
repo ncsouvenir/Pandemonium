@@ -165,7 +165,7 @@ class CurrentUserProfileVC: UIViewController {
             var indexPath = tableViewCell.indexPath
             //let postToSegue = self.posts[indexPath.row - 1]
             let editPostVC = UserEditPostTableViewController.storyBoardInstance()//segue users post from that cell to ppulate edit post vc
-            editPostVC.post = self.posts[indexPath.row]
+            editPostVC.post = self.posts[indexPath.row - 1]
             let navController = UINavigationController(rootViewController: editPostVC)
             self.present(navController, animated: true, completion: nil)
             print("cell long pressed")

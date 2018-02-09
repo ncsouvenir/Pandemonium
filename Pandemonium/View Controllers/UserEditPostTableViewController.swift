@@ -78,7 +78,7 @@ class UserEditPostTableViewController: UITableViewController {
     
     @IBAction func deleteButtonPressed(_ sender: UIButton) {
         //TODO: add alert Controller
-        FirebasePostManager.manager.deletePost(post: post)
+        
         let alertController = UIAlertController(title: "Absolutely Sure?",
                                                 message:"Final call before post is deleted",
                                                 preferredStyle: UIAlertControllerStyle.alert)
@@ -91,7 +91,10 @@ class UserEditPostTableViewController: UITableViewController {
                                                     message:"Post was deleted",
                                                     preferredStyle: UIAlertControllerStyle.alert)
             
-            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default){deletedPost in
+              FirebasePostManager.manager.deletePost(post: self.post)
+                
+            }
             alertController.addAction(okAction)
             //present alert controller
             self.present(alertController, animated: true, completion: nil)

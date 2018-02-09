@@ -169,19 +169,34 @@ class FirebasePostManager{
     private func deletePostFromUser(userUID: String,
                                     postUIDToDelete: String,
                                     errorHandler: @escaping (Error) -> Void) {
+        
         let usersRef = Database.database().reference(withPath: "users")
-        usersRef.child(userUID).child(userUID).child("posts").observeSingleEvent(of: .value) { (snapshot) in
-            if let uids = snapshot.value as? [String] {
-                if uids.count <= 1 {
-                    usersRef.child(userUID).child("posts").removeValue()
-                } else {
-                    let newUIDs = uids.filter(){ $0 != postUIDToDelete}
-                    usersRef.child(userUID).child("posts").setValue(newUIDs)
-                }
-            } else {
-                errorHandler(PostManagerError.deletePostFromUserError)
+        loadUserPostsUIDs(userUID: userUID, completionHandler: { (postUIDS) in
+            // do the search here
+            if postUIDS.count <= 1 {
+                usersRef.child(userUID).child("posts").removeValue()
+            }else{
+                let newUIDs = postUIDS.filter(){ $0 != postUIDToDelete}
+                usersRef.child(userUID).child("posts").setValue(newUIDs)
             }
+            
+        }) { (error) in
+            errorHandler(error)
         }
+//        usersRef.child(userUID).child(userUID).child("posts").observeSingleEvent(of: .value) { (snapshot) in
+//            if let uids = snapshot.value as? [String] {
+//                if uids.count <= 1 {
+//
+//                    usersRef.child(userUID).child("posts").removeValue()
+//                } else {
+//
+//                    let newUIDs = uids.filter(){ $0 != postUIDToDelete}
+//                    usersRef.child(userUID).child("posts").setValue(newUIDs)
+//                }
+//            } else {
+//                errorHandler(PostManagerError.deletePostFromUserError)
+//            }
+//        }
     }
     
     func updatePost(post: Post) {

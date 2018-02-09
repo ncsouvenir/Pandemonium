@@ -72,7 +72,7 @@ class HomeFeedTableViewCell: UITableViewCell{
     }()
     lazy var numberOfUpDown: UILabel = {
         let label = UILabel()
-        label.text = "363"
+        label.text = "0"
         label.font = UIFont.systemFont(ofSize: 10)
         return label
     }()

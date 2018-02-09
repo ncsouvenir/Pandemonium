@@ -33,7 +33,7 @@ class CurrentUserProfileImageCustomTableViewCell: UITableViewCell {
 //        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 //        blurEffectView.alpha = 0.75
 //        imageView.addSubview(blurEffectView)
-        imageView.backgroundColor = .red
+        imageView.backgroundColor = Settings.manager.backgroundColor
         return imageView
     }()
     

@@ -65,6 +65,8 @@ class CurrentUserProfileVC: UIViewController {
         let leftNavBarButtonItem = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(dismissCurrentUserProfileVC))
         navigationItem.leftBarButtonItem = leftNavBarButtonItem
         navigationItem.title = "Profile"
+        Settings.manager.navBarNightMode(navbar: navigationController!.navigationBar)
+        
     }
     
     @objc private func dismissCurrentUserProfileVC() {
@@ -199,9 +201,12 @@ extension CurrentUserProfileVC: UITableViewDataSource{
         let post = posts[indexPath.row - 1]
         let profilePostCell = tableView.dequeueReusableCell(withIdentifier: "currentUserProfilePostCell") as! CurrentUserProfilePostCustomCustomTableViewCell
         //4 setting the delegate
+        
         profilePostCell.delegate = self
         profilePostCell.indexPath = indexPath
         profilePostCell.configureUserPostCell(from: post)
+        profilePostCell.tintColor = Settings.manager.textColor
+        profilePostCell.backgroundColor = Settings.manager.backgroundColor
         return profilePostCell
     }
 }
@@ -222,10 +227,9 @@ extension CurrentUserProfileVC: UITableViewDelegate{
                 let detailPostSetup = posts[indexPath.row - 1] //gets post at that index path
         
                 let detailPostVC = DetailPostVC(post: detailPostSetup)
-                let navController = UINavigationController(rootViewController: detailPostVC)
                 detailPostVC.modalTransitionStyle = .crossDissolve
                 detailPostVC.modalPresentationStyle = .overCurrentContext
-                self.present(navController, animated: true, completion: nil)
+                navigationController?.pushViewController(detailPostVC, animated: true)
     }
 }
 

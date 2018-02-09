@@ -103,11 +103,14 @@ class CurrentUserProfilePostCustomCustomTableViewCell: UITableViewCell {
     }
     
     func configureUserPostCell(from post: Post){
+        self.userName.text = ""
+        FirebaseUserManager.shared.getUsernameFromUID(uid: post.userUID, completionHandler: {self.userName.text = $0}, errorHandler: {print($0)})
         self.postTitle.text = post.title
         //TODO: this will be replaced with a function to get the user by the userID
-        self.userName.text = post.userUID
         self.tags.setTitle(post.tags.joined(separator: ","), for: .normal)
-        self.numberOfComments.text = "\(post.comments?.count)"
+        if let commentCount = post.comments?.count {
+        self.numberOfComments.text = "\(commentCount)"
+        }
         let postUpDownValue = post.upvotes - post.downvotes
         if postUpDownValue > 1000{
             self.numberOfUpDown.text = "\(Double(postUpDownValue/1000))k"
@@ -115,6 +118,10 @@ class CurrentUserProfilePostCustomCustomTableViewCell: UITableViewCell {
         }else{
             self.numberOfUpDown.text = "\(postUpDownValue)"
         }
+        self.postTitle.textColor = Settings.manager.textColor
+        self.numberOfComments.textColor = Settings.manager.textColor
+        self.postImage.backgroundColor = Settings.manager.textColor
+        self.numberOfUpDown.textColor = Settings.manager.textColor
     }
 
     private func setupViews(){

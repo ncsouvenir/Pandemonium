@@ -15,20 +15,20 @@ class DetailPostView: UIView {
     
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: safeAreaLayoutGuide.layoutFrame, style: .plain)
-        tableView.backgroundColor = .magenta
+        tableView.backgroundColor = Settings.manager.backgroundColor
         tableView.register(UserCommentTableViewCell.self, forCellReuseIdentifier: "CommentCell")
         return tableView
     }()
     
     lazy var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .red
+        view.backgroundColor = Settings.manager.backgroundColor
         return view
     }()
     
     lazy var postInfoView: UIView = {
         let view = UIView()
-        view.backgroundColor = .cyan
+        view.backgroundColor = Settings.manager.backgroundColor
         return view
     }()
     
@@ -67,6 +67,7 @@ class DetailPostView: UIView {
     
     lazy var postImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.backgroundColor = Settings.manager.backgroundColor
         return imageView
     }()
     
@@ -74,12 +75,15 @@ class DetailPostView: UIView {
         let webConfiguration = WKWebViewConfiguration()
         webConfiguration.allowsInlineMediaPlayback = true
         let webView = WKWebView(frame: .zero, configuration: webConfiguration)
-        webView.backgroundColor = .purple
+        webView.backgroundColor = Settings.manager.backgroundColor
         return webView
     }()
     
     lazy var postTextView: UITextView = {
         let textView = UITextView()
+        textView.backgroundColor = Settings.manager.backgroundColor
+        textView.isEditable = false
+        textView.font = UIFont.systemFont(ofSize: 20)
         return textView
     }()
     
@@ -135,7 +139,7 @@ extension DetailPostView {
             make.bottom.equalTo(containerView.snp.bottom)
             make.leading.equalTo(containerView.snp.leading)
             make.trailing.equalTo(containerView.snp.trailing)
-            make.height.equalTo(containerView.snp.height).multipliedBy(0.20)
+            make.height.equalTo(containerView.snp.height).multipliedBy(0.25)
         }
     }
     
@@ -187,10 +191,6 @@ extension DetailPostView {
             make.leading.equalTo(postInfoView.snp.leading)
         }
     }
-    
-    //    private func setupHeaderView() {
-    //
-    //    }
     
     private func setupTableView() {
         addSubview(tableView)

@@ -60,12 +60,12 @@ class FirebaseStorageManager {
             
             // set job's imageURL
             let imageURL = String(describing: snapshot.metadata!.downloadURL()!)
-            
+
             switch type {
             case .user:
                 Database.database().reference(withPath: "users").child(uid).child("image").setValue(imageURL)
             case .post:
-                Database.database().reference(withPath: "users").child(uid).child("image").setValue(imageURL)
+                Database.database().reference(withPath: "posts").child(uid).child("image").setValue(imageURL)
             }
             
         }
@@ -96,8 +96,28 @@ class FirebaseStorageManager {
         }
     }
     
-    func retrieveImage() {
+    func retrieveImage(imgURL: String,
+                       completionHandler: @escaping (UIImage) -> Void,
+                       errorHandler: @escaping (Error) -> Void) {
         
+        
+        ImageHelper.manager.getImage(from: imgURL, completionHandler: { completionHandler($0) }, errorHandler: { errorHandler($0) })
+        
+        
+//        let ref = storageRef.child(img)
+//        ref.getData(maxSize: 1 * 1024 * 1024) { (data, error) in
+//            if let error = error {
+//                print()
+//                print("ERROR GETTING IMAGE DATA")
+//                print()
+//                errorHandler(error)
+//            } else if let data = data {
+//                if let image = UIImage(data: data) {
+//                    completionHandler(image)
+//                }
+//            }
+//        }
+
     }
     
     

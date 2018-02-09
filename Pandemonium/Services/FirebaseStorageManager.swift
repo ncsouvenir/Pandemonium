@@ -96,8 +96,17 @@ class FirebaseStorageManager {
         }
     }
     
-    func retrieveImage() {
-        
+    func retrieveImage(img: String,
+                       completionHandler: @escaping (URL) -> Void,
+                       errorHandler: @escaping (Error) -> Void) {
+        let ref = storageRef.child(img)
+        ref.downloadURL { (url, error) in
+            if let error = error {
+                errorHandler(error)
+            } else if let url = url {
+                completionHandler(url)
+            }
+        }
     }
     
     

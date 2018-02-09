@@ -172,7 +172,7 @@ class FirebasePostManager{
                 if uids.count <= 1 {
                     usersRef.child(userUID).child("posts").removeValue()
                 } else {
-                    let newUIDs = uids.filter(){ $0 != userUID}
+                    let newUIDs = uids.filter(){ $0 != postUIDToDelete}
                     usersRef.child(userUID).child("posts").setValue(newUIDs)
                 }
             } else {

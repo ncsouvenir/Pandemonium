@@ -230,11 +230,16 @@ extension CurrentUserProfileVC: UITableViewDelegate{
         guard indexPath.row != 0 else {
             return
         }
-                let detailPostSetup = posts[indexPath.row - 1] //gets post at that index path
-                let detailPostVC = DetailPostVC(post: detailPostSetup)
-                detailPostVC.modalTransitionStyle = .crossDissolve
-                detailPostVC.modalPresentationStyle = .overCurrentContext
-                navigationController?.pushViewController(detailPostVC, animated: true)
+        let cell = tableView.cellForRow(at: indexPath)
+        UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 5, options: [], animations: {
+            cell?.transform = CGAffineTransform(scaleX: 0.9, y: 0.9) }, completion: { finished in
+                UIView.animate(withDuration: 0.06, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 5, options: .curveEaseIn, animations: { cell?.transform = CGAffineTransform(scaleX: 1, y: 1) }, completion: {(_) in
+                    let detailPostSetup = self.posts[indexPath.row - 1] //gets post at that index path
+                    let detailPostVC = DetailPostVC(post: detailPostSetup)
+                    detailPostVC.modalTransitionStyle = .crossDissolve
+                    detailPostVC.modalPresentationStyle = .overCurrentContext
+                    self.navigationController?.pushViewController(detailPostVC, animated: true)
+                } )})
     }
 }
 

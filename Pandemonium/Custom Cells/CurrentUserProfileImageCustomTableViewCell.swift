@@ -42,7 +42,7 @@ class CurrentUserProfileImageCustomTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "Talking Parrot"
         label.font = UIFont.boldSystemFont(ofSize: 17)
-        label.textColor = .white
+        label.textColor = Settings.manager.textColor
         return label
     }()
     
@@ -62,7 +62,7 @@ class CurrentUserProfileImageCustomTableViewCell: UITableViewCell {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "pencil"), for: .normal)
         button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor.red.cgColor
+        button.layer.borderColor = Settings.manager.textColor.cgColor
         button.layer.backgroundColor = UIColor.white.cgColor
         button.addTarget(self, action: #selector(editUserNameButtonPressed), for: .touchUpInside)
         return button
@@ -74,7 +74,7 @@ class CurrentUserProfileImageCustomTableViewCell: UITableViewCell {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "pencil"), for: .normal)
         button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor.red.cgColor
+        button.layer.borderColor = Settings.manager.textColor.cgColor
         button.layer.backgroundColor = UIColor.white.cgColor
         button.addTarget(self, action: #selector(editImageButtonPressed), for: .touchUpInside)
         return button
@@ -120,10 +120,10 @@ class CurrentUserProfileImageCustomTableViewCell: UITableViewCell {
         userNameEditButton.layer.cornerRadius = userNameEditButton.bounds.height / 2.0
         userNameEditButton.layer.masksToBounds = true
         
-        userNameTextField.layer.borderColor = UIColor.white.cgColor
+        userNameTextField.layer.borderColor = Settings.manager.textColor.cgColor
         userNameTextField.layer.borderWidth = 1
         
-        profileImage.layer.borderColor = UIColor.white.cgColor
+        profileImage.layer.borderColor = Settings.manager.textColor.cgColor
     }
     
     required init?(coder aDecoder: NSCoder) {

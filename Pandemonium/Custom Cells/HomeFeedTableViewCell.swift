@@ -41,6 +41,7 @@ class HomeFeedTableViewCell: UITableViewCell{
     lazy var userName: UILabel = {
         let label = UILabel()
         label.text = "Username"
+        label.textAlignment = .center
         label.font = Settings.manager.fontSize
         label.textColor = UIColor.blue
         let tap = UITapGestureRecognizer(target: self, action: #selector(userNameSelectedAction))
@@ -79,7 +80,7 @@ class HomeFeedTableViewCell: UITableViewCell{
     lazy var postImage: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 5
-        imageView.image = #imageLiteral(resourceName: "warMachine")
+        imageView.image = #imageLiteral(resourceName: "noImg")
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         imageView.backgroundColor = .yellow
@@ -146,14 +147,14 @@ class HomeFeedTableViewCell: UITableViewCell{
         addSubview(postImage)
         postImage.snp.makeConstraints { (constraint) in
             constraint.top.equalTo(snp.top).offset(5)
-            constraint.right.equalTo(upButton.snp.left).offset(-5)
+            constraint.right.equalTo(upButton.snp.left).offset(-30)
             constraint.width.height.equalTo(snp.width).multipliedBy(0.20)
         }
     }
     private func setupNumberOfUpDownVotes(){
         addSubview(numberOfUpDown)
         numberOfUpDown.snp.makeConstraints { (constraint) in
-            constraint.right.equalTo(snp.right).offset(-5)
+            constraint.right.equalTo(snp.right).offset(-15)
             constraint.top.equalTo(upButton.snp.bottom).offset(2)
         }
     }
@@ -176,6 +177,7 @@ class HomeFeedTableViewCell: UITableViewCell{
     private func setupUpbutton(){
         addSubview(upButton)
         upButton.snp.makeConstraints { (constraint) in
+            constraint.height.equalTo(40)
             constraint.top.equalTo(snp.top).offset(5)
             constraint.right.equalTo(snp.right).offset(-5)
         }
@@ -183,6 +185,7 @@ class HomeFeedTableViewCell: UITableViewCell{
     private func setupDownButton(){
         addSubview(downButton)
         downButton.snp.makeConstraints { (constraint) in
+            constraint.height.equalTo(40)
             constraint.top.equalTo(numberOfUpDown.snp.bottom).offset(2)
             constraint.right.equalTo(snp.right).offset(-5)
         }
@@ -190,8 +193,9 @@ class HomeFeedTableViewCell: UITableViewCell{
     private func setupUserName(){
         addSubview(userName)
         userName.snp.makeConstraints { (constraint) in
-            constraint.top.equalTo(postTitle.snp.bottom).offset(2)
-            constraint.left.equalTo(snp.left).offset(5)
+            constraint.height.equalTo(20)
+            constraint.bottom.equalTo(contentView).offset(-5)
+            constraint.left.equalTo(tags.snp.right).offset(90)
         }
     }
     
@@ -213,6 +217,11 @@ class HomeFeedTableViewCell: UITableViewCell{
         }
         
         // NightMode
+        if Settings.manager.logoPressed == true {
+            self.userName.textColor = Settings.manager.customBlue
+        } else {
+            self.userName.textColor = UIColor.blue
+        }
         self.postTitle.textColor = Settings.manager.textColor
         self.numberOfComments.textColor = Settings.manager.textColor
         self.postImage.backgroundColor = Settings.manager.textColor

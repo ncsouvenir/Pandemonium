@@ -39,9 +39,11 @@ class CurrentUserProfileVC: UIViewController {
     }
     
     func loadUserPosts(){
+        
         guard let user = user else {
             return
         }
+        
         FirebasePostManager.manager.loadUserPosts(user: user,
                                                   completionHandler: {self.posts = $0},
                                                   errorHandler: {print($0)})
@@ -179,7 +181,7 @@ extension CurrentUserProfileVC: UITableViewDataSource{
             profileCell.userNameTextField.backgroundColor = .black
             return profileCell
         }
-        let post = posts[indexPath.row]
+        let post = posts[indexPath.row-1]
         let profilePostCell = tableView.dequeueReusableCell(withIdentifier: "currentUserProfilePostCell") as! CurrentUserProfilePostCustomCustomTableViewCell
         //4 setting the delegate
         profilePostCell.delegate = self

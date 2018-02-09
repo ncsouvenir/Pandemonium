@@ -93,36 +93,39 @@ class FirebasePostManager{
             errorHandler(FireBasePostManagerStatus.userHaveNoPost)
             return
         }
-        var posts = [Post]()
+        var posts = [Post](){
+            didSet{
+                completionHandler(posts)
+            }
+        }
         for postUID in postUIDS{
-            
-            getPost(from: postUID, completion: {posts.append($0)
-                
-            }, errorHandler: {print($0)})
+            DispatchQueue.main.async {
+                self.getPost(from: postUID, completion: {posts.append($0)
+                }, errorHandler: {print($0)})
+            }
         }
         
-        completionHandler(posts)
     }
     
     
     
     // this function will get a post from posUID
     func getPost(from postUID: String, completion: @escaping (Post)->Void, errorHandler: @escaping (Error)->Void){
+        
         let postReference = Database.database().reference(withPath: "posts").child(postUID)
-        postReference.observe(.value) { (snapshot) in
-            guard let rawJSON = snapshot.value else{
-                return
-            }
-            do{
-                let jsonData = try JSONSerialization.data(withJSONObject: rawJSON, options: [])
-                let post = try JSONDecoder().decode(Post.self, from: jsonData)
-                completion(post)
-            }
-            catch let error{
-                errorHandler(error)
+        postReference.observeSingleEvent(of: .value) { (snapshot) in
+            if let json = snapshot.value {
+                do {
+                    let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
+                    
+                    let post = try JSONDecoder().decode(Post.self, from: jsonData)
+                    
+                    completion(post)
+                } catch {
+                    errorHandler(error)
+                }
             }
         }
-        
     }
     // this funciton will load the user's posts UIDS
     private func loadUserPostsUIDs(userUID: String,
@@ -164,8 +167,8 @@ class FirebasePostManager{
     }
     
     private func deletePostFromUser(userUID: String,
-                         postUIDToDelete: String,
-                         errorHandler: @escaping (Error) -> Void) {
+                                    postUIDToDelete: String,
+                                    errorHandler: @escaping (Error) -> Void) {
         let usersRef = Database.database().reference(withPath: "users")
         usersRef.child(userUID).child(userUID).child("posts").observeSingleEvent(of: .value) { (snapshot) in
             if let uids = snapshot.value as? [String] {

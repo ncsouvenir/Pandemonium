@@ -50,9 +50,25 @@ class CurrentUserProfileVC: UIViewController {
                                                  errorHandler: {print("Dev:",$0)})
         
     }
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = false
+        FirebaseUserManager.shared.getParrotFrom(uid: (FirebaseUserManager.shared.getCurrentUser()!.uid),
+                                                 completionHandler: {self.user = $0},
+                                                 errorHandler: {print("Dev:",$0)})
+    }
 
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = false
+        FirebaseUserManager.shared.getParrotFrom(uid: (FirebaseUserManager.shared.getCurrentUser()!.uid),
+                                                 completionHandler: {self.user = $0},
+                                                 errorHandler: {print("Dev:",$0)})
+    }
     override func viewWillLayoutSubviews() {
         navigationController?.navigationBar.isHidden = false
+        FirebaseUserManager.shared.getParrotFrom(uid: (FirebaseUserManager.shared.getCurrentUser()!.uid),
+                                                 completionHandler: {self.user = $0},
+                                                 errorHandler: {print("Dev:",$0)})
+
     }
 
     func loadUserPosts(){

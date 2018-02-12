@@ -2,7 +2,7 @@
 
 ## Overview
 This app lets you make posts on a user thread, dedicated to keeping you up to date with recent events.
-
+![alt text](https://github.com/ncsouvenir/Pandemonium/blob/qa/GIF1.gif)
 ## Features
 - User Authentication
 - Creating Posts

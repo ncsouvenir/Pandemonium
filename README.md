@@ -1,7 +1,7 @@
 # Pandemonium
 
 ## Overview
-This app lets you make posts on a user thread, dedicated to keeping you up to date with recent events.
+Pandemonium is a social news aggregation, web content rating app where registered users can submit content which are then open to critique by the community
 
 ![alt text](https://github.com/ncsouvenir/Pandemonium/blob/qa/GIF1.gif)
 ![alt text](https://github.com/ncsouvenir/Pandemonium/blob/qa/GIF2.gif)

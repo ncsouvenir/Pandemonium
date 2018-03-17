@@ -1,5 +1,5 @@
 # Pandemonium
-![Introduction](https://github.com/ncsouvenir/OneStopShop/blob/master/Gifs/Screen%20Shot%202018-03-16%20at%203.03.27%20PM.png)
+![Introduction](https://github.com/ncsouvenir/Pandemonium/blob/dev-Nicole/Gif/Screen%20Shot%202018-03-17%20at%203.59.59%20PM.png)
 
 
 ## Overview

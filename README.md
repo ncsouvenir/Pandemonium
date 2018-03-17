@@ -1,4 +1,6 @@
 # Pandemonium
+![Introduction](https://github.com/ncsouvenir/OneStopShop/blob/master/Gifs/Screen%20Shot%202018-03-16%20at%203.03.27%20PM.png)
+
 
 ## Overview
 This app lets you make posts on a user thread, dedicated to keeping you up to date with recent events.

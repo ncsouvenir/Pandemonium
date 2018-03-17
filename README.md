@@ -1,20 +1,14 @@
-# Pandemonium
 ![Introduction](https://github.com/ncsouvenir/Pandemonium/blob/dev-Nicole/Gif/Screen%20Shot%202018-03-17%20at%203.59.59%20PM.png)
-
-
-## Overview
-This app lets you make posts on a user thread, dedicated to keeping you up to date with recent events.
 
 ![alt text](https://github.com/ncsouvenir/Pandemonium/blob/qa/GIF1.gif)
 ![alt text](https://github.com/ncsouvenir/Pandemonium/blob/qa/GIF2.gif)
 
 ## Features
 - User Authentication
-- Creating Posts
-- Creating Comments
-- Upvotes and Downvotes
-- Editing Posts and Comments
-- Editing User Profiles
+- Creating posts and comments to interact with other users
+- Editing posts and comments
+- Ability to critique others with an upvoting and downvoting system
+- Editing User profile images and usernames
 
 ## Requirements
 - iOS 8.0+ / Mac OS X 10.11+ / tvOS 9.0+
@@ -34,10 +28,8 @@ CocoaPods is a dependency manager for Cocoa projects. You can install it with th
 - [Toucan](https://cocoapods.org/pods/Toucan)
 - [KingFisher](https://github.com/onevcat/Kingfisher)
 
-
 ### How to Install Pods
 To integrate these pods into your Xcode project using CocoaPods, specify it in your Podfile:
-
 ```
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '10.0'
@@ -59,7 +51,8 @@ Then, run the following command in Terminal:
 `$ pod install`
 
 
-## Credits 
+## Contributors
+
 - **Project Manager**: Reiaz Gafar - [GitHub](https://github.com/reiaz-gafar)
 - **Tech Lead**: Nicole Souvenir - [GitHub](https://github.com/ncsouvenir)
 - **UI/UX**: Nathan Rosario - [GitHub](https://github.com/NateMRosario)

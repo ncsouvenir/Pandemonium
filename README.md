@@ -61,7 +61,6 @@ Then, run the following command in Terminal:
 
 
 ## Future Updates
-In continuing to iterate on this project I would like to do the following:
 
 - Adding functionality for flagging and reporting users
 - Re-factor the UI/UX for better user experience

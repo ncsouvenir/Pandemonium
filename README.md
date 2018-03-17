@@ -9,6 +9,7 @@
 - Editing posts and comments
 - Ability to critique others with an upvoting and downvoting system
 - Editing User profile images and usernames
+- Being able to switch the app into "night mode"
 
 ## Requirements
 - iOS 8.0+ / Mac OS X 10.11+ / tvOS 9.0+
@@ -49,6 +50,22 @@ end
 Then, run the following command in Terminal:
 
 `$ pod install`
+
+## Technologies and Design Patterns
+
+- Firebase as a back-end service
+- Dependency Injection
+- Custom Delegation
+- Programmatic AutoLayout
+
+
+
+## Future Updates
+In continuing to iterate on this project I would like to do the following:
+
+- Adding functionality for flagging and reporting users
+- Re-factor the UI/UX for better user experience
+
 
 
 ## Contributors

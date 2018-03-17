@@ -14,7 +14,7 @@ enum CommentError: Error {
 }
 
 class FirebaseCommentManager {
-    private init() {}
+    private init(){}
     static let manager = FirebaseCommentManager()
     
     //MARK: Adding comments to posts

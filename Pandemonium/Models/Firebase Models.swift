@@ -20,6 +20,7 @@ struct Parrot: Codable {
     var numberOfComments: Int?
     var image: String?
     var posts: [String]?
+    //trying to convert the parrot object into json data and add to database
     func toJSON() -> Any {
         let jsonData = try! JSONEncoder().encode(self)
         return try! JSONSerialization.jsonObject(with: jsonData, options: [])

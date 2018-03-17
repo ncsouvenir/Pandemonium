@@ -30,8 +30,15 @@ class ProfileViewController: UIViewController {
         setupProfileView()
         setupNavigationBar()
         print("Dev:",user.appUserName)
-        FirebasePostManager.manager.loadUserPosts(user: user, completionHandler: {self.posts = $0}, errorHandler: {print("Dev:", $0)})
+        FirebasePostManager.manager.loadUserPosts(user: user,
+                                                  completionHandler: {self.posts = $0},
+                                                  errorHandler: {print("Dev:", $0)})
         // Do any additional setup after loading the view.
+        /**
+         completionHandler: { (posts: [Post]) in
+         self.posts = posts
+         }
+         **/
     }
     
     func setupNavigationBar(){
@@ -46,26 +53,28 @@ class ProfileViewController: UIViewController {
         self.profileView.tableView.dataSource = self
         self.profileView.tableView.delegate = self
     }
-    
-    
 }
 
 extension ProfileViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //        return (self.user?.posts.count + 1)
-         return (1 + posts.count)
+        return (1 + posts.count)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0{
             let profileCell = tableView.dequeueReusableCell(withIdentifier: "profileImageCell") as! ProfileImageCustomTableViewCell
             profileCell.userNameLabel.text = user.appUserName
+            
             if let imageURL = user.image{
-                FirebaseStorageManager.shared.retrieveImage(imgURL: imageURL, completionHandler: {profileCell.imageView?.image = $0; profileCell.setNeedsLayout()}, errorHandler: {print($0)})
+                FirebaseStorageManager.shared.retrieveImage(imgURL: imageURL,
+                                                            completionHandler: {profileCell.imageView?.image = $0; profileCell.setNeedsLayout()}, //set to the image you get back
+                    errorHandler: {print($0)})
             }
+            
             return profileCell
         }
-         let postSetup = posts[indexPath.row - 1]
+        let postSetup = posts[indexPath.row - 1]
         let cell = tableView.dequeueReusableCell(withIdentifier: "profilePostCell", for: indexPath) as! ProfilePostCustomTableViewCell
         cell.setupCell(from: postSetup)
         return cell

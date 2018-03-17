@@ -22,6 +22,7 @@ enum PostManagerError: Error {
 class FirebasePostManager{
     private init(){}
     static let manager = FirebasePostManager()
+    
     //MARK: Loading Posts FROM FireBase
     func loadPosts(completionHandler: @escaping ([Post]?, Error?) -> Void){
         // getting the reference for the node that is Posts
@@ -59,10 +60,11 @@ class FirebasePostManager{
             return
         }
         let child = Database.database().reference(withPath: "posts").childByAutoId()
-        let childKey = child.key
+        let childKey = child.key //storing the random key
         var post: Post
         if let image = image {
             FirebaseStorageManager.shared.storeImage(type: .post, uid: child.key, image: image)
+            
             post = Post(postUID: child.key, userUID: userUID, date: date, title: title, upvotes: 0, downvotes: 0, tags: tags, bodyText: bodyText, url: nil, image: "images/\(child.key).png", comments: nil)
             child.setValue(post.postToJSON())
         } else if let url = url {
@@ -73,6 +75,7 @@ class FirebasePostManager{
             child.setValue(post.postToJSON())}
         
         child.setValue(post.postToJSON())
+        
         //get the user by looking in the dataBase for the UID and add the childKey to the user postUIDS
         let userChild = Database.database().reference(withPath: "users").child(currentUser.uid)
         loadUserPostsUIDs(userUID: currentUser.uid, completionHandler: { (UIDArrays) in
@@ -104,7 +107,6 @@ class FirebasePostManager{
                 }, errorHandler: {print($0)})
             }
         }
-        
     }
     
     
@@ -117,7 +119,6 @@ class FirebasePostManager{
             if let json = snapshot.value {
                 do {
                     let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
-                    
                     let post = try JSONDecoder().decode(Post.self, from: jsonData)
                     
                     completion(post)
@@ -140,12 +141,14 @@ class FirebasePostManager{
         })
         
     }
+    
     func updatePostUpVote(for post: Post){
         let dbReference = Database.database().reference().child("posts")
         let postReference = dbReference.child(post.postUID)
         let postUpVotesValue = post.upvotes + 1
         postReference.updateChildValues(["upvotes": postUpVotesValue])
     }
+    
     func updatePostDownVote(for post: Post){
         let dbReference = Database.database().reference().child("posts")
         let postReference = dbReference.child(post.postUID)

@@ -21,6 +21,7 @@ class FirebaseUserManager {
         dataBaseRef = Database.database().reference()
         usersReference = dataBaseRef.child("users")
     }
+    
     private var dataBaseRef: DatabaseReference!
     private var usersReference: DatabaseReference!
     
@@ -42,9 +43,7 @@ class FirebaseUserManager {
                 completionHandler(user, nil)
             }
         }
-        
         Auth.auth().signIn(withEmail: email, password: password, completion: completion)
-        
     }
     
     func userNameCheck(username: String) {
@@ -63,7 +62,7 @@ class FirebaseUserManager {
                 let child = self.usersReference.child(user.uid)
                 child.setValue(Parrot(userUID: user.uid, appUserName: username, upvotes: 0, downvotes: 0, numberOfComments: 0, image: nil, posts: nil).toJSON())
                 
-                 //Send verification email
+                //Send verification email
                 user.sendEmailVerification(completion: { (error) in
                     if let error = error {
                         print(error)
@@ -74,7 +73,6 @@ class FirebaseUserManager {
             }
         }
         Auth.auth().createUser(withEmail: email, password: password, completion: completion)
-        
     }
     
     func logOut() {
@@ -110,10 +108,15 @@ class FirebaseUserManager {
         }
     }
     
+    func changeUsernameFrom(userUID: String, newUsername: String) {
+        Database.database().reference(withPath: "users").child(userUID).child("appUserName").setValue(newUsername)
+    }
+    
     func getParrotFrom(uid: String,
                        completionHandler: @escaping (Parrot) -> Void,
                        errorHandler: @escaping (Error) -> Void) {
-        Database.database().reference(withPath: "users").child(uid).observeSingleEvent(of: .value) { (snapshot) in
+        
+        Database.database().reference(withPath: "users").child(uid).observeSingleEvent(of: .value) {(snapshot) in
             if let json = snapshot.value {
                 do {
                     let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
@@ -124,9 +127,5 @@ class FirebaseUserManager {
                 }
             }
         }
-    }
-    
-    func changeUsernameFrom(userUID: String, newUsername: String) {
-        Database.database().reference(withPath: "users").child(userUID).child("appUserName").setValue(newUsername)
     }
 }

@@ -79,7 +79,6 @@ class CreateAPostTableViewController: UITableViewController {
         
     }
     
-    
     private func configureTextFieldDelegates() {
         userNameTextField.delegate = self
         titleTextField.delegate = self
@@ -395,11 +394,11 @@ extension CreateAPostTableViewController: UIImagePickerControllerDelegate, UINav
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else { print("image is nil"); return }
         imageView.image = image
         
-        // resize the image
-        //        let sizeOfImage: CGSize = CGSize(width: 200, height: 200)
-        //        let toucanImage = Toucan.Resize.resizeImage(image, size: sizeOfImage)
-        //
-        //currentSelectedImage = toucanImage
+//         resize the image
+//                let sizeOfImage: CGSize = CGSize(width: 200, height: 200)
+//                let toucanImage = Toucan.Resize.resizeImage(image, size: sizeOfImage)
+//        
+//        currentSelectedImage = toucanImage
         
         dismiss(animated: true, completion: nil)
     }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
     
     var user: Parrot!
@@ -25,6 +26,7 @@ class HomeFeedVC: UIViewController,UIGestureRecognizerDelegate {
         self.homeFeedView.tableView.delegate = self
         loadPosts()
     }
+    
     func loadPosts(){
         FirebasePostManager.manager.loadPosts { (posts, error) in
             if let error = error{
@@ -202,6 +204,7 @@ extension HomeFeedVC: UITableViewDelegate, HomeFeedTableViewCellDelegate{
     }
     //This function will handle the action sheet for a specific user and give you the options to either report/viewProfile/Cancel
     func userNameSelected(from tablViewCell: HomeFeedTableViewCell) {
+        
         if let indexPath = tablViewCell.currentIndexPath{
             let postSetup = self.posts[indexPath.row - 1]
             let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
